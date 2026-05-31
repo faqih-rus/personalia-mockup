@@ -576,6 +576,78 @@ table.data tbody tr:hover{background:#f5f8fb}
 .foot-note .dash{color:var(--brass)}
 
 /* responsive table cards (mobile) handled by horizontal scroll */
+
+/* ===== Kehadiran & Laporan ===== */
+.badge{display:inline-block;font-size:10.5px;font-weight:700;border-radius:20px;padding:2px 9px;line-height:1.5;letter-spacing:.2px}
+.b-success{background:#e2f0e7;color:#198754}.b-warning{background:#fcefd7;color:#a9740c}.b-danger{background:#fbe2e1;color:#d9534f}
+.b-info{background:#dff1f4;color:#0a7d8f}.b-blue{background:#e3edfb;color:#2f6fd1}.b-purple{background:#ece5f7;color:#7a5cc0}
+.b-muted{background:#eceee9;color:#637058}.b-accent{background:#e7f3df;color:#3f6d18}
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.stat-grid.four{grid-template-columns:repeat(4,1fr)}
+.stat-card{background:#fff;border:1px solid #e0e4e8;border-radius:6px;padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start}
+.stat-card .lbl{font-size:11.5px;color:#666;margin-bottom:6px}
+.stat-card .num{font-size:24px;font-weight:700;color:#1a1a1a;line-height:1}
+.stat-card .sub{font-size:10.5px;color:#666;margin-top:5px}
+.stat-card .sub.up{color:#198754}.stat-card .sub.down{color:#d9534f}
+.stat-card .ico{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:0 0 34px}
+.stat-card .ico svg{width:18px;height:18px}
+.ico.g{background:#e7f3df}.ico.g svg{stroke:#5a8f2a}
+.ico.b{background:#e4eefb}.ico.b svg{stroke:#2f6fd1}
+.ico.w{background:#fdf2df}.ico.w svg{stroke:#d68a2b}
+.ico.i{background:#e1f4f6}.ico.i svg{stroke:#0d9bb0}
+.ico.r{background:#fbe7e6}.ico.r svg{stroke:#d9534f}
+.k-filter{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:16px}
+.k-filter .fld{display:flex;flex-direction:column;gap:4px}
+.k-filter label{font-size:11px;color:#666;font-weight:600}
+.k-filter select,.k-filter input{font-family:inherit;font-size:12px;padding:7px 9px;border:1px solid #d0d0d0;border-radius:6px;background:#fff;color:#1a1a1a;min-width:150px}
+.k-filter .actions{display:flex;gap:8px;margin-left:auto}
+.k-trend{display:flex;align-items:flex-end;gap:18px;height:190px;padding:8px 4px 0}
+.k-trend .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.k-trend .bar{width:60%;max-width:48px;background:var(--brass);border-radius:5px 5px 0 0;position:relative;min-height:4px}
+.k-trend .bar .val{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:10.5px;color:#666;font-weight:600}
+.k-trend .day{margin-top:8px;font-size:11px;color:#666}
+.k-dropzone{border:2px dashed #d0d0d0;border-radius:8px;background:#fafafa;padding:26px;text-align:center;color:#666}
+.k-dropzone svg{width:30px;height:30px;stroke:var(--brass);margin:0 auto 8px;display:block}
+.k-form{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.k-form.two{grid-template-columns:repeat(2,1fr)}
+.k-form .fld{display:flex;flex-direction:column;gap:5px}
+.k-form label{font-size:11.5px;color:#666;font-weight:600}
+.k-form input,.k-form select,.k-form textarea{font-family:inherit;font-size:12px;padding:8px 10px;border:1px solid #d0d0d0;border-radius:6px;background:#fff;color:#1a1a1a;width:100%}
+.k-form textarea{resize:vertical;min-height:62px}.k-form .full{grid-column:1/-1}
+.k-alert{border:1px solid #ffcdd2;background:#ffebee;border-radius:7px;padding:11px 14px;font-size:12px;color:#c0432f;display:flex;gap:9px;align-items:flex-start;margin-bottom:8px}
+.k-alert svg{width:15px;height:15px;stroke:#c0432f;flex:0 0 15px;margin-top:1px}
+.k-alert.warn{border-color:#ffe0b2;background:#fff3e0;color:#d68a2b}.k-alert.warn svg{stroke:#d68a2b}
+.k-export-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.k-export-card{background:#fff;border:1px solid #e0e4e8;border-radius:6px;padding:16px;text-align:center}
+.k-export-card .ec-ico{width:44px;height:44px;border-radius:10px;background:rgba(200,163,71,.1);margin:0 auto 10px;display:flex;align-items:center;justify-content:center}
+.k-export-card .ec-ico svg{width:22px;height:22px;stroke:var(--brass)}
+.k-export-card .ec-title{font-size:12.5px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
+.k-export-card .ec-desc{font-size:11px;color:#666;margin-bottom:12px;min-height:30px}
+.k-rank-row{display:flex;align-items:center;gap:9px}
+.k-rank-row .rk-no{width:22px;height:22px;border-radius:50%;background:#f0f1f3;color:#1a1a1a;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 22px}
+.k-rank-row .rk-no.top{background:var(--brass);color:var(--ink)}
+.appr-tl{position:relative;padding-left:6px}
+.appr-tl .step{position:relative;padding:0 0 22px 30px}
+.appr-tl .step:before{content:"";position:absolute;left:9px;top:20px;bottom:-2px;width:2px;background:#e0e4e8}
+.appr-tl .step:last-child:before{display:none}
+.appr-tl .dot{position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.appr-tl .dot svg{width:11px;height:11px;stroke:#fff;stroke-width:2.5}
+.appr-tl .t-title{font-size:12.5px;font-weight:700;color:#1a1a1a}
+.appr-tl .t-name{font-size:12px;color:#1a1a1a;margin-top:1px}
+.appr-tl .t-meta{font-size:11px;color:#666;margin-top:2px}
+.appr-tl .t-note{font-size:11px;color:#666;margin-top:3px;font-style:italic}
+.k-tbl-wrap{overflow-x:auto;border:1px solid #e0e4e8;border-radius:6px;background:#fff}
+table.k-tbl{width:100%;border-collapse:collapse;font-size:12px}
+table.k-tbl thead th{background:#f5f5f5;color:#1a1a1a;text-align:left;font-size:11px;font-weight:700;letter-spacing:.2px;text-transform:uppercase;padding:9px 12px;white-space:nowrap;border-bottom:1px solid #e0e4e8}
+table.k-tbl tbody td{padding:8px 12px;border-bottom:1px solid #f0f4ec;white-space:nowrap}
+table.k-tbl tbody tr:last-child td{border-bottom:none}
+table.k-tbl tbody tr:hover{background:#f8faf5}
+table.k-tbl td.nr,table.k-tbl th.nr{text-align:right}
+table.k-tbl .mono{font-variant-numeric:tabular-nums;color:#445}
+.k-link{color:var(--brass);font-weight:600;cursor:pointer}.k-link:hover{text-decoration:underline}
+.k-btn-row{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:1400px){.stat-grid{grid-template-columns:repeat(3,1fr)}.k-export-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1100px){.k-form{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -698,6 +770,25 @@ table.data tbody tr:hover{background:#f5f8fb}
         <div class="g-label">Keamanan</div>
         <div class="nav-item" data-page="a-rbac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3"/></svg>Peran &amp; Akses</div>
         <div class="nav-item" data-page="a-audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Audit Trail</div>
+      </div>
+      <div class="nav-group">
+        <div class="g-label">Kehadiran</div>
+        <div class="nav-item" data-page="a-kh-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard Kehadiran</div>
+        <div class="nav-item" data-page="a-kh-import"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Import Mesin Absensi</div>
+        <div class="nav-item" data-page="a-kh-rekap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17V7m4 10V11m4 6V9M4 4h16v16H4z"/></svg>Rekap Harian</div>
+        <div class="nav-item" data-page="a-kh-jadwal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Jadwal Shift</div>
+        <div class="nav-item" data-page="a-kh-nonreg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Shift Non Reguler</div>
+        <div class="nav-item" data-page="a-kh-cuti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13l2 2 4-4"/></svg>Cuti / Izin / Sakit</div>
+        <div class="nav-item" data-page="a-kh-libur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="15" r="2" fill="currentColor" stroke="none"/></svg>Hari Libur</div>
+        <div class="nav-item" data-page="a-kh-koreksi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>Koreksi Absensi</div>
+      </div>
+      <div class="nav-group">
+        <div class="g-label">Laporan</div>
+        <div class="nav-item" data-page="a-lap-bulanan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Laporan Bulanan</div>
+        <div class="nav-item" data-page="a-lap-telat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>Laporan Keterlambatan</div>
+        <div class="nav-item" data-page="a-lap-cuti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14l3-3 2 2 5-5"/></svg>Laporan Cuti / Izin</div>
+        <div class="nav-item" data-page="a-lap-shift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg>Laporan Shift</div>
+        <div class="nav-item" data-page="a-lap-export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export Laporan</div>
       </div>
     </div>
 
@@ -1239,6 +1330,277 @@ table.data tbody tr:hover{background:#f5f8fb}
         </div>
       </div>
 
+
+      <!-- ===== KEHADIRAN: DASHBOARD ===== -->
+      <div class="page" id="page-a-kh-dashboard">
+        <p style="font-size:11.5px;color:#666;margin-bottom:14px">Rekap kehadiran personel — Sabtu, 30 Mei 2026 · sumber data personel: nominatif dokter/perawat RSPAD</p>
+        <div class="stat-grid">
+          <div class="stat-card"><div><div class="lbl">Personel Aktif</div><div class="num" id="st-aktif">-</div><div class="sub">Total nominatif</div></div><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Hadir Hari Ini</div><div class="num" id="st-hadir">-</div><div class="sub up">simulasi</div></div><div class="ico b"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Terlambat</div><div class="num" id="st-telat">-</div><div class="sub down">simulasi</div></div><div class="ico w"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Cuti / Izin / Sakit</div><div class="num" id="st-cis">-</div><div class="sub">simulasi</div></div><div class="ico i"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Belum Absen Pulang</div><div class="num" id="st-belum">-</div><div class="sub">shift malam &amp; on-call</div></div><div class="ico r"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></div></div>
+        </div>
+        <div class="panel mb">
+          <div class="panel-head"><h3>Tren Kehadiran 7 Hari Terakhir (%)</h3><span class="ph-tag">simulasi</span></div>
+          <div class="panel-body">
+            <div class="k-trend">
+              <div class="bar-col"><div class="bar" style="height:86%"><span class="val">86</span></div><div class="day">Sen 24</div></div>
+              <div class="bar-col"><div class="bar" style="height:90%"><span class="val">90</span></div><div class="day">Sel 25</div></div>
+              <div class="bar-col"><div class="bar" style="height:88%"><span class="val">88</span></div><div class="day">Rab 26</div></div>
+              <div class="bar-col"><div class="bar" style="height:92%"><span class="val">92</span></div><div class="day">Kam 27</div></div>
+              <div class="bar-col"><div class="bar" style="height:91%"><span class="val">91</span></div><div class="day">Jum 28</div></div>
+              <div class="bar-col"><div class="bar" style="height:73%"><span class="val">73</span></div><div class="day">Sab 29</div></div>
+              <div class="bar-col"><div class="bar" style="height:89%"><span class="val">89</span></div><div class="day">Min 30</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Anomali Kehadiran Hari Ini</h3></div>
+          <div class="k-tbl-wrap" style="border:0">
+            <table class="k-tbl"><thead><tr><th>NRP/NIP (Masked)</th><th>Nama</th><th>JK</th><th>Unit</th><th>Status</th><th>Masuk</th><th>Pulang</th><th>Keterangan</th><th>Aksi</th></tr></thead>
+            <tbody id="tbl-anomali"></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== KEHADIRAN: IMPORT ===== -->
+      <div class="page" id="page-a-kh-import">
+        <div class="panel mb">
+          <div class="panel-head"><h3>Panel Import Data Absensi</h3></div>
+          <div class="panel-body">
+            <div class="k-form" style="margin-bottom:14px">
+              <div class="fld"><label>Mesin Absensi</label><select><option>Mesin Lobi Utama (FP-01)</option><option>Mesin Gd. Bedah (FP-02)</option><option>Mesin IGD (FP-03)</option><option>Mesin Paviliun (FP-04)</option></select></div>
+              <div class="fld"><label>Tanggal Data</label><input type="date" value="2026-05-30"></div>
+              <div class="fld"><label>Keterangan</label><input type="text" placeholder="Import harian rutin"></div>
+            </div>
+            <div class="k-dropzone">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              <b>Tarik file ke sini</b> atau klik untuk pilih file<br><span style="font-size:11px;color:#999">Format: .dat, .txt, .csv, .xlsx (maks 10 MB)</span>
+            </div>
+            <div class="k-btn-row" style="margin-top:14px">
+              <button class="btn btn-primary btn-sm">Upload Data</button>
+              <button class="btn btn-sm">Validasi</button>
+              <button class="btn btn-ghost btn-sm">Proses Import</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel mb">
+          <div class="panel-head"><h3>Log Import</h3></div>
+          <div class="k-tbl-wrap" style="border:0">
+            <table class="k-tbl"><thead><tr><th>Tanggal Import</th><th>Sumber Mesin</th><th class="nr">Jumlah Record</th><th class="nr">Berhasil</th><th class="nr">Duplikat</th><th class="nr">Error</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">30-05-2026 06:12</td><td>FP-01 Lobi Utama</td><td class="nr">1.284</td><td class="nr">1.249</td><td class="nr">23</td><td class="nr">12</td><td><span class="badge b-success">Selesai</span></td></tr>
+              <tr><td class="mono">29-05-2026 06:08</td><td>FP-01 Lobi Utama</td><td class="nr">1.280</td><td class="nr">1.280</td><td class="nr">0</td><td class="nr">0</td><td><span class="badge b-success">Selesai</span></td></tr>
+              <tr><td class="mono">29-05-2026 06:05</td><td>FP-02 Gd. Bedah</td><td class="nr">312</td><td class="nr">305</td><td class="nr">7</td><td class="nr">0</td><td><span class="badge b-success">Selesai</span></td></tr>
+              <tr><td class="mono">28-05-2026 22:40</td><td>FP-03 IGD</td><td class="nr">96</td><td class="nr">90</td><td class="nr">2</td><td class="nr">4</td><td><span class="badge b-warning">Sebagian</span></td></tr>
+              <tr><td class="mono">28-05-2026 06:10</td><td>FP-04 Paviliun</td><td class="nr">204</td><td class="nr">0</td><td class="nr">0</td><td class="nr">204</td><td><span class="badge b-danger">Gagal</span></td></tr>
+            </tbody></table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Contoh Error (Import 30-05-2026)</h3></div>
+          <div class="panel-body">
+            <div class="k-alert"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><div><b>Baris 418</b> — NRP <span class="mono">1105****9999</span> tidak ditemukan di master personel.</div></div>
+            <div class="k-alert warn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg><div><b>Baris 622</b> — Jam masuk duplikat untuk NIP <span class="mono">1987****1003</span> (07:01 &amp; 07:01).</div></div>
+            <div class="k-alert"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><div><b>Baris 905</b> — Format jam tidak valid: "<span class="mono">25:88</span>".</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== KEHADIRAN: REKAP HARIAN ===== -->
+      <div class="page" id="page-a-kh-rekap">
+        <div class="k-filter">
+          <div class="fld"><label>Tanggal</label><input type="date" value="2026-05-30"></div>
+          <div class="fld"><label>Unit</label><select id="f-rekap-unit"><option>Semua Unit</option></select></div>
+          <div class="fld"><label>Status</label><select><option>Semua Status</option><option>Hadir</option><option>Terlambat</option><option>Cuti</option><option>Izin</option><option>Sakit</option><option>Alpha</option><option>Dinas Luar</option></select></div>
+          <div class="fld"><label>Shift</label><select><option>Semua Shift</option><option>Pagi</option><option>Siang</option><option>Malam</option><option>On Call</option></select></div>
+          <div class="actions"><button class="btn btn-primary btn-sm">Tampilkan</button><button class="btn btn-ghost btn-sm">XLSX</button><button class="btn btn-ghost btn-sm">PDF</button></div>
+        </div>
+        <div class="k-tbl-wrap">
+          <table class="k-tbl"><thead><tr><th>NRP/NIP (Masked)</th><th>Nama</th><th>JK</th><th>Pangkat/Gol</th><th>Unit</th><th>Shift</th><th>Masuk</th><th>Pulang</th><th class="nr">Terlambat</th><th class="nr">Pulang Cepat</th><th>Status</th></tr></thead>
+          <tbody id="tbl-rekap"></tbody></table>
+        </div>
+      </div>
+
+      <!-- ===== KEHADIRAN: JADWAL SHIFT ===== -->
+      <div class="page" id="page-a-kh-jadwal">
+        <div class="k-filter">
+          <div class="fld"><label>Bulan</label><select><option>Mei 2026</option><option>Juni 2026</option></select></div>
+          <div class="fld"><label>Unit</label><select id="f-jadwal-unit"></select></div>
+          <div class="actions">
+            <button class="btn btn-primary btn-sm">Tampilkan</button>
+            <button class="btn btn-sm">+ Tambah Jadwal</button>
+          </div>
+        </div>
+        <p class="mono" style="font-size:11px;color:#666;margin-bottom:14px" id="jadwal-sub">Minggu IV — 25 s/d 31 Mei 2026</p>
+        <div class="k-tbl-wrap">
+          <table class="k-tbl"><thead><tr><th>NRP/NIP (Masked)</th><th>Nama</th><th>JK</th><th>Unit</th><th>Sen</th><th>Sel</th><th>Rab</th><th>Kam</th><th>Jum</th><th>Sab</th><th>Min</th></tr></thead>
+          <tbody id="tbl-jadwal"></tbody></table>
+        </div>
+      </div>
+
+      <!-- ===== KEHADIRAN: SHIFT NON REGULER ===== -->
+      <div class="page" id="page-a-kh-nonreg">
+        <div class="panel mb">
+          <div class="panel-head"><h3>Form Pengajuan Shift Non Reguler</h3></div>
+          <div class="panel-body">
+            <div class="k-form" style="margin-bottom:14px">
+              <div class="fld"><label>Personel</label><select id="sel-nonreg-pers"></select></div>
+              <div class="fld"><label>Unit</label><input type="text" placeholder="Terisi otomatis dari personel"></div>
+              <div class="fld"><label>Tanggal</label><input type="date" value="2026-06-02"></div>
+              <div class="fld"><label>Jenis Shift</label><select><option>Pagi</option><option>Siang</option><option>Malam</option><option>On Call</option></select></div>
+              <div class="fld"><label>Jam Mulai</label><input type="time" value="19:00"></div>
+              <div class="fld"><label>Jam Selesai</label><input type="time" value="07:00"></div>
+              <div class="fld full"><label>Alasan</label><textarea placeholder="Penggantian rekan cuti / penugasan khusus…"></textarea></div>
+            </div>
+            <div class="k-btn-row"><button class="btn btn-primary btn-sm">Ajukan</button><button class="btn btn-ghost btn-sm">Simpan Draft</button></div>
+          </div>
+        </div>
+        <div class="k-tbl-wrap">
+          <table class="k-tbl"><thead><tr><th>No. Pengajuan</th><th>Tanggal</th><th>Nama</th><th>JK</th><th>Unit</th><th>Shift</th><th>Jam</th><th>Alasan</th><th>Status</th><th>Approval</th></tr></thead>
+          <tbody id="tbl-nonreg"></tbody></table>
+        </div>
+      </div>
+
+      <!-- ===== KEHADIRAN: CUTI / IZIN / SAKIT ===== -->
+      <div class="page" id="page-a-kh-cuti">
+        <div class="stat-grid four mb">
+          <div class="stat-card"><div><div class="lbl">Cuti Bulan Ini</div><div class="num">31</div><div class="sub">simulasi</div></div><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Izin</div><div class="num">22</div><div class="sub">simulasi</div></div><div class="ico b"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Sakit</div><div class="num">21</div><div class="sub">simulasi</div></div><div class="ico i"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2v20M2 12h20"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Menunggu Approval</div><div class="num">9</div><div class="sub down">perlu tindak lanjut</div></div><div class="ico w"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div></div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button class="btn btn-primary btn-sm">+ Ajukan Cuti / Izin</button></div>
+        <div class="k-tbl-wrap mb">
+          <table class="k-tbl"><thead><tr><th>No. Pengajuan</th><th>Tanggal</th><th>Nama</th><th>JK</th><th>Unit</th><th>Jenis</th><th>Periode</th><th class="nr">Lama Hari</th><th>Pengganti</th><th>Status</th></tr></thead>
+          <tbody id="tbl-cuti"></tbody></table>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3 id="cuti-detail-title">Detail Approval</h3></div>
+          <div class="panel-body"><div class="appr-tl" id="cuti-timeline"></div></div>
+        </div>
+      </div>
+
+      <!-- ===== KEHADIRAN: HARI LIBUR ===== -->
+      <div class="page" id="page-a-kh-libur">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button class="btn btn-primary btn-sm">+ Tambah Libur</button></div>
+        <div class="k-tbl-wrap">
+          <table class="k-tbl"><thead><tr><th>Tanggal</th><th>Nama Libur</th><th>Jenis</th><th>Berlaku Untuk</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">01-06-2026</td><td>Hari Lahir Pancasila</td><td><span class="badge b-blue">Libur Nasional</span></td><td>Seluruh Personel</td><td><span class="badge b-success">Aktif</span></td><td><span class="k-link">Ubah</span></td></tr>
+            <tr><td class="mono">06-06-2026</td><td>Idul Adha 1447 H</td><td><span class="badge b-blue">Libur Nasional</span></td><td>Seluruh Personel</td><td><span class="badge b-success">Aktif</span></td><td><span class="k-link">Ubah</span></td></tr>
+            <tr><td class="mono">09-06-2026</td><td>Cuti Bersama Idul Adha</td><td><span class="badge b-info">Cuti Bersama</span></td><td>Non-Layanan Darurat</td><td><span class="badge b-success">Aktif</span></td><td><span class="k-link">Ubah</span></td></tr>
+            <tr><td class="mono">26-06-2026</td><td>HUT RSPAD Gatot Soebroto</td><td><span class="badge b-accent">Libur Khusus RSPAD</span></td><td>Seluruh Personel</td><td><span class="badge b-success">Aktif</span></td><td><span class="k-link">Ubah</span></td></tr>
+            <tr><td class="mono">17-08-2026</td><td>HUT Kemerdekaan RI</td><td><span class="badge b-blue">Libur Nasional</span></td><td>Seluruh Personel</td><td><span class="badge b-muted">Terjadwal</span></td><td><span class="k-link">Ubah</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- ===== KEHADIRAN: KOREKSI ABSENSI ===== -->
+      <div class="page" id="page-a-kh-koreksi">
+        <div class="panel mb">
+          <div class="panel-head"><h3>Form Koreksi Absensi</h3></div>
+          <div class="panel-body">
+            <div class="k-form" style="margin-bottom:14px">
+              <div class="fld"><label>Personel</label><select id="sel-koreksi-pers"></select></div>
+              <div class="fld"><label>Tanggal</label><input type="date" value="2026-05-30"></div>
+              <div class="fld"><label>Jenis Koreksi</label><select><option>Lupa absen masuk</option><option>Lupa absen pulang</option><option>Koreksi jam masuk</option><option>Koreksi jam pulang</option><option>Dinas luar</option></select></div>
+              <div class="fld"><label>Jam Seharusnya</label><input type="time" value="07:00"></div>
+              <div class="fld"><label>Jam Koreksi</label><input type="time" value="07:00"></div>
+              <div class="fld"><label>&nbsp;</label><div></div></div>
+              <div class="fld full"><label>Alasan</label><textarea placeholder="Mesin absensi error / lupa tap / dinas pagi di luar…"></textarea></div>
+            </div>
+            <div class="k-btn-row"><button class="btn btn-primary btn-sm">Ajukan Koreksi</button><button class="btn btn-ghost btn-sm">Batal</button></div>
+          </div>
+        </div>
+        <div class="k-tbl-wrap">
+          <table class="k-tbl"><thead><tr><th>No. Koreksi</th><th>Tanggal</th><th>Nama</th><th>JK</th><th>Unit</th><th>Jenis Koreksi</th><th>Sebelum</th><th>Sesudah</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody id="tbl-koreksi"></tbody></table>
+        </div>
+      </div>
+
+      <!-- ===== LAPORAN: BULANAN ===== -->
+      <div class="page" id="page-a-lap-bulanan">
+        <div class="k-filter">
+          <div class="fld"><label>Bulan</label><select><option>Mei</option><option>April</option></select></div>
+          <div class="fld"><label>Tahun</label><select><option>2026</option><option>2025</option></select></div>
+          <div class="fld"><label>Unit</label><select id="f-lapbulan-unit"><option>Semua Unit</option></select></div>
+          <div class="fld"><label>Jenis Personel</label><select><option>Semua</option><option>Militer</option><option>PNS</option><option>BLU/Non-ASN</option></select></div>
+          <div class="actions"><button class="btn btn-primary btn-sm">Tampilkan</button><button class="btn btn-ghost btn-sm">XLSX</button><button class="btn btn-ghost btn-sm">PDF</button></div>
+        </div>
+        <div class="stat-grid four mb">
+          <div class="stat-card"><div><div class="lbl">Total Hari Kerja</div><div class="num">22</div><div class="sub">Mei 2026</div></div><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Rata-rata Kehadiran</div><div class="num">88,7%</div><div class="sub up">simulasi</div></div><div class="ico b"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 3v18h18M7 14l3-3 2 2 5-5"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Total Terlambat</div><div class="num" id="lb-telat">-</div><div class="sub down">kejadian</div></div><div class="ico w"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div></div>
+          <div class="stat-card"><div><div class="lbl">Total Alpha</div><div class="num" id="lb-alpha">-</div><div class="sub down">kejadian</div></div><div class="ico r"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg></div></div>
+        </div>
+        <div class="k-tbl-wrap">
+          <table class="k-tbl"><thead><tr><th>NRP/NIP (Masked)</th><th>Nama</th><th>JK</th><th>Unit</th><th class="nr">Hadir</th><th class="nr">Terlambat</th><th class="nr">Cuti</th><th class="nr">Izin</th><th class="nr">Sakit</th><th class="nr">Alpha</th><th class="nr">%</th></tr></thead>
+          <tbody id="tbl-lapbulan"></tbody></table>
+        </div>
+      </div>
+
+      <!-- ===== LAPORAN: KETERLAMBATAN ===== -->
+      <div class="page" id="page-a-lap-telat">
+        <div class="k-filter">
+          <div class="fld"><label>Periode</label><select><option>Mei 2026</option><option>April 2026</option></select></div>
+          <div class="fld"><label>Unit</label><select id="f-laptelat-unit"><option>Semua Unit</option></select></div>
+          <div class="actions"><button class="btn btn-primary btn-sm">Tampilkan</button><button class="btn btn-ghost btn-sm">XLSX</button></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Top 10 Keterlambatan — Mei 2026</h3><span class="ph-tag">simulasi</span></div>
+          <div class="k-tbl-wrap" style="border:0">
+            <table class="k-tbl"><thead><tr><th>Peringkat &amp; Nama</th><th>JK</th><th>Unit</th><th class="nr">Jml Terlambat</th><th class="nr">Total Menit</th><th class="nr">Rata-rata Menit</th><th>Keterangan</th></tr></thead>
+            <tbody id="tbl-laptelat"></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== LAPORAN: CUTI ===== -->
+      <div class="page" id="page-a-lap-cuti">
+        <div class="k-filter">
+          <div class="fld"><label>Periode</label><select><option>Mei 2026</option><option>Triwulan II 2026</option></select></div>
+          <div class="fld"><label>Unit</label><select id="f-lapcuti-unit"><option>Semua Unit</option></select></div>
+          <div class="fld"><label>Jenis</label><select><option>Semua</option><option>Cuti</option><option>Izin</option><option>Sakit</option></select></div>
+          <div class="actions"><button class="btn btn-primary btn-sm">Tampilkan</button><button class="btn btn-ghost btn-sm">XLSX</button></div>
+        </div>
+        <div class="k-tbl-wrap">
+          <table class="k-tbl"><thead><tr><th>Nama</th><th>JK</th><th>Unit</th><th class="nr">Cuti</th><th class="nr">Izin</th><th class="nr">Sakit</th><th class="nr">Total Hari</th><th>Status Saldo Cuti</th></tr></thead>
+          <tbody id="tbl-lapcuti"></tbody></table>
+        </div>
+      </div>
+
+      <!-- ===== LAPORAN: SHIFT ===== -->
+      <div class="page" id="page-a-lap-shift">
+        <div class="k-filter">
+          <div class="fld"><label>Bulan</label><select><option>Mei 2026</option><option>April 2026</option></select></div>
+          <div class="fld"><label>Unit</label><select id="f-lapshift-unit"><option>Semua Unit</option></select></div>
+          <div class="actions"><button class="btn btn-primary btn-sm">Tampilkan</button><button class="btn btn-ghost btn-sm">XLSX</button></div>
+        </div>
+        <div class="k-tbl-wrap">
+          <table class="k-tbl"><thead><tr><th>Nama</th><th>JK</th><th>Unit</th><th class="nr">Pagi</th><th class="nr">Siang</th><th class="nr">Malam</th><th class="nr">On Call</th><th class="nr">Libur</th><th class="nr">Total Jam</th></tr></thead>
+          <tbody id="tbl-lapshift"></tbody></table>
+        </div>
+      </div>
+
+      <!-- ===== LAPORAN: EXPORT ===== -->
+      <div class="page" id="page-a-lap-export">
+        <div class="k-export-grid">
+          <div class="k-export-card"><div class="ec-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><div class="ec-title">Kehadiran Bulanan</div><div class="ec-desc">Rekap hadir, telat, cuti, alpha per personel.</div><div class="k-btn-row" style="justify-content:center"><button class="btn btn-primary btn-sm">XLSX</button><button class="btn btn-ghost btn-sm">PDF</button><button class="btn btn-ghost btn-sm">CSV</button></div></div>
+          <div class="k-export-card"><div class="ec-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/></svg></div><div class="ec-title">Keterlambatan</div><div class="ec-desc">Ranking &amp; total menit keterlambatan.</div><div class="k-btn-row" style="justify-content:center"><button class="btn btn-primary btn-sm">XLSX</button><button class="btn btn-ghost btn-sm">PDF</button><button class="btn btn-ghost btn-sm">CSV</button></div></div>
+          <div class="k-export-card"><div class="ec-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 3v18h18M7 14l3-3 2 2 5-5"/></svg></div><div class="ec-title">Cuti / Izin / Sakit</div><div class="ec-desc">Rekap &amp; saldo cuti per personel.</div><div class="k-btn-row" style="justify-content:center"><button class="btn btn-primary btn-sm">XLSX</button><button class="btn btn-ghost btn-sm">PDF</button><button class="btn btn-ghost btn-sm">CSV</button></div></div>
+          <div class="k-export-card"><div class="ec-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg></div><div class="ec-title">Shift</div><div class="ec-desc">Distribusi shift &amp; total jam kerja.</div><div class="k-btn-row" style="justify-content:center"><button class="btn btn-primary btn-sm">XLSX</button><button class="btn btn-ghost btn-sm">PDF</button><button class="btn btn-ghost btn-sm">CSV</button></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Riwayat Export</h3></div>
+          <div class="k-tbl-wrap" style="border:0">
+            <table class="k-tbl"><thead><tr><th>Tanggal</th><th>Jenis Laporan</th><th>Periode</th><th>Dibuat Oleh</th><th>Format</th><th>Status</th></tr></thead>
+            <tbody id="tbl-export"></tbody></table>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /a-content -->
     <div class="content" style="padding-top:0">
       <p class="foot-note">SATRIA<span class="dash">·</span>RSPAD &copy; 2026 · Sistem Internal RSPAD Gatot Soebroto · MVP Scope 1 · Data ditampilkan adalah dummy</p>
@@ -1564,6 +1926,19 @@ const labels = {
   'a-positions':['SATRIA-RSPAD / Master Data','Jabatan'],
   'a-rbac':['SATRIA-RSPAD / Keamanan','Peran & Akses'],
   'a-audit':['SATRIA-RSPAD / Keamanan','Audit Trail'],
+  'a-kh-dashboard':['SATRIA-RSPAD / Kehadiran','Dashboard Kehadiran'],
+  'a-kh-import':['SATRIA-RSPAD / Kehadiran','Import Mesin Absensi'],
+  'a-kh-rekap':['SATRIA-RSPAD / Kehadiran','Rekap Kehadiran Harian'],
+  'a-kh-jadwal':['SATRIA-RSPAD / Kehadiran','Jadwal Shift'],
+  'a-kh-nonreg':['SATRIA-RSPAD / Kehadiran','Shift Non Reguler'],
+  'a-kh-cuti':['SATRIA-RSPAD / Kehadiran','Cuti / Izin / Sakit'],
+  'a-kh-libur':['SATRIA-RSPAD / Kehadiran','Hari Libur'],
+  'a-kh-koreksi':['SATRIA-RSPAD / Kehadiran','Koreksi Absensi'],
+  'a-lap-bulanan':['SATRIA-RSPAD / Laporan','Laporan Kehadiran Bulanan'],
+  'a-lap-telat':['SATRIA-RSPAD / Laporan','Laporan Keterlambatan'],
+  'a-lap-cuti':['SATRIA-RSPAD / Laporan','Laporan Cuti / Izin / Sakit'],
+  'a-lap-shift':['SATRIA-RSPAD / Laporan','Laporan Shift'],
+  'a-lap-export':['SATRIA-RSPAD / Laporan','Export Laporan'],
   'u-profile':['SATRIA-RSPAD / Personal','Profil Saya'],
   'u-career':['SATRIA-RSPAD / Personal','Riwayat Penugasan'],
   'u-physical':['SATRIA-RSPAD / Personal','Atribut Fisik'],
@@ -1759,6 +2134,155 @@ window.addEventListener('load',function(){
   if(adminTree) renderOrgChart(UNIT_DATA, adminTree);
   if(userTree) renderOrgChart(UNIT_DATA, userTree, 'KADEP BEDAH');
 });
+
+/* ========== KEHADIRAN & LAPORAN — DATA & SIMULATION ========== */
+const PERSONNEL=[{"id":"1199****0769","nama":"dr. Rifardi Rifiar, Sp.OG","pangkat":"Kolonel Ckm","unit":"Instalasi Kamar Operasi","profesi":"Dokter Spesialis Obstetri dan Gine","jenis":"Militer","jk":"L"},{"id":"3196****0475","nama":"Sampir, A.Md.Kep","pangkat":"Serma Ckm","unit":"Instalasi Kamar Operasi","profesi":"Perawat Bedah","jenis":"Militer","jk":"L"},{"id":"1963****2004","nama":"Tumirah, S.Kep., Ners","pangkat":"Pembina Tk. I IV/b","unit":"Instalasi Kamar Operasi","profesi":"Perawat Bedah","jenis":"PNS","jk":"P"},{"id":"2408****1003","nama":"Eykatana Br Ginting, S.Kep. Ners.","pangkat":"Pegawai BLU Non ASN","unit":"Instalasi Rawat Intensif","profesi":"Perawat Care Unit","jenis":"BLU/Non-ASN","jk":"P"},{"id":"2605****2017","nama":"Ika N. Sitampan, AMK.","pangkat":"Pegawai BLU Non ASN","unit":"Instalasi Rawat Intensif","profesi":"Perawat Care Unit","jenis":"BLU/Non-ASN","jk":"P"},{"id":"1995****2001","nama":"Ns Lia Rohmayanti, S Kep","pangkat":"Penata Muda Tk.I III/b","unit":"Instalasi Rawat Intensif","profesi":"Perawat Care Unit","jenis":"PNS","jk":"P"},{"id":"1920****0666","nama":"dr. Jursal Harun, Sp.OT(K)., Spine","pangkat":"Kolonel Ckm Purn","unit":"Instalasi Gawat Darurat","profesi":"Dokter Spesialis Bedah Orthopaedi","jenis":"Militer","jk":"L"},{"id":"1910****0867","nama":"Agda Fadloon, S.Sos, MM","pangkat":"Kolonel Ckm (K)","unit":"Instalasi Gawat Darurat","profesi":"-","jenis":"Militer","jk":"P"},{"id":"1195****1268","nama":"Fransisco Goncalves, S.K.M","pangkat":"Letkol Ckm","unit":"Instalasi Gawat Darurat","profesi":"-","jenis":"Militer","jk":"L"},{"id":"5098****1021","nama":"dr. Shinta Soraya, M.H","pangkat":"Pegawai BLU","unit":"-","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"BLU/Non-ASN","jk":"P"},{"id":"5018****1000","nama":"dr. Eka Capridwiphayadna AL","pangkat":"Pegawai BLU","unit":"-","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"BLU/Non-ASN","jk":"P"},{"id":"9069****1006","nama":"dr. Sabilla Laras Permana","pangkat":"Pegawai BLU","unit":"-","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"BLU/Non-ASN","jk":"P"},{"id":"1103****0371","nama":"dr. Novi Kusuma, SpBA","pangkat":"Letkol Ckm","unit":"Departemen Bedah","profesi":"Dokter Spesialis Bedah Anak","jenis":"Militer","jk":"P"},{"id":"2312****0006","nama":"Dr.dr.Catur S. Sutisna,SpB.SpBA","pangkat":"Mayjen TNI Purn","unit":"Departemen Bedah","profesi":"Dokter Spesialis Bedah Anak","jenis":"Militer","jk":"L"},{"id":"2511****0002","nama":"dr. Irhamni,SpB,SpBA","pangkat":"Kolonel Ckm Purn","unit":"Departemen Bedah","profesi":"Dokter Spesialis Bedah Anak","jenis":"Militer","jk":"L"},{"id":"2105****0884","nama":"Ahmad Waluyo, Amd. Kes","pangkat":"Sersan Mayor","unit":"MCU","profesi":"Perawat Gigi","jenis":"Militer","jk":"L"},{"id":"3195****08'5","nama":"Agus Prayitno,A.Md.K.G.","pangkat":"Sersan Mayor","unit":"MCU","profesi":"Perawat Gigi","jenis":"Militer","jk":"L"},{"id":"1965****2000","nama":"Martina Tri Puryani, Amd.Kes","pangkat":"Penata Tk.I III/d","unit":"MCU","profesi":"Perawat Gigi","jenis":"PNS","jk":"P"},{"id":"2304****2057","nama":"Andriawati Retno Purwaningtyas, Amd.Keb","pangkat":"PBLU Non ASN","unit":"Poliklinik Obsgin","profesi":"Bidan","jenis":"BLU/Non-ASN","jk":"P"},{"id":"0102****2291","nama":"Nenih, Amd.Keb","pangkat":"PBLU Non ASN","unit":"Poliklinik Obsgin","profesi":"Bidan","jenis":"BLU/Non-ASN","jk":"P"},{"id":"2102****0882","nama":"Anita Dian Agustinawaty., S.ST, M.Kes","pangkat":"Pelda (K)","unit":"Poliklinik Obsgin","profesi":"Bidan","jenis":"Militer","jk":"P"},{"id":"1976****2001","nama":"Lyana Arsianti, S.Kep, Ners, MARS","pangkat":"Pembina IV/a","unit":"Lantai 3 Pav. Soehardo","profesi":"Perawat Paviliun","jenis":"PNS","jk":"P"},{"id":"`197****2002","nama":"Sri Supraptiningsih, Amd Kep","pangkat":"Penata III/c","unit":"Lantai 3 Pav. Soehardo","profesi":"Perawat Paviliun","jenis":"PNS","jk":"P"},{"id":"1975****2000","nama":"Hendra Yenni , S. Kep, Ners","pangkat":"Penata Muda Tk 1 III/b","unit":"Lantai 3 Pav. Soehardo","profesi":"Perawat Paviliun","jenis":"PNS","jk":"L"},{"id":"-","nama":"dr. Eny Ambarwati, SP.PD, MARS, FINASIM","pangkat":"Kolonel Ckm (K)","unit":"Poli Penyakti Dalam RSPAD","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"Militer","jk":"P"},{"id":"1197****0470","nama":"dr. Jonny, Sp.PD., K-GH., M.Kes., MM., DCN., FINASIM","pangkat":"Kolonel Ckm","unit":"Poli Penyakti Dalam RSPAD","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"Militer","jk":"L"},{"id":"5105****1139","nama":"dr. Djoko Wibisono, Sp.PD., K-GH., FINASIM","pangkat":"Brigjen TNI (Purn)","unit":"Poli Penyakti Dalam RSPAD","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"Militer","jk":"L"},{"id":"-","nama":"dr. Afrizal Fauzi Hutasuhut, SpAn","pangkat":"Kolonel Ckm","unit":"Poli Anestesi","profesi":"Dokter Spesialis Kedokteran Anaste","jenis":"Militer","jk":"L"},{"id":"-","nama":"dr. Slamet Agus Waluyo Jati, SpAn","pangkat":"Kolonel Ckm","unit":"Poli Anestesi","profesi":"Dokter Spesialis Kedokteran Anaste","jenis":"Militer","jk":"L"},{"id":"1193****0969","nama":"dr. Dis Bima Purwaamidjaja, SpAn, KIC., M.Kes","pangkat":"Kolonel Ckm","unit":"Poli Anestesi","profesi":"Dokter Spesialis Kedokteran Anaste","jenis":"Militer","jk":"L"},{"id":"0801****2047","nama":"Nina Hertania, S.Kep., Ners","pangkat":"Pegawai BLU Non ASN","unit":"Kartika 1 Lantai 3","profesi":"Perawat","jenis":"BLU/Non-ASN","jk":"P"},{"id":"1965****2000","nama":"Riatin Titin, AMK","pangkat":"Penata Tk.I III/d","unit":"Kartika 1 Lantai 3","profesi":"Perawat","jenis":"PNS","jk":"P"},{"id":"0605****2033","nama":"Mia Widhyastuti, S.Kep., Ners","pangkat":"Pegawai BLU Non ASN","unit":"Kartika 1 Lantai 3","profesi":"Perawat","jenis":"BLU/Non-ASN","jk":"P"},{"id":"-","nama":"dr. Antun Subono, Sp.S.,MS.c","pangkat":"Kolonel Ckm","unit":"Dep. Saraf","profesi":"Dokter Spesialis Saraf","jenis":"Militer","jk":"L"},{"id":"-","nama":"dr. Heriyanto, Sp.S","pangkat":"Kolonel Ckm","unit":"Dep. Saraf","profesi":"Dokter Spesialis Saraf","jenis":"Militer","jk":"L"},{"id":"1199****0172","nama":"dr. Bambang Siswanto, Sp.S","pangkat":"Kolonel Ckm","unit":"Dep. Saraf","profesi":"Dokter Spesialis Saraf","jenis":"Militer","jk":"L"},{"id":"1978****2001","nama":"dr. Irja Dewita","pangkat":"Pembina IV/a","unit":"Instalasi Rawat Intensif","profesi":"Dokter Care Unit","jenis":"PNS","jk":"P"},{"id":"1991****2001","nama":"dr. Bunga Dewanggi","pangkat":"Penata Muda Tk.I III/b","unit":"Instalasi Rawat Intensif","profesi":"Dokter Care Unit","jenis":"PNS","jk":"P"},{"id":"1011****1370","nama":"dr. Indira Gandhi","pangkat":"Pegawai BLU Non ASN","unit":"Instalasi Rawat Intensif","profesi":"Dokter Umum Care Unit","jenis":"BLU/Non-ASN","jk":"P"},{"id":"1969****2002","nama":"Hari Ruswanti, S.Kep., Ners","pangkat":"Pembina IV/a","unit":"Poliklinik Saraf","profesi":"Perawat Saraf","jenis":"PNS","jk":"P"},{"id":"2195****0175","nama":"Rofiq Bawazir, AMK","pangkat":"Peltu","unit":"Poliklinik Saraf","profesi":"Perawat Saraf","jenis":"Militer","jk":"L"},{"id":"1964****2003","nama":"Dahliana Marpaung, S.Kep., Ners","pangkat":"Pembina IV/a","unit":"Poliklinik Saraf","profesi":"Perawat Saraf","jenis":"PNS","jk":"P"},{"id":"1978****2001","nama":"Dwi Tutut F, Susmanti, S.Kep,. Ners","pangkat":"Penata III/c","unit":"Poliklinik Paru","profesi":"Perawat Paru","jenis":"PNS","jk":"P"},{"id":"1965****2001","nama":"Dede Adeyani, Amd. Kep,SE,MM.","pangkat":"Penata Tk. I-III/d","unit":"Poliklinik Paru","profesi":"Perawat Paru","jenis":"PNS","jk":"P"},{"id":"1965****2003","nama":"Taruli Butar Butar, Amd. Kep.","pangkat":"Penata Tk. I-III/d","unit":"Poliklinik Paru","profesi":"Perawat Paru","jenis":"PNS","jk":"P"},{"id":"-","nama":"dr. Wahyu Triyanto, Sp.M","pangkat":"Kolonel Ckm","unit":"Departemen Mata","profesi":"Dokter Spesialis Mata","jenis":"Militer","jk":"L"},{"id":"1193****0770","nama":"dr. Handy Hernandy Yuliawan, Sp.M","pangkat":"Kolonel Ckm","unit":"Departemen Mata","profesi":"Dokter Spesialis Mata","jenis":"Militer","jk":"L"},{"id":"1101****0173","nama":"dr. Trisihono, Sp.M","pangkat":"Letkol Ckm","unit":"Departemen Mata","profesi":"Dokter Spesialis Mata","jenis":"Militer","jk":"L"},{"id":"1194****0866","nama":"dr. I Wayan Agus Putra, Sp.P., M.M.R.S","pangkat":"Kolonel Ckm","unit":"Poliklinik Paru","profesi":"Dokter Spesialis Paru","jenis":"Militer","jk":"L"},{"id":"1103****1075","nama":"dr. Agung Setiadi, Sp.P., M.Kes","pangkat":"Letkol Ckm","unit":"Poliklinik Paru","profesi":"Dokter Spesialis Paru","jenis":"Militer","jk":"L"},{"id":"1973****2002","nama":"dr. Ratna Andriani, Sp.P","pangkat":"Pembina IV/a","unit":"Poliklinik Paru","profesi":"Dokter Spesialis Paru","jenis":"PNS","jk":"P"},{"id":"1971****2001","nama":"Ns. Marhamah, S.Kep","pangkat":"Penata Tk. I  III /d","unit":"Poliklinik Kulit & Kelamin","profesi":"Perawat Kulit dan Kelamin","jenis":"PNS","jk":"P"},{"id":"1965****2002","nama":"Sr.Darwati, AMK,SAP","pangkat":"Penata Tk. I  III /d","unit":"Poliklinik Kulit & Kelamin","profesi":"Perawat Kulit dan Kelamin","jenis":"PNS","jk":"P"},{"id":"1966****2003","nama":"Sr. Anisyah,AMK","pangkat":"Penata Tk. I  III /d","unit":"Poliklinik Kulit & Kelamin","profesi":"Perawat Kulit dan Kelamin","jenis":"PNS","jk":"P"},{"id":"1966****2002","nama":"Ns.Arnei Nuryani,S.Kep","pangkat":"Penata Tk.I III/d","unit":"Instalasi Rikkes","profesi":"Perawat Medical Checkup","jenis":"PNS","jk":"P"}];
+const TOTAL_REAL=690;
+function khrng(seed){return function(){seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function khpick(r,a){return a[Math.floor(r()*a.length)];}
+function khpad(n){return (n<10?'0':'')+n;}
+function khset(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+function jkFull(v){return v==='L'?'Laki-laki':(v==='P'?'Perempuan':'-');}
+function jkShort(v){return (v==='L'||v==='P')?v:'-';}
+const SCLS={'Hadir':'b-success','Terlambat':'b-warning','Pulang Cepat':'b-warning','Cuti':'b-info','Izin':'b-blue','Sakit':'b-muted','Alpha':'b-danger','Dinas Luar':'b-info','Belum Pulang':'b-info'};
+const SHCLS={'Pagi':'b-blue','Siang':'b-info','Malam':'b-purple','Libur':'b-muted','On Call':'b-accent'};
+function bs(s){return '<span class="badge '+(SCLS[s]||'b-muted')+'">'+s+'</span>';}
+function bsh(s){return '<span class="badge '+(SHCLS[s]||'b-muted')+'">'+s+'</span>';}
+const OUT_T={'Pagi':15*60,'Siang':21*60,'Malam':7*60,'On Call':16*60};
+const IN_T={'Pagi':7*60,'Siang':14*60,'Malam':19*60,'On Call':8*60};
+function genDaily(p,i){
+  var r=khrng(i*131+7);var shift=khpick(r,['Pagi','Pagi','Pagi','Siang','Malam','On Call']);
+  var roll=r(),status,masuk='-',pulang='-',telat='-',cepat='-';
+  if(roll<0.74)status='Hadir';else if(roll<0.83)status='Terlambat';else if(roll<0.87)status='Pulang Cepat';
+  else if(roll<0.905)status='Cuti';else if(roll<0.93)status='Izin';else if(roll<0.955)status='Sakit';
+  else if(roll<0.975)status='Dinas Luar';else if(roll<0.99)status='Belum Pulang';else status='Alpha';
+  if(['Cuti','Izin','Sakit','Alpha'].indexOf(status)>=0){}
+  else if(status==='Dinas Luar'){shift='On Call';}
+  else{var tl=(status==='Terlambat')?(10+Math.floor(r()*45)):Math.floor(r()*6);
+    var mIn=IN_T[shift]+tl; masuk=khpad(Math.floor(mIn/60)%24)+':'+khpad(mIn%60);
+    if(status==='Terlambat')telat=tl+"'";
+    if(status==='Belum Pulang'){pulang='-';}
+    else{var pc=(status==='Pulang Cepat')?(60+Math.floor(r()*180)):0;var mOut=OUT_T[shift]-pc+Math.floor(r()*8);
+      pulang=khpad(Math.floor(mOut/60)%24)+':'+khpad(mOut%60);if(pc)cepat=pc+"'";}}
+  return {p:p,i:i,shift:shift,status:status,masuk:masuk,pulang:pulang,telat:telat,cepat:cepat};
+}
+const KH_DAILY=PERSONNEL.map(genDaily);
+(function(){
+  var c={};KH_DAILY.forEach(d=>c[d.status]=(c[d.status]||0)+1);var n=KH_DAILY.length;
+  var pres=((c['Hadir']||0)+(c['Terlambat']||0)+(c['Pulang Cepat']||0)+(c['Belum Pulang']||0))/n;
+  var cis=((c['Cuti']||0)+(c['Izin']||0)+(c['Sakit']||0))/n;
+  khset('st-aktif',TOTAL_REAL.toLocaleString('id-ID'));
+  khset('st-hadir',Math.round(TOTAL_REAL*pres).toLocaleString('id-ID'));
+  khset('st-telat',Math.round(TOTAL_REAL*((c['Terlambat']||0)/n)));
+  khset('st-cis',Math.round(TOTAL_REAL*cis));
+  khset('st-belum',Math.round(TOTAL_REAL*((c['Belum Pulang']||0)/n)));
+})();
+(function(){
+  var an=KH_DAILY.filter(d=>['Terlambat','Alpha','Belum Pulang','Pulang Cepat','Sakit'].indexOf(d.status)>=0).slice(0,7);
+  var ket={'Terlambat':d=>'Terlambat '+d.telat,'Alpha':()=>'Tidak ada rekam absen','Belum Pulang':d=>'Shift '+d.shift+' berjalan','Pulang Cepat':d=>'Pulang '+d.cepat+' lebih awal','Sakit':()=>'Dengan surat dokter'};
+  var aksi={'Alpha':'Tindak Lanjut','Belum Pulang':'Detail','Sakit':'Detail'};
+  var el=document.getElementById('tbl-anomali');if(!el)return;
+  el.innerHTML=an.map(d=>'<tr><td class="mono">'+d.p.id+'</td><td>'+d.p.nama+'</td><td>'+jkFull(d.p.jk)+'</td><td>'+d.p.unit+'</td><td>'+bs(d.status)+'</td><td>'+d.masuk+'</td><td>'+d.pulang+'</td><td>'+ket[d.status](d)+'</td><td><span class="k-link">'+(aksi[d.status]||'Koreksi')+'</span></td></tr>').join('');
+})();
+(function(){
+  var el=document.getElementById('tbl-rekap');if(!el)return;
+  el.innerHTML=KH_DAILY.slice(0,30).map(d=>'<tr><td class="mono">'+d.p.id+'</td><td>'+d.p.nama+'</td><td>'+jkFull(d.p.jk)+'</td><td>'+d.p.pangkat+'</td><td>'+d.p.unit+'</td><td>'+bsh(d.shift)+'</td><td>'+d.masuk+'</td><td>'+d.pulang+'</td><td class="nr">'+d.telat+'</td><td class="nr">'+d.cepat+'</td><td>'+bs(d.status)+'</td></tr>').join('');
+})();
+(function(){
+  var units=Array.from(new Set(PERSONNEL.map(p=>p.unit))).filter(u=>u!=='-').sort();
+  ['f-rekap-unit','f-lapbulan-unit','f-laptelat-unit','f-lapcuti-unit','f-lapshift-unit'].forEach(function(id){
+    var s=document.getElementById(id);if(s)units.forEach(u=>s.insertAdjacentHTML('beforeend','<option>'+u+'</option>'));
+  });
+})();
+(function(){
+  var cnt={};PERSONNEL.forEach(p=>cnt[p.unit]=(cnt[p.unit]||0)+1);
+  var topUnit=Object.keys(cnt).filter(u=>u!=='-').sort((a,b)=>cnt[b]-cnt[a])[0];
+  var sel=document.getElementById('f-jadwal-unit');if(!sel)return;
+  var us=Array.from(new Set(PERSONNEL.map(p=>p.unit))).filter(u=>u!=='-').sort();
+  us.forEach(u=>sel.insertAdjacentHTML('beforeend','<option'+(u===topUnit?' selected':'')+'>'+u+'</option>'));
+  var sub=document.getElementById('jadwal-sub');if(sub)sub.innerHTML='Minggu IV &mdash; 25 s/d 31 Mei 2026 &middot; Unit: '+topUnit;
+  var mem=PERSONNEL.filter(p=>p.unit===topUnit).slice(0,7);var pool=['Pagi','Pagi','Siang','Malam','Libur','On Call'];
+  var el=document.getElementById('tbl-jadwal');if(!el)return;
+  el.innerHTML=mem.map((p,k)=>{var r=khrng(k*53+11);
+    var days=[0,1,2,3,4,5,6].map(()=>bsh(khpick(r,pool))).join('</td><td>');
+    return '<tr><td class="mono">'+p.id+'</td><td>'+p.nama+'</td><td>'+jkShort(p.jk)+'</td><td>'+p.unit+'</td><td>'+days+'</td></tr>';}).join('');
+})();
+(function(){
+  var sh=['Pagi','Siang','Malam','On Call'],jam=['07:00&ndash;15:00','14:00&ndash;21:00','19:00&ndash;07:00','22:00&ndash;06:00'];
+  var al=['Ganti rekan cuti','Backup operasi darurat','Penyesuaian jadwal','Penugasan khusus'];
+  var st=['Menunggu Approval','Disetujui','Draft','Ditolak'],sc=['b-warning','b-success','b-muted','b-danger'];
+  var el=document.getElementById('tbl-nonreg');if(!el)return;
+  el.innerHTML=[5,12,22,33].map((idx,k)=>{var p=PERSONNEL[idx%PERSONNEL.length];var si=k%4;
+    return '<tr><td class="mono">SNR-2026-00'+(42-k)+'</td><td>0'+(2+k)+'-06-2026</td><td>'+p.nama+'</td><td>'+jkFull(p.jk)+'</td><td>'+p.unit+'</td><td>'+bsh(sh[si])+'</td><td>'+jam[si]+'</td><td>'+al[k]+'</td><td><span class="badge '+sc[k]+'">'+st[k]+'</span></td><td>Kepala Unit</td></tr>';}).join('');
+})();
+(function(){
+  var jenis=[['Cuti Tahunan','b-info'],['Izin','b-blue'],['Sakit','b-muted'],['Cuti Melahirkan','b-info'],['Cuti Tahunan','b-info']];
+  var per=['02&ndash;06 Jun 2026','27 Mei 2026','30&ndash;31 Mei 2026','01 Jun&ndash;29 Agu','09&ndash;11 Jun 2026'];
+  var lama=[5,1,2,90,3];
+  var st=[['Menunggu Approval','b-warning'],['Disetujui','b-success'],['Disetujui','b-success'],['Ditolak','b-danger'],['Menunggu Approval','b-warning']];
+  var idxs=[3,9,15,21,27];
+  var el=document.getElementById('tbl-cuti');if(!el)return;
+  el.innerHTML=idxs.map((idx,k)=>{var p=PERSONNEL[idx%PERSONNEL.length];var peng=PERSONNEL[(idx+5)%PERSONNEL.length];
+    return '<tr><td class="mono">CIS-2026-0'+(188-k)+'</td><td>'+(29-k)+'-05-2026</td><td>'+p.nama+'</td><td>'+jkFull(p.jk)+'</td><td>'+p.unit+'</td><td><span class="badge '+jenis[k][1]+'">'+jenis[k][0]+'</span></td><td>'+per[k]+'</td><td class="nr">'+lama[k]+'</td><td>'+peng.nama+'</td><td><span class="badge '+st[k][1]+'">'+st[k][0]+'</span></td></tr>';}).join('');
+  var app=PERSONNEL[idxs[0]];
+  function byRank(kw){return PERSONNEL.find(p=>(p.pangkat||'').toLowerCase().indexOf(kw)>=0);}
+  var l1=byRank('letkol')||byRank('mayor')||PERSONNEL[1],l2=byRank('penata')||byRank('peltu')||PERSONNEL[2],l3=byRank('kolonel')||byRank('brigjen')||PERSONNEL[0];
+  var dt=document.getElementById('cuti-detail-title');if(dt)dt.innerHTML='Detail Approval &mdash; CIS-2026-0188 ('+app.nama+', '+jenis[0][0]+' '+lama[0]+' hari)';
+  var ck='<svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5"/></svg>',cl='<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 1.5"/></svg>';
+  var tl=document.getElementById('cuti-timeline');if(!tl)return;
+  tl.innerHTML='<div class="step"><div class="dot done">'+ck+'</div><div class="t-title">Level 1 &mdash; Kepala Unit</div><div class="t-name">'+l1.pangkat+' '+l1.nama+'</div><div class="t-meta">Disetujui &middot; 29-05-2026 09:14</div><div class="t-note">Saldo cuti mencukupi, pengganti tugas sudah ditunjuk.</div></div>'+'<div class="step"><div class="dot wait">'+cl+'</div><div class="t-title">Level 2 &mdash; Personalia</div><div class="t-name">'+l2.pangkat+' '+l2.nama+'</div><div class="t-meta">Menunggu persetujuan</div></div>'+'<div class="step"><div class="dot idle"></div><div class="t-title">Level 3 &mdash; Direktur / Pejabat Berwenang</div><div class="t-name">'+l3.pangkat+' '+l3.nama+'</div><div class="t-meta">Belum tersedia</div></div>';
+})();
+(function(){
+  var jk=['Lupa absen masuk','Lupa absen pulang','Koreksi jam masuk','Koreksi jam pulang','Dinas luar'];
+  var seb=['08:41','&mdash;','09:30','15:50','Alpha'],ses=['07:55','16:00','07:00','16:30','Dinas Luar'];
+  var st=[['Menunggu','b-warning'],['Menunggu','b-warning'],['Disetujui','b-success'],['Ditolak','b-danger']];
+  var el=document.getElementById('tbl-koreksi');if(!el)return;
+  el.innerHTML=[2,8,14,20].map((idx,k)=>{var p=PERSONNEL[idx%PERSONNEL.length];
+    return '<tr><td class="mono">KOR-2026-00'+(73-k)+'</td><td>'+(30-k)+'-05-2026</td><td>'+p.nama+'</td><td>'+jkFull(p.jk)+'</td><td>'+p.unit+'</td><td>'+jk[k]+'</td><td>'+seb[k]+'</td><td>'+ses[k]+'</td><td><span class="badge '+st[k][1]+'">'+st[k][0]+'</span></td><td><span class="k-link">Tinjau</span></td></tr>';}).join('');
+})();
+(function(){
+  var totTelat=0,totAlpha=0;
+  var el=document.getElementById('tbl-lapbulan');if(!el)return;
+  el.innerHTML=PERSONNEL.slice(0,30).map((p,i)=>{var r=khrng(i*17+1);
+    var alpha=Math.floor(r()*r()*5),sakit=Math.floor(r()*3),izin=Math.floor(r()*2),cuti=Math.floor(r()*3),telat=Math.floor(r()*7);
+    var hadir=22-alpha-sakit-izin-cuti;if(hadir<0)hadir=0;var pct=Math.round(hadir/22*1000)/10;
+    totTelat+=telat;totAlpha+=alpha;
+    var cls=pct>=80?'b-success':(pct>=75?'b-warning':'b-danger');
+    return '<tr><td class="mono">'+p.id+'</td><td>'+p.nama+'</td><td>'+jkFull(p.jk)+'</td><td>'+p.unit+'</td><td class="nr">'+hadir+'</td><td class="nr">'+telat+'</td><td class="nr">'+cuti+'</td><td class="nr">'+izin+'</td><td class="nr">'+sakit+'</td><td class="nr">'+alpha+'</td><td class="nr"><span class="badge '+cls+'">'+String(pct).replace('.',',')+'%</span></td></tr>';}).join('');
+  khset('lb-telat',Math.round(totTelat/30*TOTAL_REAL/10)*10);
+  khset('lb-alpha',Math.round(totAlpha/30*TOTAL_REAL/10)*10);
+})();
+(function(){
+  var d=PERSONNEL.map((p,i)=>{var r=khrng(i*23+9);var cnt=Math.floor(r()*r()*14);var avg=cnt?(12+Math.floor(r()*28)):0;return {p:p,cnt:cnt,avg:avg,total:cnt*avg};}).filter(x=>x.cnt>0).sort((a,b)=>b.cnt-a.cnt).slice(0,10);
+  var el=document.getElementById('tbl-laptelat');if(!el)return;
+  el.innerHTML=d.map((x,k)=>'<tr><td><div class="k-rank-row"><span class="rk-no'+(k<3?' top':'')+'">'+(k+1)+'</span> '+x.p.nama+'</div></td><td>'+jkFull(x.p.jk)+'</td><td>'+x.p.unit+'</td><td class="nr">'+x.cnt+'</td><td class="nr">'+x.total+'</td><td class="nr">'+(String(Math.round(x.avg*10)/10).replace('.',','))+'</td><td>'+(x.avg>30?'Sering &gt; 30 menit':'&mdash;')+'</td></tr>').join('');
+})();
+(function(){
+  var el=document.getElementById('tbl-lapcuti');if(!el)return;
+  el.innerHTML=PERSONNEL.slice(20,28).map((p,i)=>{var r=khrng(i*19+4);
+    var cuti=Math.floor(r()*6),izin=Math.floor(r()*3),sakit=Math.floor(r()*4);var tot=cuti+izin+sakit;var sisa=12-cuti;
+    var cls=sisa>6?'b-success':(sisa>2?'b-warning':'b-danger');
+    return '<tr><td>'+p.nama+'</td><td>'+jkFull(p.jk)+'</td><td>'+p.unit+'</td><td class="nr">'+cuti+'</td><td class="nr">'+izin+'</td><td class="nr">'+sakit+'</td><td class="nr">'+tot+'</td><td><span class="badge '+cls+'">Sisa '+Math.max(sisa,0)+' hari</span></td></tr>';}).join('');
+})();
+(function(){
+  var cnt={};PERSONNEL.forEach(p=>cnt[p.unit]=(cnt[p.unit]||0)+1);
+  var topUnit=Object.keys(cnt).filter(u=>u!=='-').sort((a,b)=>cnt[b]-cnt[a])[0];
+  var mem=PERSONNEL.filter(p=>p.unit===topUnit).slice(0,8);if(mem.length<5)mem=PERSONNEL.slice(0,6);
+  var el=document.getElementById('tbl-lapshift');if(!el)return;
+  el.innerHTML=mem.map((p,i)=>{var r=khrng(i*31+6);
+    var pa=7+Math.floor(r()*4),si=4+Math.floor(r()*4),ma=4+Math.floor(r()*4),oc=Math.floor(r()*3),li=22-pa-si-ma;if(li<0)li=0;var jam=(pa+si+ma)*8+oc*4;
+    return '<tr><td>'+p.nama+'</td><td>'+jkFull(p.jk)+'</td><td>'+p.unit+'</td><td class="nr">'+pa+'</td><td class="nr">'+si+'</td><td class="nr">'+ma+'</td><td class="nr">'+oc+'</td><td class="nr">'+li+'</td><td class="nr">'+jam+'</td></tr>';}).join('');
+})();
+(function(){
+  var a=PERSONNEL.find(p=>p.jenis==='PNS')||PERSONNEL[0],b=PERSONNEL.find(p=>p.jenis==='Militer')||PERSONNEL[1];
+  var rows=[['30-05-2026 14:22','Kehadiran Bulanan','Mei 2026',a.nama,'XLSX','b-success','Selesai','b-success'],['30-05-2026 11:05','Keterlambatan','Mei 2026',a.nama,'PDF','b-danger','Selesai','b-success'],['28-05-2026 09:40','Cuti / Izin / Sakit','Triwulan II 2026',b.nama,'XLSX','b-success','Selesai','b-success'],['27-05-2026 16:18','Shift','Mei 2026',a.nama,'CSV','b-muted','Diproses','b-warning']];
+  var el=document.getElementById('tbl-export');if(!el)return;
+  el.innerHTML=rows.map(x=>'<tr><td class="mono">'+x[0]+'</td><td>'+x[1]+'</td><td>'+x[2]+'</td><td>'+x[3]+'</td><td><span class="badge '+x[5]+'">'+x[4]+'</span></td><td><span class="badge '+x[7]+'">'+x[6]+'</span></td></tr>').join('');
+})();
+(function(){
+  var opts=PERSONNEL.slice(0,18).map(p=>'<option>'+p.nama+' &mdash; '+p.unit+'</option>').join('');
+  ['sel-nonreg-pers','sel-koreksi-pers'].forEach(function(id){var s=document.getElementById(id);if(s)s.innerHTML='<option>Pilih personel&hellip;</option>'+opts;});
+})();
 
 /* close modal on backdrop / Esc */
 document.getElementById('emp-modal').addEventListener('click',function(e){ if(e.target===this) closeEmpForm(); });

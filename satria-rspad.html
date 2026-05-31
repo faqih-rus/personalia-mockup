@@ -659,19 +659,11 @@ table.k-tbl .mono{font-variant-numeric:tabular-nums;color:#445}
   <div class="gate-inner">
 
     <div class="crest">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 4 L88 18 V46 C88 70 72 86 50 96 C28 86 12 70 12 46 V18 Z" stroke="#c8a347" stroke-width="2.2" fill="rgba(200,163,71,0.05)"/>
-        <path d="M50 14 L78 24 V46 C78 64 66 77 50 85 C34 77 22 64 22 46 V24 Z" stroke="rgba(184,176,138,0.4)" stroke-width="1"/>
-        <path d="M50 30 V62 M38 46 H62" stroke="#e3c46a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="50" cy="46" r="6" stroke="#e3c46a" stroke-width="2"/>
-        <path d="M30 70 Q50 78 70 70" stroke="#c8a347" stroke-width="1.4" fill="none"/>
-        <circle cx="50" cy="20" r="2" fill="#e3c46a"/>
-      </svg>
+      <img src="/logo-rspad.jpg" alt="Logo RSPAD" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 20px rgba(200,163,71,.35))">
     </div>
 
     <div class="gate-classif">
-      <span class="dot"></span>
-      <span>Sistem Internal · Akses Terbatas · Intranet RSPAD</span>
+      <span>BERSYUKUR</span>
     </div>
 
     <h1 class="wordmark">SATRIA<span class="dash">·</span>RSPAD</h1>
@@ -738,10 +730,7 @@ table.k-tbl .mono{font-variant-numeric:tabular-nums;color:#445}
   <aside class="side" id="side-admin">
     <div class="side-head">
       <div class="mini-crest">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 6 L86 20 V46 C86 68 70 83 50 92 C30 83 14 68 14 46 V20 Z" stroke="#c8a347" stroke-width="3" fill="rgba(200,163,71,0.06)"/>
-          <path d="M50 30 V60 M38 45 H62" stroke="#e3c46a" stroke-width="4" stroke-linecap="round"/>
-        </svg>
+        <img src="/logo-rspad.jpg" alt="Logo RSPAD" style="width:100%;height:100%;object-fit:contain">
       </div>
       <div class="st">
         <b>SATRIA<span class="dash">·</span>RSPAD</b>
@@ -910,8 +899,8 @@ table.k-tbl .mono{font-variant-numeric:tabular-nums;color:#445}
               <div class="panel-body">
                 <div class="dist-row"><span class="dr-label">TNI</span><div class="dr-track"><div class="dr-fill" style="width:64%"></div></div><span class="dr-val">159</span></div>
                 <div class="dist-row"><span class="dr-label">PNS</span><div class="dr-track"><div class="dr-fill" style="width:28%"></div></div><span class="dr-val">69</span></div>
-                <div class="dist-row"><span class="dr-label">Kontrak</span><div class="dr-track"><div class="dr-fill" style="width:7%"></div></div><span class="dr-val">17</span></div>
-                <div class="dist-row"><span class="dr-label">Lainnya</span><div class="dr-track"><div class="dr-fill" style="width:1.5%"></div></div><span class="dr-val">3</span></div>
+                <div class="dist-row"><span class="dr-label">PPPK</span><div class="dr-track"><div class="dr-fill" style="width:7%"></div></div><span class="dr-val">17</span></div>
+                <div class="dist-row"><span class="dr-label">BLU Non-ASN</span><div class="dr-track"><div class="dr-fill" style="width:1.5%"></div></div><span class="dr-val">3</span></div>
               </div>
             </div>
             <div class="panel">
@@ -944,112 +933,329 @@ table.k-tbl .mono{font-variant-numeric:tabular-nums;color:#445}
         </div>
       </div>
 
-      <!-- ===== ADMIN: EMPLOYEES ===== -->
-      <div class="page" id="page-a-employees">
-        <div class="toolbar">
-          <div class="seg">
-            <button class="on">Semua</button>
-            <button>Aktif</button>
-            <button>Non-aktif</button>
-            <button>Arsip</button>
-          </div>
-          <div class="seg">
-            <button class="on">TNI</button>
-            <button>PNS</button>
-            <button>Kontrak</button>
-          </div>
-          <div style="margin-left:auto;display:flex;gap:8px">
-            <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filter</button>
-            <button class="btn btn-primary" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Tambah Personel</button>
-          </div>
-        </div>
+     <div class="page" id="page-a-employees">
+  <div class="toolbar">
+    <div class="seg">
+      <button class="on">Semua</button>
+      <button>Aktif</button>
+      <button>Non-aktif</button>
+      <button>Arsip</button>
+    </div>
+    <div class="seg">
+      <button class="on">TNI</button>
+      <button>PNS</button>
+      <button>Kontrak</button>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:8px">
+      <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filter</button>
+      <button class="btn btn-primary" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Tambah Personel</button>
+    </div>
+  </div>
 
-        <div class="panel">
-          <div class="panel-head"><h3>Direktori Personel</h3><span class="ph-tag">employees · 248 baris</span></div>
-          <div class="tbl-wrap">
-            <table class="data">
-              <thead>
-                <tr><th>Personel</th><th>NRP / NIP</th><th>Pangkat</th><th>Unit</th><th>Jenis</th><th>Status</th><th style="text-align:right">Aksi</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><div class="row-ava"><div class="ra">WS</div><div><span class="cell-strong">dr. Wildan Sani, Sp.U</span><span class="cell-sub">Direktur Pembinaan Yankes</span></div></div></td>
-                  <td class="cell-id">11960045120970</td>
-                  <td>Kolonel CKM</td>
-                  <td>DIRBIN YANKES</td>
-                  <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
-                  <td><span class="bdg bdg-green">Aktif</span></td>
-                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
-                </tr>
-                <tr>
-                  <td><div class="row-ava"><div class="ra">AS</div><div><span class="cell-strong">Kapten Andi Saputra</span><span class="cell-sub">Departemen Bedah</span></div></div></td>
-                  <td class="cell-id">21070088340921</td>
-                  <td>Kapten CKM</td>
-                  <td>KADEP BEDAH</td>
-                  <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
-                  <td><span class="bdg bdg-green">Aktif</span></td>
-                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
-                </tr>
-                <tr>
-                  <td><div class="row-ava"><div class="ra">RA</div><div><span class="cell-strong">Letda Rini Astuti</span><span class="cell-sub">Unit Hemodialisa</span></div></div></td>
-                  <td class="cell-id">21150034550887</td>
-                  <td>Letnan Dua CKM</td>
-                  <td>KANIT HD</td>
-                  <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
-                  <td><span class="bdg bdg-green">Aktif</span></td>
-                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
-                </tr>
-                <tr>
-                  <td><div class="row-ava"><div class="ra">SH</div><div><span class="cell-strong">Siti Handayani, S.Kep</span><span class="cell-sub">Instalasi Farmasi</span></div></div></td>
-                  <td class="cell-id">198703152010012003</td>
-                  <td>Penata Muda III/a</td>
-                  <td>KAINSTAL FARMASI</td>
-                  <td><span class="bdg bdg-blue no-dot">PNS</span></td>
-                  <td><span class="bdg bdg-green">Aktif</span></td>
-                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
-                </tr>
-                <tr>
-                  <td><div class="row-ava"><div class="ra">BW</div><div><span class="cell-strong">Serda Bambang Wijaya</span><span class="cell-sub">Instalasi Gawat Darurat</span></div></div></td>
-                  <td class="cell-id">31240091220765</td>
-                  <td>Sersan Dua CKM</td>
-                  <td>KAINSTAL GADAR</td>
-                  <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
-                  <td><span class="bdg bdg-green">Aktif</span></td>
-                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
-                </tr>
-                <tr>
-                  <td><div class="row-ava"><div class="ra">DP</div><div><span class="cell-strong">Dewi Puspita, A.Md</span><span class="cell-sub">Instalasi Gizi</span></div></div></td>
-                  <td class="cell-id">199105202015022001</td>
-                  <td>Pengatur II/c</td>
-                  <td>KAINSTAL GIZI</td>
-                  <td><span class="bdg bdg-blue no-dot">PNS</span></td>
-                  <td><span class="bdg bdg-amber">Cuti</span></td>
-                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
-                </tr>
-                <tr>
-                  <td><div class="row-ava"><div class="ra">HN</div><div><span class="cell-strong">Hendra Nugroho</span><span class="cell-sub">Penunjang Umum</span></div></div></td>
-                  <td class="cell-id">KTR-2024-0091</td>
-                  <td>—</td>
-                  <td>DIRBIN UM</td>
-                  <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
-                  <td><span class="bdg bdg-green">Aktif</span></td>
-                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div style="padding:14px 20px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--khaki-dim)">Menampilkan 1–7 dari 248</span>
-            <div style="display:flex;gap:6px">
-              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-              <button class="btn btn-sm btn-primary">1</button>
-              <button class="btn btn-sm btn-ghost">2</button>
-              <button class="btn btn-sm btn-ghost">3</button>
-              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
-            </div>
-          </div>
-        </div>
+  <div class="panel">
+    <div class="panel-head"><h3>Direktori Personel</h3><span class="ph-tag">employees · 248 baris</span></div>
+    <div class="tbl-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Personel</th><th>NRP / NIP</th><th>Pangkat</th><th>Unit</th><th>Jenis</th><th>Status</th><th style="text-align:right">Aksi</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="row-ava"><div class="ra">WS</div><div><span class="cell-strong">dr. Wildan Sani, Sp.U</span><span class="cell-sub">Direktur Pembinaan Yankes</span></div></div></td>
+            <td class="cell-id">11960045120970</td>
+            <td>Kolonel CKM</td>
+            <td>DIRBIN YANKES</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">AS</div><div><span class="cell-strong">Kapten Andi Saputra</span><span class="cell-sub">Departemen Bedah</span></div></div></td>
+            <td class="cell-id">21070088340921</td>
+            <td>Kapten CKM</td>
+            <td>KADEP BEDAH</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">RA</div><div><span class="cell-strong">Letda Rini Astuti</span><span class="cell-sub">Unit Hemodialisa</span></div></div></td>
+            <td class="cell-id">21150034550887</td>
+            <td>Letnan Dua CKM</td>
+            <td>KANIT HD</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">BW</div><div><span class="cell-strong">Serda Bambang Wijaya</span><span class="cell-sub">Instalasi Gawat Darurat</span></div></div></td>
+            <td class="cell-id">31240091220765</td>
+            <td>Sersan Dua CKM</td>
+            <td>KAINSTAL GADAR</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">EA</div><div><span class="cell-strong">dr. Eny Ambarwati, SP.PD</span><span class="cell-sub">Dokter Spesialis Penyakit Dalam</span></div></div></td>
+            <td class="cell-id">32980</td>
+            <td>Kolonel Ckm (K)</td>
+            <td>Spesialis Penyakit Dalam</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">AF</div><div><span class="cell-strong">dr. Afrizal Fauzi Hutasuhut</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">32088</td>
+            <td>Kolonel Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">SA</div><div><span class="cell-strong">dr. Slamet Agus Waluyo Jati</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">32979</td>
+            <td>Kolonel Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">DB</div><div><span class="cell-strong">dr. Dis Bima Purwaamidjaja</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">11930097740969</td>
+            <td>Kolonel Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">AH</div><div><span class="cell-strong">dr. Agus Hari Wahono</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">1910053620869</td>
+            <td>Kolonel Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">HP</div><div><span class="cell-strong">dr. Heri Pujiono, SpAn</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">32553</td>
+            <td>Kolonel Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">MO</div><div><span class="cell-strong">dr. Mirza Oktavian, SpAn</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">11930099311071</td>
+            <td>Kolonel Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">ES</div><div><span class="cell-strong">Endang Supriadi, S.Kep</span><span class="cell-sub">Perawat Anestesi</span></div></div></td>
+            <td class="cell-id">1920019801167</td>
+            <td>Kolonel Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">DF</div><div><span class="cell-strong">dr. Djefri Frederik Longdong</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">11010003600672</td>
+            <td>Letkol Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">AR</div><div><span class="cell-strong">dr. Arvianto, SpAn.,KIC</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">11030002930376</td>
+            <td>Letkol Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">IS</div><div><span class="cell-strong">Iwan Suhada, A.md</span><span class="cell-sub">Perawat Anestesi</span></div></div></td>
+            <td class="cell-id">21950242170673</td>
+            <td>Mayor Ckm</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">LH</div><div><span class="cell-strong">Lukman Hakim, Amd.Anes</span><span class="cell-sub">Perawat Anestesi</span></div></div></td>
+            <td class="cell-id">21060305680786</td>
+            <td>Serma</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+
+          <tr>
+            <td><div class="row-ava"><div class="ra">SH</div><div><span class="cell-strong">Siti Handayani, S.Kep</span><span class="cell-sub">Instalasi Farmasi</span></div></div></td>
+            <td class="cell-id">198703152010012003</td>
+            <td>Penata Muda III/a</td>
+            <td>KAINSTAL FARMASI</td>
+            <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">DP</div><div><span class="cell-strong">Dewi Puspita, A.Md</span><span class="cell-sub">Instalasi Gizi</span></div></div></td>
+            <td class="cell-id">199105202015022001</td>
+            <td>Pengatur II/c</td>
+            <td>KAINSTAL GIZI</td>
+            <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+            <td><span class="bdg bdg-amber">Cuti</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">SW</div><div><span class="cell-strong">dr. Siska Widayati, SpAn</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">196406301992022001</td>
+            <td>Pembina Utama</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">SS</div><div><span class="cell-strong">dr. Sri Sunarmiasih, SpAn</span><span class="cell-sub">Dokter Spesialis Anastesi & Intensive</span></div></div></td>
+            <td class="cell-id">196405241996032001</td>
+            <td>Pembina Tk.I IV/b</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">NU</div><div><span class="cell-strong">dr. Nurul Ulfah H, SpAn</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">197208192006042001</td>
+            <td>Pembina Tk.I IV/b</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">AE</div><div><span class="cell-strong">dr. Aju Evawani A. D., M.Kes</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">197002132007012001</td>
+            <td>Pembina Tk.I IV/b</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">LL</div><div><span class="cell-strong">dr. Listyo Lindawati J., SpAn</span><span class="cell-sub">Dokter Spesialis Kedokteran Anastesi</span></div></div></td>
+            <td class="cell-id">197905262007012001</td>
+            <td>Pembina IV/a</td>
+            <td>Poli Anestesi</td>
+            <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+
+          <tr>
+            <td><div class="row-ava"><div class="ra">HN</div><div><span class="cell-strong">Hendra Nugroho</span><span class="cell-sub">Penunjang Umum</span></div></div></td>
+            <td class="cell-id">KTR-2024-0091</td>
+            <td>—</td>
+            <td>DIRBIN UM</td>
+            <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">EG</div><div><span class="cell-strong">Eykatana Br Ginting, S.Kep. Ners.</span><span class="cell-sub">Perawat Care Unit</span></div></div></td>
+            <td class="cell-id">2408880101181003</td>
+            <td>Pegawai BLU</td>
+            <td>Instalasi Rawat Intensif</td>
+            <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">IS</div><div><span class="cell-strong">Ika N. Sitampan, AMK.</span><span class="cell-sub">Perawat Care Unit</span></div></div></td>
+            <td class="cell-id">2605870105082017</td>
+            <td>Pegawai BLU</td>
+            <td>Instalasi Rawat Intensif</td>
+            <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">AR</div><div><span class="cell-strong">Andriawati Retno P., Amd.Keb</span><span class="cell-sub">Bidan</span></div></div></td>
+            <td class="cell-id">2304910109202057</td>
+            <td>Pegawai BLU</td>
+            <td>Poliklinik Obsgin</td>
+            <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">NN</div><div><span class="cell-strong">Nenih, Amd.Keb</span><span class="cell-sub">Bidan</span></div></div></td>
+            <td class="cell-id">0102870112192291</td>
+            <td>Pegawai BLU</td>
+            <td>Poliklinik Obsgin</td>
+            <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">SS</div><div><span class="cell-strong">dr. Shinta Soraya, M.H</span><span class="cell-sub">Dokter Spesialis Penyakit Dalam</span></div></div></td>
+            <td class="cell-id">509810105091021</td>
+            <td>Pegawai BLU</td>
+            <td>Spesialis Penyakit Dalam</td>
+            <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">EC</div><div><span class="cell-strong">dr. Eka Capridwiphayadna AL</span><span class="cell-sub">Dokter Spesialis Penyakit Dalam</span></div></div></td>
+            <td class="cell-id">5018601071211000</td>
+            <td>Pegawai BLU</td>
+            <td>Spesialis Penyakit Dalam</td>
+            <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+          <tr>
+            <td><div class="row-ava"><div class="ra">SL</div><div><span class="cell-strong">dr. Sabilla Laras Permana</span><span class="cell-sub">Dokter Spesialis Penyakit Dalam</span></div></div></td>
+            <td class="cell-id">906950102211006</td>
+            <td>Pegawai BLU</td>
+            <td>Spesialis Penyakit Dalam</td>
+            <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+            <td><span class="bdg bdg-green">Aktif</span></td>
+            <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:14px 20px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between">
+      <span style="font-family:var(--mono);font-size:11px;color:var(--khaki-dim)">Menampilkan 1–31 dari 248</span>
+      <div style="display:flex;gap:6px">
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="btn btn-sm btn-primary">1</button>
+        <button class="btn btn-sm btn-ghost">2</button>
+        <button class="btn btn-sm btn-ghost">3</button>
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
       </div>
+    </div>
+  </div>
+</div>
 
       <!-- ===== ADMIN: ASSIGNMENTS ===== -->
       <div class="page" id="page-a-assignments">
@@ -1613,10 +1819,7 @@ table.k-tbl .mono{font-variant-numeric:tabular-nums;color:#445}
   <aside class="side" id="side-user">
     <div class="side-head">
       <div class="mini-crest">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 6 L86 20 V46 C86 68 70 83 50 92 C30 83 14 68 14 46 V20 Z" stroke="#c8a347" stroke-width="3" fill="rgba(200,163,71,0.06)"/>
-          <path d="M50 30 V60 M38 45 H62" stroke="#e3c46a" stroke-width="4" stroke-linecap="round"/>
-        </svg>
+        <img src="/logo-rspad.jpg" alt="Logo RSPAD" style="width:100%;height:100%;object-fit:contain">
       </div>
       <div class="st">
         <b>SATRIA<span class="dash">·</span>RSPAD</b>
@@ -2136,7 +2339,39 @@ window.addEventListener('load',function(){
 });
 
 /* ========== KEHADIRAN & LAPORAN — DATA & SIMULATION ========== */
-const PERSONNEL=[{"id":"1199****0769","nama":"dr. Rifardi Rifiar, Sp.OG","pangkat":"Kolonel Ckm","unit":"Instalasi Kamar Operasi","profesi":"Dokter Spesialis Obstetri dan Gine","jenis":"Militer","jk":"L"},{"id":"3196****0475","nama":"Sampir, A.Md.Kep","pangkat":"Serma Ckm","unit":"Instalasi Kamar Operasi","profesi":"Perawat Bedah","jenis":"Militer","jk":"L"},{"id":"1963****2004","nama":"Tumirah, S.Kep., Ners","pangkat":"Pembina Tk. I IV/b","unit":"Instalasi Kamar Operasi","profesi":"Perawat Bedah","jenis":"PNS","jk":"P"},{"id":"2408****1003","nama":"Eykatana Br Ginting, S.Kep. Ners.","pangkat":"Pegawai BLU Non ASN","unit":"Instalasi Rawat Intensif","profesi":"Perawat Care Unit","jenis":"BLU/Non-ASN","jk":"P"},{"id":"2605****2017","nama":"Ika N. Sitampan, AMK.","pangkat":"Pegawai BLU Non ASN","unit":"Instalasi Rawat Intensif","profesi":"Perawat Care Unit","jenis":"BLU/Non-ASN","jk":"P"},{"id":"1995****2001","nama":"Ns Lia Rohmayanti, S Kep","pangkat":"Penata Muda Tk.I III/b","unit":"Instalasi Rawat Intensif","profesi":"Perawat Care Unit","jenis":"PNS","jk":"P"},{"id":"1920****0666","nama":"dr. Jursal Harun, Sp.OT(K)., Spine","pangkat":"Kolonel Ckm Purn","unit":"Instalasi Gawat Darurat","profesi":"Dokter Spesialis Bedah Orthopaedi","jenis":"Militer","jk":"L"},{"id":"1910****0867","nama":"Agda Fadloon, S.Sos, MM","pangkat":"Kolonel Ckm (K)","unit":"Instalasi Gawat Darurat","profesi":"-","jenis":"Militer","jk":"P"},{"id":"1195****1268","nama":"Fransisco Goncalves, S.K.M","pangkat":"Letkol Ckm","unit":"Instalasi Gawat Darurat","profesi":"-","jenis":"Militer","jk":"L"},{"id":"5098****1021","nama":"dr. Shinta Soraya, M.H","pangkat":"Pegawai BLU","unit":"-","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"BLU/Non-ASN","jk":"P"},{"id":"5018****1000","nama":"dr. Eka Capridwiphayadna AL","pangkat":"Pegawai BLU","unit":"-","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"BLU/Non-ASN","jk":"P"},{"id":"9069****1006","nama":"dr. Sabilla Laras Permana","pangkat":"Pegawai BLU","unit":"-","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"BLU/Non-ASN","jk":"P"},{"id":"1103****0371","nama":"dr. Novi Kusuma, SpBA","pangkat":"Letkol Ckm","unit":"Departemen Bedah","profesi":"Dokter Spesialis Bedah Anak","jenis":"Militer","jk":"P"},{"id":"2312****0006","nama":"Dr.dr.Catur S. Sutisna,SpB.SpBA","pangkat":"Mayjen TNI Purn","unit":"Departemen Bedah","profesi":"Dokter Spesialis Bedah Anak","jenis":"Militer","jk":"L"},{"id":"2511****0002","nama":"dr. Irhamni,SpB,SpBA","pangkat":"Kolonel Ckm Purn","unit":"Departemen Bedah","profesi":"Dokter Spesialis Bedah Anak","jenis":"Militer","jk":"L"},{"id":"2105****0884","nama":"Ahmad Waluyo, Amd. Kes","pangkat":"Sersan Mayor","unit":"MCU","profesi":"Perawat Gigi","jenis":"Militer","jk":"L"},{"id":"3195****08'5","nama":"Agus Prayitno,A.Md.K.G.","pangkat":"Sersan Mayor","unit":"MCU","profesi":"Perawat Gigi","jenis":"Militer","jk":"L"},{"id":"1965****2000","nama":"Martina Tri Puryani, Amd.Kes","pangkat":"Penata Tk.I III/d","unit":"MCU","profesi":"Perawat Gigi","jenis":"PNS","jk":"P"},{"id":"2304****2057","nama":"Andriawati Retno Purwaningtyas, Amd.Keb","pangkat":"PBLU Non ASN","unit":"Poliklinik Obsgin","profesi":"Bidan","jenis":"BLU/Non-ASN","jk":"P"},{"id":"0102****2291","nama":"Nenih, Amd.Keb","pangkat":"PBLU Non ASN","unit":"Poliklinik Obsgin","profesi":"Bidan","jenis":"BLU/Non-ASN","jk":"P"},{"id":"2102****0882","nama":"Anita Dian Agustinawaty., S.ST, M.Kes","pangkat":"Pelda (K)","unit":"Poliklinik Obsgin","profesi":"Bidan","jenis":"Militer","jk":"P"},{"id":"1976****2001","nama":"Lyana Arsianti, S.Kep, Ners, MARS","pangkat":"Pembina IV/a","unit":"Lantai 3 Pav. Soehardo","profesi":"Perawat Paviliun","jenis":"PNS","jk":"P"},{"id":"`197****2002","nama":"Sri Supraptiningsih, Amd Kep","pangkat":"Penata III/c","unit":"Lantai 3 Pav. Soehardo","profesi":"Perawat Paviliun","jenis":"PNS","jk":"P"},{"id":"1975****2000","nama":"Hendra Yenni , S. Kep, Ners","pangkat":"Penata Muda Tk 1 III/b","unit":"Lantai 3 Pav. Soehardo","profesi":"Perawat Paviliun","jenis":"PNS","jk":"L"},{"id":"-","nama":"dr. Eny Ambarwati, SP.PD, MARS, FINASIM","pangkat":"Kolonel Ckm (K)","unit":"Poli Penyakti Dalam RSPAD","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"Militer","jk":"P"},{"id":"1197****0470","nama":"dr. Jonny, Sp.PD., K-GH., M.Kes., MM., DCN., FINASIM","pangkat":"Kolonel Ckm","unit":"Poli Penyakti Dalam RSPAD","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"Militer","jk":"L"},{"id":"5105****1139","nama":"dr. Djoko Wibisono, Sp.PD., K-GH., FINASIM","pangkat":"Brigjen TNI (Purn)","unit":"Poli Penyakti Dalam RSPAD","profesi":"Dokter Spesialis Penyakit Dalam","jenis":"Militer","jk":"L"},{"id":"-","nama":"dr. Afrizal Fauzi Hutasuhut, SpAn","pangkat":"Kolonel Ckm","unit":"Poli Anestesi","profesi":"Dokter Spesialis Kedokteran Anaste","jenis":"Militer","jk":"L"},{"id":"-","nama":"dr. Slamet Agus Waluyo Jati, SpAn","pangkat":"Kolonel Ckm","unit":"Poli Anestesi","profesi":"Dokter Spesialis Kedokteran Anaste","jenis":"Militer","jk":"L"},{"id":"1193****0969","nama":"dr. Dis Bima Purwaamidjaja, SpAn, KIC., M.Kes","pangkat":"Kolonel Ckm","unit":"Poli Anestesi","profesi":"Dokter Spesialis Kedokteran Anaste","jenis":"Militer","jk":"L"},{"id":"0801****2047","nama":"Nina Hertania, S.Kep., Ners","pangkat":"Pegawai BLU Non ASN","unit":"Kartika 1 Lantai 3","profesi":"Perawat","jenis":"BLU/Non-ASN","jk":"P"},{"id":"1965****2000","nama":"Riatin Titin, AMK","pangkat":"Penata Tk.I III/d","unit":"Kartika 1 Lantai 3","profesi":"Perawat","jenis":"PNS","jk":"P"},{"id":"0605****2033","nama":"Mia Widhyastuti, S.Kep., Ners","pangkat":"Pegawai BLU Non ASN","unit":"Kartika 1 Lantai 3","profesi":"Perawat","jenis":"BLU/Non-ASN","jk":"P"},{"id":"-","nama":"dr. Antun Subono, Sp.S.,MS.c","pangkat":"Kolonel Ckm","unit":"Dep. Saraf","profesi":"Dokter Spesialis Saraf","jenis":"Militer","jk":"L"},{"id":"-","nama":"dr. Heriyanto, Sp.S","pangkat":"Kolonel Ckm","unit":"Dep. Saraf","profesi":"Dokter Spesialis Saraf","jenis":"Militer","jk":"L"},{"id":"1199****0172","nama":"dr. Bambang Siswanto, Sp.S","pangkat":"Kolonel Ckm","unit":"Dep. Saraf","profesi":"Dokter Spesialis Saraf","jenis":"Militer","jk":"L"},{"id":"1978****2001","nama":"dr. Irja Dewita","pangkat":"Pembina IV/a","unit":"Instalasi Rawat Intensif","profesi":"Dokter Care Unit","jenis":"PNS","jk":"P"},{"id":"1991****2001","nama":"dr. Bunga Dewanggi","pangkat":"Penata Muda Tk.I III/b","unit":"Instalasi Rawat Intensif","profesi":"Dokter Care Unit","jenis":"PNS","jk":"P"},{"id":"1011****1370","nama":"dr. Indira Gandhi","pangkat":"Pegawai BLU Non ASN","unit":"Instalasi Rawat Intensif","profesi":"Dokter Umum Care Unit","jenis":"BLU/Non-ASN","jk":"P"},{"id":"1969****2002","nama":"Hari Ruswanti, S.Kep., Ners","pangkat":"Pembina IV/a","unit":"Poliklinik Saraf","profesi":"Perawat Saraf","jenis":"PNS","jk":"P"},{"id":"2195****0175","nama":"Rofiq Bawazir, AMK","pangkat":"Peltu","unit":"Poliklinik Saraf","profesi":"Perawat Saraf","jenis":"Militer","jk":"L"},{"id":"1964****2003","nama":"Dahliana Marpaung, S.Kep., Ners","pangkat":"Pembina IV/a","unit":"Poliklinik Saraf","profesi":"Perawat Saraf","jenis":"PNS","jk":"P"},{"id":"1978****2001","nama":"Dwi Tutut F, Susmanti, S.Kep,. Ners","pangkat":"Penata III/c","unit":"Poliklinik Paru","profesi":"Perawat Paru","jenis":"PNS","jk":"P"},{"id":"1965****2001","nama":"Dede Adeyani, Amd. Kep,SE,MM.","pangkat":"Penata Tk. I-III/d","unit":"Poliklinik Paru","profesi":"Perawat Paru","jenis":"PNS","jk":"P"},{"id":"1965****2003","nama":"Taruli Butar Butar, Amd. Kep.","pangkat":"Penata Tk. I-III/d","unit":"Poliklinik Paru","profesi":"Perawat Paru","jenis":"PNS","jk":"P"},{"id":"-","nama":"dr. Wahyu Triyanto, Sp.M","pangkat":"Kolonel Ckm","unit":"Departemen Mata","profesi":"Dokter Spesialis Mata","jenis":"Militer","jk":"L"},{"id":"1193****0770","nama":"dr. Handy Hernandy Yuliawan, Sp.M","pangkat":"Kolonel Ckm","unit":"Departemen Mata","profesi":"Dokter Spesialis Mata","jenis":"Militer","jk":"L"},{"id":"1101****0173","nama":"dr. Trisihono, Sp.M","pangkat":"Letkol Ckm","unit":"Departemen Mata","profesi":"Dokter Spesialis Mata","jenis":"Militer","jk":"L"},{"id":"1194****0866","nama":"dr. I Wayan Agus Putra, Sp.P., M.M.R.S","pangkat":"Kolonel Ckm","unit":"Poliklinik Paru","profesi":"Dokter Spesialis Paru","jenis":"Militer","jk":"L"},{"id":"1103****1075","nama":"dr. Agung Setiadi, Sp.P., M.Kes","pangkat":"Letkol Ckm","unit":"Poliklinik Paru","profesi":"Dokter Spesialis Paru","jenis":"Militer","jk":"L"},{"id":"1973****2002","nama":"dr. Ratna Andriani, Sp.P","pangkat":"Pembina IV/a","unit":"Poliklinik Paru","profesi":"Dokter Spesialis Paru","jenis":"PNS","jk":"P"},{"id":"1971****2001","nama":"Ns. Marhamah, S.Kep","pangkat":"Penata Tk. I  III /d","unit":"Poliklinik Kulit & Kelamin","profesi":"Perawat Kulit dan Kelamin","jenis":"PNS","jk":"P"},{"id":"1965****2002","nama":"Sr.Darwati, AMK,SAP","pangkat":"Penata Tk. I  III /d","unit":"Poliklinik Kulit & Kelamin","profesi":"Perawat Kulit dan Kelamin","jenis":"PNS","jk":"P"},{"id":"1966****2003","nama":"Sr. Anisyah,AMK","pangkat":"Penata Tk. I  III /d","unit":"Poliklinik Kulit & Kelamin","profesi":"Perawat Kulit dan Kelamin","jenis":"PNS","jk":"P"},{"id":"1966****2002","nama":"Ns.Arnei Nuryani,S.Kep","pangkat":"Penata Tk.I III/d","unit":"Instalasi Rikkes","profesi":"Perawat Medical Checkup","jenis":"PNS","jk":"P"}];
+const PERSONNEL = [
+  {id:"2408880101181003", nama:"Eykatana Br Ginting, S.Kep. Ners.", pangkat:"Pegawai BLU Non ASN", unit:"INSTALASI RAWAT INTENSIF", profesi:"Perawat Care Unit", jenis:"BLU/Non-ASN", jk:"P"},
+  {id:"2605870105082017", nama:"Ika N. Sitampan, AMK.", pangkat:"Pegawai BLU Non ASN", unit:"INSTALASI RAWAT INTENSIF", profesi:"Perawat Care Unit", jenis:"BLU/Non-ASN", jk:"P"},
+  {id:"2304910109202057", nama:"Andriawati Retno Purwaningtyas, Amd.Keb", pangkat:"PBLU Non ASN", unit:"Poliklinik Obsgin", profesi:"Bidan", jenis:"BLU/Non-ASN", jk:"P"},
+  {id:"0102870112192291", nama:"Nenih, Amd.Keb", pangkat:"PBLU Non ASN", unit:"Poliklinik Obsgin", profesi:"Bidan", jenis:"BLU/Non-ASN", jk:"P"},
+  {id:"32980", nama:"dr. Eny Ambarwati, SP.PD, MARS, FINASIM", pangkat:"Kolonel Ckm (K)", unit:"Poli Penyakit Dalam RSPAD", profesi:"Dokter Spesialis", jenis:"Militer", jk:"P"},
+  {id:"509810105091021", nama:"dr. Shinta Soraya, M.H", pangkat:"Pegawai BLU", unit:"-", profesi:"Dokter Spesialis", jenis:"BLU/Non-ASN", jk:"P"},
+  {id:"5018601071211000", nama:"dr. Eka Capridwiphayadna AL", pangkat:"Pegawai BLU", unit:"-", profesi:"Dokter Spesialis", jenis:"BLU/Non-ASN", jk:"P"},
+  {id:"906950102211006", nama:"dr. Sabilla Laras Permana", pangkat:"Pegawai BLU", unit:"-", profesi:"Dokter Spesialis", jenis:"BLU/Non-ASN", jk:"P"},
+  {id:"32088", nama:"dr. Afrizal Fauzi Hutasuhut, SpAn", pangkat:"Kolonel Ckm", unit:"Poli Anestesi", profesi:"Dokter Spesialis Anestesi", jenis:"Militer", jk:"L"},
+  {id:"32979", nama:"dr. Slamet Agus Waluyo Jati, SpAn", pangkat:"Kolonel Ckm", unit:"Poli Anestesi", profesi:"Dokter Spesialis Anestesi", jenis:"Militer", jk:"L"},
+  {id:"11930097740969", nama:"dr. Dis Bima Purwaamidjaja, SpAn, KIC., M.Kes", pangkat:"Kolonel Ckm", unit:"Poli Anestesi", profesi:"Dokter Spesialis Anestesi", jenis:"Militer", jk:"L"},
+  {id:"1910053620869", nama:"dr. Agus Hari Wahono, SpAn.,M.Kes", pangkat:"Kolonel Ckm", unit:"Poli Anestesi", profesi:"Dokter Spesialis Anestesi", jenis:"Militer", jk:"L"},
+  {id:"32553", nama:"dr. Heri Pujiono, SpAn.,FIP", pangkat:"Kolonel Ckm", unit:"Poli Anestesi", profesi:"Dokter Spesialis Anestesi", jenis:"Militer", jk:"L"},
+  {id:"11930095270267", nama:"dr. Basuki Rachmad, SpAn. KIC.M.Kes.", pangkat:"Kolonel Ckm", unit:"INSTALASI RAWAT INTENSIF", profesi:"Dokter Spesialis Anastesi", jenis:"Militer", jk:"L"},
+  {id:"197807152007122001", nama:"dr. Irja Dewita", pangkat:"Pembina IV/a", unit:"INSTALASI RAWAT INTENSIF", profesi:"Dokter Care Unit", jenis:"PNS", jk:"P"},
+  {id:"199103022022032001", nama:"dr. Bunga Dewanggi", pangkat:"Penata Muda Tk.I III/b", unit:"INSTALASI RAWAT INTENSIF", profesi:"Dokter Care Unit", jenis:"PNS", jk:"P"},
+  {id:"199512192022032001", nama:"Ns Lia Rohmayanti, S Kep", pangkat:"Penata Muda Tk.I III/b", unit:"INSTALASI RAWAT INTENSIF", profesi:"Perawat Care Unit", jenis:"PNS", jk:"P"},
+  {id:"199506152022031001", nama:"Ns Suarman Putra Gea, S ,Kep", pangkat:"Penata Muda Tk.I III/b", unit:"INSTALASI RAWAT INTENSIF", profesi:"Perawat Care Unit", jenis:"PNS", jk:"L"},
+  {id:"199201072022031001", nama:"Ns Hendra,S Kep", pangkat:"Penata Muda Tk.I III/b", unit:"INSTALASI RAWAT INTENSIF", profesi:"Perawat Care Unit", jenis:"PNS", jk:"L"},
+  {id:"197603132007012001", nama:"Lyana Arsianti, S.Kep, Ners, MARS", pangkat:"Pembina IV/a", unit:"Lantai 3 Pav. Soehardo", profesi:"Perawat Paviliun", jenis:"PNS", jk:"P"},
+  {id:"196507091988122002", nama:"Sr.Darwati, AMK,SAP", pangkat:"Penata Tk. I III /d", unit:"Poliklinik Kulit & Kelamin", profesi:"Perawat Kulit", jenis:"PNS", jk:"P"},
+  {id:"196608101987032003", nama:"Sr. Anisyah,AMK", pangkat:"Penata Tk. I III /d", unit:"Poliklinik Kulit & Kelamin", profesi:"Perawat Kulit", jenis:"PNS", jk:"P"},
+  {id:"196607151989012001", nama:"Sr. Herly J, AMK", pangkat:"Penata Tk. I III /d", unit:"Poliklinik Kulit & Kelamin", profesi:"Perawat Kulit", jenis:"PNS", jk:"P"},
+  {id:"196708151990032002", nama:"Sr. Rouli S, AMK", pangkat:"Penata Tk. I III /d", unit:"Poliklinik Kulit & Kelamin", profesi:"Perawat Kulit", jenis:"PNS", jk:"P"},
+  {id:"32568", nama:"dr. Amin lbrizatun, MARS, MH", pangkat:"Kolonel CKM (K)", unit:"Instalasi Rikkes / MCU", profesi:"Dokter Medical Checkup", jenis:"Militer", jk:"L"},
+  {id:"197610302007012001", nama:"dr.Erna Oktavia,MH", pangkat:"Pembina lV/a", unit:"Instalasi Rikkes / MCU", profesi:"Dokter Medical Checkup", jenis:"PNS", jk:"P"},
+  {id:"196605271988032002", nama:"Ns.Arnei Nuryani,S.Kep", pangkat:"Penata Tk.I III/d", unit:"Instalasi Rikkes / MCU", profesi:"Perawat Medical Checkup", jenis:"PNS", jk:"P"},
+  {id:"196703171990032003", nama:"Nasri Bangun, Amd.Keb", pangkat:"Penata Tk.I III/d", unit:"Poliklinik Obsgin", profesi:"Bidan", jenis:"PNS", jk:"P"},
+  {id:"196712011989022001", nama:"Asmawati, S.ST, M.K.M", pangkat:"Penata Tk.I III/d", unit:"Poliklinik Obsgin", profesi:"Bidan", jenis:"PNS", jk:"P"},
+  {id:"196701251989032001", nama:"Marpuah, Amd.Keb", pangkat:"Penata Tk.I III/d", unit:"Poliklinik Obsgin", profesi:"Bidan", jenis:"PNS", jk:"P"}
+];
+
 const TOTAL_REAL=690;
 function khrng(seed){return function(){seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function khpick(r,a){return a[Math.floor(r()*a.length)];}

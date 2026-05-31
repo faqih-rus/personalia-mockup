@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SATRIA-RSPAD — Sistem Administrasi Terpadu Riwayat Insan Aparatur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Saira+Condensed:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Spline+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SATRIA-RSPAD — Design System
+   Aesthetic: Military Command Console. Disciplined, institutional,
+   olive/khaki field palette with brass-gold accents, stencil-grade
+   display type, monospace data rows.
+   ============================================================ */
+:root{
+  /* Field palette */
+  --ink:#0c0f0a;
+  --olive-950:#11150d;
+  --olive-900:#171c11;
+  --olive-850:#1c2215;
+  --olive-800:#222a18;
+  --olive-700:#2c361f;
+  --olive-600:#3a4729;
+  --olive-500:#4d5e36;
+  --khaki:#b9b08a;
+  --khaki-dim:#8d8666;
+  --sand:#e8e2cc;
+  --paper:#f4f0e2;
+  /* Brass / signal */
+  --brass:#c8a347;
+  --brass-bright:#e3c46a;
+  --brass-deep:#9a7c2e;
+  --signal-red:#c0432f;
+  --signal-amber:#d68a2b;
+  --signal-green:#6f9a4a;
+  --signal-blue:#5786a3;
+  /* Functional */
+  --line:rgba(184,176,138,0.16);
+  --line-strong:rgba(184,176,138,0.32);
+  --glass:rgba(28,34,21,0.72);
+  --shadow:0 24px 60px -20px rgba(0,0,0,0.7);
+  --r:3px;
+  --r-lg:6px;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Oswald',sans-serif;
+  --cond:'Saira Condensed',sans-serif;
+  --body:'Spline Sans',sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--olive-950);
+  color:var(--sand);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  line-height:1.5;
+}
+/* texture overlays */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(77,94,54,0.35), transparent 45%),
+    radial-gradient(circle at 84% 82%, rgba(44,54,31,0.5), transparent 50%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+.app{position:relative;z-index:1}
+
+::selection{background:var(--brass);color:var(--ink)}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--olive-900)}
+::-webkit-scrollbar-thumb{background:var(--olive-600);border:2px solid var(--olive-900);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--olive-500)}
+
+/* ---------- Utility ---------- */
+.mono{font-family:var(--mono)}
+.stencil{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass)}
+.hidden{display:none!important}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* corner ticks decorative */
+.ticks{position:relative}
+.ticks::before,.ticks::after{
+  content:"";position:absolute;width:10px;height:10px;border:1px solid var(--brass);opacity:.55
+}
+.ticks::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.ticks::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+/* =====================================================================
+   GATE (landing — choose role)
+   ===================================================================== */
+#gate{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:40px 24px;position:relative;
+}
+.gate-grid{
+  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(circle at 50% 42%, black, transparent 72%);
+          mask-image:radial-gradient(circle at 50% 42%, black, transparent 72%);
+}
+.gate-inner{position:relative;z-index:1;width:100%;max-width:1040px;text-align:center}
+
+.crest{
+  width:96px;height:96px;margin:0 auto 26px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.crest svg{width:100%;height:100%;filter:drop-shadow(0 6px 20px rgba(200,163,71,.35))}
+
+.gate-classif{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--line-strong);border-radius:999px;
+  padding:6px 16px;margin-bottom:30px;background:rgba(192,67,47,.08);
+}
+.gate-classif .dot{width:7px;height:7px;border-radius:50%;background:var(--signal-red);box-shadow:0 0 10px var(--signal-red);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.gate-classif span{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--khaki)}
+
+h1.wordmark{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(48px,9vw,108px);line-height:.92;letter-spacing:.02em;
+  color:var(--paper);position:relative;
+}
+h1.wordmark .dash{color:var(--brass)}
+.wordmark-sub{
+  margin-top:14px;font-family:var(--cond);font-weight:400;
+  font-size:clamp(13px,2.1vw,18px);letter-spacing:.32em;text-transform:uppercase;
+  color:var(--khaki-dim);
+}
+.tagline{
+  margin-top:22px;font-style:italic;font-family:var(--body);
+  color:var(--khaki);font-size:15px;letter-spacing:.01em;
+}
+.tagline::before,.tagline::after{content:"—";color:var(--brass);margin:0 10px;font-style:normal}
+
+.gate-cards{
+  margin-top:54px;display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
+}
+@media(max-width:720px){.gate-cards{grid-template-columns:1fr}}
+.gate-card{
+  position:relative;text-align:left;cursor:pointer;
+  background:linear-gradient(155deg, rgba(34,42,24,.85), rgba(17,21,13,.92));
+  border:1px solid var(--line-strong);border-radius:var(--r-lg);
+  padding:34px 30px 30px;overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s;
+}
+.gate-card::before{
+  content:"";position:absolute;top:0;left:0;width:4px;height:100%;
+  background:var(--brass);transform:scaleY(0);transform-origin:top;transition:transform .4s ease;
+}
+.gate-card:hover{transform:translateY(-6px);border-color:var(--brass);box-shadow:var(--shadow)}
+.gate-card:hover::before{transform:scaleY(1)}
+.gate-card .num{
+  position:absolute;top:18px;right:22px;font-family:var(--display);
+  font-size:60px;font-weight:700;color:rgba(184,176,138,.07);line-height:1;
+}
+.gate-card .gc-icon{
+  width:54px;height:54px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line-strong);margin-bottom:22px;
+  background:rgba(200,163,71,.06);color:var(--brass);
+}
+.gate-card .gc-icon svg{width:26px;height:26px}
+.gate-card h3{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;
+  font-size:26px;font-weight:600;color:var(--paper);margin-bottom:8px;
+}
+.gate-card .role-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--brass);text-transform:uppercase;margin-bottom:16px}
+.gate-card p{color:var(--khaki);font-size:13.5px;line-height:1.65;min-height:62px}
+.gate-card .gc-perms{margin-top:18px;display:flex;flex-wrap:wrap;gap:7px}
+.gc-perms .perm{
+  font-family:var(--mono);font-size:10px;letter-spacing:.05em;
+  border:1px solid var(--line);border-radius:2px;padding:3px 8px;color:var(--khaki-dim);
+}
+.gate-card .enter{
+  margin-top:24px;display:flex;align-items:center;gap:10px;
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;
+  font-size:13px;font-weight:600;color:var(--brass);
+}
+.gate-card .enter .arrow{transition:transform .35s ease}
+.gate-card:hover .enter .arrow{transform:translateX(6px)}
+
+.gate-foot{
+  margin-top:48px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--khaki-dim);text-transform:uppercase;
+}
+.gate-foot b{color:var(--khaki);font-weight:500}
+
+/* =====================================================================
+   APP SHELL (shared by admin + user)
+   ===================================================================== */
+.shell{display:none;min-height:100vh}
+.shell.active{display:grid;grid-template-columns:266px 1fr}
+@media(max-width:980px){.shell.active{grid-template-columns:1fr}}
+
+/* ---- Sidebar ---- */
+.side{
+  background:linear-gradient(180deg,var(--olive-900),var(--olive-950));
+  border-right:1px solid var(--line);position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;
+}
+@media(max-width:980px){
+  .side{position:fixed;z-index:60;width:266px;transform:translateX(-100%);transition:transform .3s ease}
+  .side.open{transform:translateX(0)}
+}
+.side-head{padding:22px 22px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:13px}
+.side-head .mini-crest{width:38px;height:38px;flex-shrink:0}
+.side-head .mini-crest svg{width:100%;height:100%}
+.side-head .st{display:flex;flex-direction:column;min-width:0}
+.side-head .st b{font-family:var(--display);font-weight:700;letter-spacing:.06em;font-size:19px;color:var(--paper);line-height:1}
+.side-head .st b .dash{color:var(--brass)}
+.side-head .st span{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;color:var(--khaki-dim);text-transform:uppercase;margin-top:5px}
+
+.side-scroll{flex:1;overflow-y:auto;padding:16px 12px 20px}
+.nav-group{margin-bottom:18px}
+.nav-group .g-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--khaki-dim);padding:0 12px 8px}
+.nav-item{
+  display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:var(--r);
+  color:var(--khaki);font-size:13.5px;cursor:pointer;position:relative;
+  transition:background .2s,color .2s;font-weight:500;border:1px solid transparent;
+}
+.nav-item svg{width:17px;height:17px;flex-shrink:0;opacity:.85}
+.nav-item .badge{margin-left:auto;font-family:var(--mono);font-size:10px;background:var(--olive-700);color:var(--khaki);padding:1px 7px;border-radius:999px}
+.nav-item:hover{background:var(--olive-800);color:var(--paper)}
+.nav-item.active{background:rgba(200,163,71,.1);color:var(--brass-bright);border-color:var(--line-strong)}
+.nav-item.active::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;background:var(--brass);border-radius:0 2px 2px 0}
+.nav-item.locked{opacity:.4;cursor:not-allowed}
+.nav-item.locked:hover{background:transparent;color:var(--khaki)}
+.nav-item .lock{margin-left:auto;width:13px;height:13px;opacity:.7}
+
+.side-foot{border-top:1px solid var(--line);padding:14px}
+.user-chip{display:flex;align-items:center;gap:11px;padding:8px;border-radius:var(--r);background:var(--olive-850)}
+.user-chip .ava{width:36px;height:36px;border-radius:var(--r);background:var(--olive-600);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;color:var(--brass-bright);font-size:15px;flex-shrink:0;border:1px solid var(--line-strong)}
+.user-chip .ui{min-width:0;flex:1}
+.user-chip .ui b{display:block;font-size:13px;color:var(--paper);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-chip .ui span{font-family:var(--mono);font-size:9.5px;color:var(--brass);letter-spacing:.08em;text-transform:uppercase}
+.user-chip .out{margin-left:auto;color:var(--khaki-dim);cursor:pointer;padding:5px;border-radius:3px;transition:.2s}
+.user-chip .out:hover{color:var(--signal-red);background:rgba(192,67,47,.1)}
+
+/* ---- Main ---- */
+.main{min-width:0;display:flex;flex-direction:column;min-height:100vh}
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(17,21,13,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding:14px 30px;display:flex;align-items:center;gap:18px;
+}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:3px;color:var(--khaki);padding:7px;cursor:pointer}
+@media(max-width:980px){.burger{display:flex}}
+.tb-title{display:flex;flex-direction:column;gap:2px}
+.tb-title .crumb{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--khaki-dim);text-transform:uppercase}
+.tb-title h2{font-family:var(--display);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:21px;color:var(--paper)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.tb-clock{font-family:var(--mono);font-size:12px;color:var(--khaki);letter-spacing:.05em;text-align:right;line-height:1.3}
+.tb-clock b{color:var(--brass-bright);display:block;font-size:14px}
+@media(max-width:620px){.tb-clock{display:none}}
+.tb-search{position:relative}
+.tb-search input{
+  background:var(--olive-850);border:1px solid var(--line);border-radius:var(--r);
+  color:var(--sand);font-family:var(--body);font-size:13px;padding:8px 12px 8px 34px;width:210px;
+  transition:border-color .2s,width .25s;
+}
+.tb-search input:focus{outline:none;border-color:var(--brass);width:250px}
+.tb-search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--khaki-dim)}
+@media(max-width:760px){.tb-search{display:none}}
+
+.content{padding:30px;flex:1;background:#ffffff;color:#1a1a1a}
+@media(max-width:620px){.content{padding:18px}}
+
+/* page system */
+.page{display:none;animation:fade .4s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---- Cards / panels ---- */
+.panel{
+  background:#f8f9fa;border:1px solid #e0e4e8;border-radius:var(--r-lg);
+  position:relative;overflow:hidden;
+}
+.panel-head{padding:16px 20px;border-bottom:1px solid #e0e4e8;display:flex;align-items:center;gap:12px;background:#f0f1f3}
+.panel-head h3{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:15px;color:#1a1a1a}
+.panel-head .ph-tag{font-family:var(--mono);font-size:10px;color:#666;letter-spacing:.1em}
+.panel-head .ph-actions{margin-left:auto;display:flex;gap:8px}
+.panel-body{padding:20px;color:#333}
+
+/* stat row */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:26px}
+.stat{
+  background:#f8f9fa;
+  border:1px solid #e0e4e8;border-radius:var(--r-lg);padding:20px;position:relative;overflow:hidden;
+}
+.stat::after{content:"";position:absolute;right:-20px;bottom:-20px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(200,163,71,.08),transparent 70%)}
+.stat .s-ico{width:34px;height:34px;border-radius:var(--r);background:#f0f0f0;border:1px solid #d0d0d0;display:flex;align-items:center;justify-content:center;color:var(--brass);margin-bottom:14px}
+.stat .s-ico svg{width:18px;height:18px}
+.stat .s-val{font-family:var(--display);font-weight:700;font-size:34px;color:#1a1a1a;line-height:1;letter-spacing:.01em}
+.stat .s-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#666;margin-top:8px}
+.stat .s-delta{position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:11px;display:flex;align-items:center;gap:3px}
+.s-delta.up{color:var(--signal-green)}
+.s-delta.flat{color:#999}
+
+/* grid helpers */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-2-1{display:grid;grid-template-columns:1.7fr 1fr;gap:20px}
+@media(max-width:1080px){.grid-2,.grid-3,.grid-2-1{grid-template-columns:1fr}}
+.mb{margin-bottom:20px}
+
+/* ---- Tables ---- */
+.tbl-wrap{overflow-x:auto}
+table.data{width:100%;border-collapse:collapse;font-size:13px}
+table.data th{
+  text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:#666;padding:12px 16px;border-bottom:1px solid #ddd;white-space:nowrap;
+  background:#f5f5f5;position:sticky;top:0;
+}
+table.data td{padding:12px 16px;border-bottom:1px solid #e8e8e8;color:#333;vertical-align:middle}
+table.data tr:last-child td{border-bottom:0}
+table.data tbody tr{transition:background .15s}
+table.data tbody tr:hover{background:#f5f8fb}
+.cell-id{font-family:var(--mono);font-size:12px;color:var(--brass)}
+.cell-strong{font-weight:600;color:#1a1a1a}
+.cell-sub{display:block;font-size:11px;color:#666;font-family:var(--mono);margin-top:2px}
+.row-ava{display:flex;align-items:center;gap:11px}
+.row-ava .ra{width:34px;height:34px;border-radius:var(--r);background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;font-size:13px;color:var(--brass-bright);flex-shrink:0;border:1px solid #d0d0d0}
+
+/* badges */
+.bdg{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;padding:3px 9px;border-radius:999px;border:1px solid;text-transform:uppercase;white-space:nowrap}
+.bdg::before{content:"";width:6px;height:6px;border-radius:50%}
+.bdg-green{color:var(--signal-green);border-color:rgba(111,154,74,.4);background:rgba(111,154,74,.08)}
+.bdg-green::before{background:var(--signal-green)}
+.bdg-amber{color:var(--signal-amber);border-color:rgba(214,138,43,.4);background:rgba(214,138,43,.08)}
+.bdg-amber::before{background:var(--signal-amber)}
+.bdg-red{color:var(--signal-red);border-color:rgba(192,67,47,.4);background:rgba(192,67,47,.08)}
+.bdg-red::before{background:var(--signal-red)}
+.bdg-blue{color:var(--signal-blue);border-color:rgba(87,134,163,.4);background:rgba(87,134,163,.08)}
+.bdg-blue::before{background:var(--signal-blue)}
+.bdg-khaki{color:var(--khaki);border-color:var(--line-strong);background:var(--olive-800)}
+.bdg-khaki::before{background:var(--khaki-dim)}
+.bdg-brass{color:var(--brass-bright);border-color:rgba(200,163,71,.4);background:rgba(200,163,71,.1)}
+.bdg-brass::before{background:var(--brass)}
+.bdg.no-dot::before{display:none}
+
+/* role pill */
+.role-pill{font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:2px 8px;border-radius:3px;text-transform:uppercase}
+.role-super{background:rgba(192,67,47,.14);color:var(--signal-red);border:1px solid rgba(192,67,47,.3)}
+.role-admin{background:rgba(200,163,71,.14);color:var(--brass-bright);border:1px solid rgba(200,163,71,.3)}
+.role-viewer{background:rgba(87,134,163,.14);color:var(--signal-blue);border:1px solid rgba(87,134,163,.3)}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-weight:600;
+  font-size:12px;padding:9px 16px;border-radius:var(--r);border:1px solid #d0d0d0;
+  background:#f5f5f5;color:#333;transition:.2s;
+}
+.btn svg{width:15px;height:15px}
+.btn:hover{border-color:var(--brass);color:var(--brass-bright)}
+.btn-primary{background:var(--brass);color:var(--ink);border-color:var(--brass)}
+.btn-primary:hover{background:var(--brass-bright);color:var(--ink)}
+.btn-ghost{background:transparent;border-color:transparent}
+.btn-sm{padding:6px 11px;font-size:11px}
+.btn-danger:hover{border-color:var(--signal-red);color:var(--signal-red)}
+.icon-btn{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #d0d0d0;border-radius:var(--r);background:#f5f5f5;color:#666;cursor:pointer;transition:.2s}
+.icon-btn:hover{border-color:var(--brass);color:var(--brass)}
+.icon-btn svg{width:15px;height:15px}
+
+/* tag/filter bar */
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.seg{display:inline-flex;border:1px solid #d0d0d0;border-radius:var(--r);overflow:hidden}
+.seg button{background:#ffffff;border:0;color:#333;font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding:7px 13px;cursor:pointer;text-transform:uppercase;transition:.2s;border-right:1px solid #d0d0d0}
+.seg button:last-child{border-right:0}
+.seg button.on{background:var(--brass);color:var(--ink)}
+.seg button:hover:not(.on){background:#f5f5f5;color:#1a1a1a}
+
+/* ---- Org chart ---- */
+.org{padding:8px 4px 4px;overflow-x:auto}
+.org-node{display:flex;flex-direction:column;align-items:center;position:relative}
+.org-box{
+  background:#f8f9fa;
+  border:1px solid #d0d0d0;border-radius:var(--r);padding:11px 16px;min-width:150px;text-align:center;position:relative;
+  transition:.25s;cursor:default;
+}
+.org-box:hover{border-color:var(--brass);transform:translateY(-2px)}
+.org-box .ob-code{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--brass);text-transform:uppercase}
+.org-box .ob-name{font-family:var(--cond);font-weight:600;font-size:13.5px;color:#1a1a1a;text-transform:uppercase;letter-spacing:.02em;margin-top:3px}
+.org-box .ob-head{font-size:10.5px;color:#666;margin-top:3px}
+.org-box.root{border-color:var(--brass);background:#f0f7f5}
+.org-box.root .ob-name{font-family:var(--display);font-size:16px;color:var(--brass-bright)}
+.org-box .prov{position:absolute;top:-7px;right:-7px;font-family:var(--mono);font-size:8px;background:var(--signal-amber);color:var(--ink);padding:1px 5px;border-radius:2px;letter-spacing:.04em}
+.org-children{display:flex;gap:18px;margin-top:26px;position:relative}
+.org-children::before{content:"";position:absolute;top:-26px;left:50%;width:1px;height:13px;background:var(--line-strong)}
+.org-node>.org-children{align-items:flex-start}
+.org-child{display:flex;flex-direction:column;align-items:center;position:relative}
+.org-child::before{content:"";position:absolute;top:-13px;left:50%;width:1px;height:13px;background:var(--line-strong)}
+.org-bus{position:relative}
+.org-bus::after{content:"";position:absolute;top:-13px;height:1px;background:var(--line-strong)}
+
+/* simpler vertical tree for units page */
+.tree{font-family:var(--body)}
+.tree-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid #e0e4e8;border-radius:var(--r);background:#f8f9fa;margin-bottom:8px;transition:.2s}
+.tree-row:hover{border-color:#d0d0d0;background:#f0f1f3}
+.tree-row .indent{display:inline-flex;align-items:center}
+.tree-row .twig{color:#999;font-family:var(--mono);margin-right:8px}
+.tree-row .t-code{font-family:var(--mono);font-size:11px;color:var(--brass);min-width:130px}
+.tree-row .t-name{font-weight:600;color:#1a1a1a;flex:1}
+.tree-row .t-name small{display:block;font-weight:400;color:#666;font-size:11px;margin-top:2px}
+
+/* ========== ORG CHART – interactive top-down boxes ========== */
+.oc-wrap{overflow-x:auto;overflow-y:visible;padding:24px 16px 32px}
+.oc-root-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:flex-start;align-items:flex-start}
+.oc-node{display:flex;flex-direction:column;align-items:center}
+.oc-box{
+  background:#f8f9fa;border:1.5px solid #d0d0d0;border-radius:5px;
+  padding:10px 14px;min-width:126px;max-width:168px;
+  text-align:center;position:relative;transition:border-color .2s,box-shadow .2s,transform .18s;cursor:default;
+}
+.oc-box.has-kids{cursor:pointer}
+.oc-box.has-kids:hover{border-color:var(--brass);box-shadow:0 3px 12px rgba(200,163,71,.18);transform:translateY(-2px)}
+.oc-expand{position:absolute;top:3px;right:6px;font-size:10px;color:var(--brass);line-height:1;transition:transform .25s;pointer-events:none}
+.oc-node.oc-collapsed .oc-expand{transform:rotate(-90deg)}
+.oc-box-code{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;color:var(--brass);text-transform:uppercase}
+.oc-box-name{font-family:var(--cond);font-weight:600;font-size:12px;color:#1a1a1a;text-transform:uppercase;letter-spacing:.02em;line-height:1.3;margin-top:3px}
+.oc-box-title{font-family:var(--mono);font-size:9px;color:#888;margin-top:3px;line-height:1.3}
+.oc-prov{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:7.5px;border-radius:2px;padding:0 3px;letter-spacing:.05em}
+.oc-tier0 .oc-box{border-color:var(--brass);background:rgba(200,163,71,.07);min-width:158px}
+.oc-tier0 .oc-box-name{font-family:var(--display);font-size:15px;color:var(--brass-bright)}
+.oc-tier0 .oc-box-code{font-size:9.5px}
+.oc-tier1 .oc-box{background:#f0f4f8;border-color:#b8c8d8}
+.oc-tier3 .oc-box{min-width:108px;max-width:150px;border-style:dashed}
+.oc-box.oc-highlight{border-color:var(--brass)!important;background:rgba(200,163,71,.12)!important}
+.oc-v-stem{width:2px;height:20px;background:#d0d0d0;flex-shrink:0}
+.oc-children{display:flex;gap:4px;align-items:flex-start}
+.oc-child{display:flex;flex-direction:column;align-items:center;position:relative;padding-top:20px}
+.oc-child::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#d0d0d0}
+.oc-child::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:20px;background:#d0d0d0}
+.oc-child:first-child::before{left:50%}
+.oc-child:last-child::before{right:50%}
+.oc-child:only-child::before{display:none}
+.oc-node.oc-collapsed>.oc-v-stem,.oc-node.oc-collapsed>.oc-children{display:none}
+
+/* ---- Forms (admin) ---- */
+.form-section{border:1px solid #e0e4e8;border-radius:var(--r-lg);margin-bottom:18px;overflow:hidden}
+.fs-head{padding:13px 18px;background:#f5f5f5;border-bottom:1px solid #e0e4e8;display:flex;align-items:center;gap:10px}
+.fs-head .fs-no{font-family:var(--display);font-weight:700;color:var(--brass);font-size:15px}
+.fs-head h4{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:14px;color:#1a1a1a}
+.fs-head .fs-hint{margin-left:auto;font-family:var(--mono);font-size:10px;color:#666}
+.fs-body{padding:18px;background:#fafbfc}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field-grid.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:680px){.field-grid,.field-grid.three{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#444}
+.field label .req{color:var(--signal-red)}
+.field input,.field select,.field textarea{
+  background:#ffffff;border:1px solid #d0d0d0;border-radius:var(--r);
+  color:#333;font-family:var(--body);font-size:13.5px;padding:10px 12px;transition:border-color .2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--brass)}
+.field textarea{resize:vertical;min-height:72px;font-family:var(--body)}
+.field .hint{font-family:var(--mono);font-size:10px;color:#666}
+.field.locked input{opacity:.55;cursor:not-allowed}
+
+/* toggle */
+.toggle{display:inline-flex;align-items:center;gap:9px;cursor:pointer}
+.toggle .tk{width:40px;height:22px;border-radius:999px;background:#e0e0e0;position:relative;transition:.25s;border:1px solid #d0d0d0}
+.toggle .tk::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#ffffff;transition:.25s}
+.toggle input{display:none}
+.toggle input:checked+.tk{background:var(--brass)}
+.toggle input:checked+.tk::after{transform:translateX(18px);background:var(--ink)}
+.toggle span{font-size:12.5px;color:#333}
+
+/* upload box */
+.upload{border:1px dashed #d0d0d0;border-radius:var(--r-lg);padding:26px;text-align:center;background:#fafbfc;transition:.2s;cursor:pointer}
+.upload:hover{border-color:var(--brass);background:#f5f8fb}
+.upload .up-ico{width:46px;height:46px;margin:0 auto 12px;border-radius:50%;background:#f0f0f0;border:1px solid #d0d0d0;display:flex;align-items:center;justify-content:center;color:var(--brass)}
+.upload .up-ico svg{width:22px;height:22px}
+.upload b{display:block;font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;color:#1a1a1a;font-size:14px;margin-bottom:5px}
+.upload span{font-family:var(--mono);font-size:10.5px;color:#666;letter-spacing:.05em}
+
+/* ---- Activity / audit feed ---- */
+.feed{display:flex;flex-direction:column}
+.feed-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #e8e8e8;position:relative}
+.feed-item:last-child{border-bottom:0}
+.feed-item .fi-dot{width:32px;height:32px;border-radius:var(--r);flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid #d0d0d0}
+.fi-dot svg{width:15px;height:15px}
+.fi-create{background:#e8f5e9;color:var(--signal-green)}
+.fi-update{background:#fff3e0;color:var(--signal-amber)}
+.fi-delete{background:#ffebee;color:var(--signal-red)}
+.fi-login{background:#e3f2fd;color:var(--signal-blue)}
+.feed-item .fi-body{flex:1;min-width:0}
+.feed-item .fi-body p{font-size:13px;color:#333;line-height:1.45}
+.feed-item .fi-body p b{color:#1a1a1a;font-weight:600}
+.feed-item .fi-body .fi-meta{font-family:var(--mono);font-size:10.5px;color:#999;letter-spacing:.05em;margin-top:4px;display:flex;gap:12px;flex-wrap:wrap}
+.feed-item .fi-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--brass);text-transform:uppercase}
+
+/* profile (user) */
+.profile-hero{
+  display:flex;gap:24px;align-items:center;padding:26px;
+  background:#f5f7fa;
+  border:1px solid #e0e4e8;border-radius:var(--r-lg);margin-bottom:24px;position:relative;overflow:hidden;flex-wrap:wrap;
+}
+.profile-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 12%,rgba(200,163,71,.08),transparent 50%)}
+.profile-hero .ph-ava{width:96px;height:96px;border-radius:var(--r-lg);background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:38px;color:var(--brass-bright);border:1px solid var(--brass);flex-shrink:0;position:relative;z-index:1}
+.profile-hero .ph-info{position:relative;z-index:1;flex:1;min-width:220px}
+.profile-hero .ph-info .ph-rank{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--brass);text-transform:uppercase}
+.profile-hero .ph-info h2{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.03em;font-size:30px;color:#1a1a1a;margin:5px 0 8px}
+.profile-hero .ph-info .ph-meta{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:#333}
+.profile-hero .ph-info .ph-meta b{color:#000}
+.profile-hero .ph-stat{position:relative;z-index:1;text-align:right;display:flex;flex-direction:column;gap:4px}
+
+.kv{display:grid;grid-template-columns:auto 1fr;gap:11px 20px;font-size:13.5px}
+.kv dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#666;align-self:center}
+.kv dd{color:#1a1a1a;font-weight:500}
+
+/* timeline (assignment history) */
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:#ddd}
+.tl-item{position:relative;padding:0 0 22px 8px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-23px;top:4px;width:11px;height:11px;border-radius:50%;background:#ffffff;border:2px solid var(--brass)}
+.tl-item.past::before{border-color:#ccc;background:#ffffff}
+.tl-item .tl-date{font-family:var(--mono);font-size:11px;color:var(--brass);letter-spacing:.06em}
+.tl-item.past .tl-date{color:#999}
+.tl-item h4{font-family:var(--cond);font-weight:600;font-size:16px;color:#1a1a1a;text-transform:uppercase;letter-spacing:.02em;margin:4px 0 3px}
+.tl-item p{font-size:12.5px;color:#666}
+.tl-item .tl-sk{font-family:var(--mono);font-size:10.5px;color:#999;margin-top:5px}
+
+/* alert/callouts */
+.callout{display:flex;gap:13px;padding:15px 18px;border-radius:var(--r);border:1px solid;margin-bottom:18px;align-items:flex-start}
+.callout svg{width:19px;height:19px;flex-shrink:0;margin-top:1px}
+.callout p{font-size:13px;line-height:1.55;color:#333}
+.callout p b{font-weight:600}
+.callout-amber{background:#fff8f0;border-color:#ffe0b2;color:var(--signal-amber)}
+.callout-amber p{color:#333}
+.callout-red{background:#ffebee;border-color:#ffcdd2;color:var(--signal-red)}
+.callout-red p{color:#333}
+.callout-blue{background:#e3f2fd;border-color:#bbdefb;color:var(--signal-blue)}
+.callout-blue p{color:#333}
+
+/* MCU lock visual */
+.mcu-lock{text-align:center;padding:50px 24px}
+.mcu-lock .ml-ico{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:rgba(192,67,47,.1);border:1px solid rgba(192,67,47,.3);display:flex;align-items:center;justify-content:center;color:var(--signal-red)}
+.mcu-lock .ml-ico svg{width:30px;height:30px}
+.mcu-lock h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;color:var(--paper);font-size:20px;margin-bottom:8px}
+.mcu-lock p{color:var(--khaki);font-size:13.5px;max-width:420px;margin:0 auto}
+.mcu-lock .code{font-family:var(--mono);color:var(--signal-red);margin-top:14px;font-size:12px;letter-spacing:.1em}
+
+/* mini bar chart */
+.barchart{display:flex;align-items:flex-end;gap:10px;height:160px;padding-top:10px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
+.bar{width:100%;max-width:42px;background:linear-gradient(180deg,var(--brass),var(--brass-deep));border-radius:2px 2px 0 0;position:relative;transition:.5s;min-height:4px}
+.bar.alt{background:linear-gradient(180deg,#d0d0d0,#a0a0a0)}
+.bar-col .bc-label{font-family:var(--mono);font-size:10px;color:#666;letter-spacing:.05em}
+.bar-col .bc-val{font-family:var(--mono);font-size:11px;color:#1a1a1a;font-weight:500}
+
+/* distribution rows */
+.dist-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.dist-row .dr-label{font-family:var(--mono);font-size:11.5px;color:#333;width:78px;letter-spacing:.04em}
+.dist-row .dr-track{flex:1;height:9px;background:#e8e8e8;border-radius:999px;overflow:hidden;border:1px solid #d0d0d0}
+.dist-row .dr-fill{height:100%;background:linear-gradient(90deg,var(--brass-deep),var(--brass));border-radius:999px}
+.dist-row .dr-val{font-family:var(--mono);font-size:11.5px;color:#1a1a1a;width:42px;text-align:right}
+
+/* empty footer line */
+.foot-note{margin-top:30px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#999;text-transform:uppercase}
+.foot-note .dash{color:var(--brass)}
+
+/* responsive table cards (mobile) handled by horizontal scroll */
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ============================ GATE ============================ -->
+<section id="gate">
+  <div class="gate-grid"></div>
+  <div class="gate-inner">
+
+    <div class="crest">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 4 L88 18 V46 C88 70 72 86 50 96 C28 86 12 70 12 46 V18 Z" stroke="#c8a347" stroke-width="2.2" fill="rgba(200,163,71,0.05)"/>
+        <path d="M50 14 L78 24 V46 C78 64 66 77 50 85 C34 77 22 64 22 46 V24 Z" stroke="rgba(184,176,138,0.4)" stroke-width="1"/>
+        <path d="M50 30 V62 M38 46 H62" stroke="#e3c46a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="50" cy="46" r="6" stroke="#e3c46a" stroke-width="2"/>
+        <path d="M30 70 Q50 78 70 70" stroke="#c8a347" stroke-width="1.4" fill="none"/>
+        <circle cx="50" cy="20" r="2" fill="#e3c46a"/>
+      </svg>
+    </div>
+
+    <div class="gate-classif">
+      <span class="dot"></span>
+      <span>Sistem Internal · Akses Terbatas · Intranet RSPAD</span>
+    </div>
+
+    <h1 class="wordmark">SATRIA<span class="dash">·</span>RSPAD</h1>
+    <div class="wordmark-sub">Sistem Administrasi Terpadu Riwayat Insan Aparatur</div>
+    <p class="tagline">Satu Data Personel, Siap Dukung Komando</p>
+
+    <div class="gate-cards">
+
+      <!-- Administrator -->
+      <div class="gate-card ticks" onclick="enterApp('admin')">
+        <div class="num">01</div>
+        <div class="gc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="role-tag">Akses Penuh / Manajemen</div>
+        <h3>Administrator</h3>
+        <p>Kelola seluruh master data, personel, surat keputusan, penugasan, hingga arsip MCU. Termasuk audit trail dan kontrol RBAC.</p>
+        <div class="gc-perms">
+          <span class="perm">CRUD Personel</span>
+          <span class="perm">Mutasi / SK</span>
+          <span class="perm">Arsip MCU</span>
+          <span class="perm">Audit Log</span>
+        </div>
+        <div class="enter">Masuk sebagai Administrator <span class="arrow">→</span></div>
+      </div>
+
+      <!-- User dashboard -->
+      <div class="gate-card ticks" onclick="enterApp('user')">
+        <div class="num">02</div>
+        <div class="gc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/>
+          </svg>
+        </div>
+        <div class="role-tag">Personel / Read-Only</div>
+        <h3>Dasbor Personel</h3>
+        <p>Lihat profil personel, riwayat penugasan, data pangkat &amp; jabatan, serta atribut fisik. Tampilan read-only sesuai hak akses Viewer.</p>
+        <div class="gc-perms">
+          <span class="perm">Profil Saya</span>
+          <span class="perm">Riwayat Tugas</span>
+          <span class="perm">Atribut Fisik</span>
+          <span class="perm">Direktori</span>
+        </div>
+        <div class="enter">Masuk sebagai Personel <span class="arrow">→</span></div>
+      </div>
+
+    </div>
+
+    <div class="gate-foot">
+      <div>Sumber Struktur · <b>Perkasad No. 44/2025</b></div>
+      <div>Versi · <b>MVP Scope 1</b></div>
+      <div>Zona · <b>Asia/Jakarta</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ADMIN SHELL ============================ -->
+<div class="shell" id="shell-admin">
+  <!-- Sidebar -->
+  <aside class="side" id="side-admin">
+    <div class="side-head">
+      <div class="mini-crest">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 6 L86 20 V46 C86 68 70 83 50 92 C30 83 14 68 14 46 V20 Z" stroke="#c8a347" stroke-width="3" fill="rgba(200,163,71,0.06)"/>
+          <path d="M50 30 V60 M38 45 H62" stroke="#e3c46a" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="st">
+        <b>SATRIA<span class="dash">·</span>RSPAD</b>
+        <span>Admin Console</span>
+      </div>
+    </div>
+
+    <div class="side-scroll">
+      <div class="nav-group">
+        <div class="g-label">Operasi</div>
+        <div class="nav-item active" data-page="a-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dasbor</div>
+        <div class="nav-item" data-page="a-employees"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 8.5a3 3 0 0 1 0 5M20.5 20c0-2.4-1.5-4-3.5-4.6"/></svg>Personel<span class="badge">248</span></div>
+        <div class="nav-item" data-page="a-assignments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>Penugasan</div>
+        <div class="nav-item" data-page="a-mutations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 3h9l5 5v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M8 13l2 2 4-4"/></svg>Surat Keputusan</div>
+        <div class="nav-item" data-page="a-mcu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2h6l5 5v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M12 10v6M9 13h6"/></svg>Arsip MCU<span class="badge">PDF</span></div>
+      </div>
+
+      <div class="nav-group">
+        <div class="g-label">Master Data</div>
+        <div class="nav-item" data-page="a-units"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-2h12v2"/></svg>Struktur Organisasi</div>
+        <div class="nav-item" data-page="a-ranks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 6 6 .5-4.5 4 1.5 6L12 15l-6 3.5 1.5-6L3 8.5 9 8z"/></svg>Pangkat</div>
+        <div class="nav-item" data-page="a-positions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8"/></svg>Jabatan</div>
+      </div>
+
+      <div class="nav-group">
+        <div class="g-label">Keamanan</div>
+        <div class="nav-item" data-page="a-rbac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3"/></svg>Peran &amp; Akses</div>
+        <div class="nav-item" data-page="a-audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Audit Trail</div>
+      </div>
+    </div>
+
+    <div class="side-foot">
+      <div class="user-chip">
+        <div class="ava">WS</div>
+        <div class="ui">
+          <b>dr. Wildan Sani</b>
+          <span class="role-pill role-super" style="padding:0;background:none;border:0">SuperAdmin</span>
+        </div>
+        <div class="out" onclick="logout()" title="Keluar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" onclick="toggleSide('side-admin')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+      <div class="tb-title">
+        <span class="crumb" id="a-crumb">SATRIA-RSPAD / Operasi</span>
+        <h2 id="a-heading">Dasbor</h2>
+      </div>
+      <div class="tb-right">
+        <div class="tb-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" placeholder="Cari personel, NRP, SK…">
+        </div>
+        <div class="tb-clock"><b id="a-clock">—</b><span id="a-date">—</span></div>
+      </div>
+    </header>
+
+    <div class="content" id="a-content">
+
+      <!-- ===== ADMIN: DASHBOARD ===== -->
+      <div class="page active" id="page-a-dashboard">
+        <div class="stat-row">
+          <div class="stat ticks">
+            <div class="s-delta up">▲ 6</div>
+            <div class="s-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 8.5a3 3 0 0 1 0 5"/></svg></div>
+            <div class="s-val tnum">248</div>
+            <div class="s-label">Total Personel Aktif</div>
+          </div>
+          <div class="stat ticks">
+            <div class="s-delta up">▲ 3</div>
+            <div class="s-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h9l5 5v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M14 3v5h5"/></svg></div>
+            <div class="s-val tnum">37</div>
+            <div class="s-label">SK Bulan Ini</div>
+          </div>
+          <div class="stat ticks">
+            <div class="s-delta flat">— 0</div>
+            <div class="s-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/></svg></div>
+            <div class="s-val tnum">64</div>
+            <div class="s-label">Unit Organisasi</div>
+          </div>
+          <div class="stat ticks">
+            <div class="s-delta up">▲ 12</div>
+            <div class="s-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2h6l5 5v13H4V3z"/><path d="M9 13h6M9 16h4"/></svg></div>
+            <div class="s-val tnum">182</div>
+            <div class="s-label">Arsip MCU Tersimpan</div>
+          </div>
+        </div>
+
+        <div class="grid-2-1 mb">
+          <!-- recent activity -->
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Aktivitas Terbaru</h3>
+              <span class="ph-tag">activity_log</span>
+              <div class="ph-actions"><button class="btn btn-sm btn-ghost" onclick="go('a-audit')">Lihat Semua</button></div>
+            </div>
+            <div class="panel-body">
+              <div class="feed">
+                <div class="feed-item">
+                  <div class="fi-dot fi-create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+                  <div class="fi-body">
+                    <p><b>Serda Bambang Wijaya</b> ditambahkan sebagai personel baru</p>
+                    <div class="fi-meta"><span class="fi-tag">employee</span><span>oleh Staf Personalia</span><span>2 menit lalu</span></div>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="fi-dot fi-update"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+                  <div class="fi-body">
+                    <p>Atribut fisik <b>Kapten Andi Saputra</b> diperbarui — ukuran seragam M → L</p>
+                    <div class="fi-meta"><span class="fi-tag">physical_attribute</span><span>oleh Staf Personalia</span><span>18 menit lalu</span></div>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="fi-dot fi-create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+                  <div class="fi-body">
+                    <p>SK baru <b>SK/214/V/2026</b> diterbitkan — jenis: mutasi</p>
+                    <div class="fi-meta"><span class="fi-tag">mutation_order</span><span>oleh dr. Wildan Sani</span><span>1 jam lalu</span></div>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="fi-dot fi-login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg></div>
+                  <div class="fi-body">
+                    <p>Penugasan baru: <b>Letda Rini Astuti</b> → Kepala Unit Hemodialisa</p>
+                    <div class="fi-meta"><span class="fi-tag">assignment</span><span>oleh Staf Personalia</span><span>2 jam lalu</span></div>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="fi-dot fi-update"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+                  <div class="fi-body">
+                    <p>Data pangkat <b>Kolonel CKM</b> diperbarui pada master ranks</p>
+                    <div class="fi-meta"><span class="fi-tag">rank</span><span>oleh dr. Wildan Sani</span><span>3 jam lalu</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- right column -->
+          <div>
+            <div class="panel mb">
+              <div class="panel-head"><h3>Komposisi Personel</h3><span class="ph-tag">jenis_personel</span></div>
+              <div class="panel-body">
+                <div class="dist-row"><span class="dr-label">TNI</span><div class="dr-track"><div class="dr-fill" style="width:64%"></div></div><span class="dr-val">159</span></div>
+                <div class="dist-row"><span class="dr-label">PNS</span><div class="dr-track"><div class="dr-fill" style="width:28%"></div></div><span class="dr-val">69</span></div>
+                <div class="dist-row"><span class="dr-label">Kontrak</span><div class="dr-track"><div class="dr-fill" style="width:7%"></div></div><span class="dr-val">17</span></div>
+                <div class="dist-row"><span class="dr-label">Lainnya</span><div class="dr-track"><div class="dr-fill" style="width:1.5%"></div></div><span class="dr-val">3</span></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3>Status Verifikasi</h3><span class="ph-tag">units</span></div>
+              <div class="panel-body">
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:var(--khaki)">Garis komando confirmed</span><span class="bdg bdg-green">52 unit</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:var(--khaki)">Provisional</span><span class="bdg bdg-amber">9 unit</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:var(--khaki)">Unknown</span><span class="bdg bdg-red">3 unit</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:var(--khaki)">Perlu verifikasi nama</span><span class="bdg bdg-khaki">7 unit</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- monthly SK chart -->
+        <div class="panel">
+          <div class="panel-head"><h3>Surat Keputusan — 6 Bulan Terakhir</h3><span class="ph-tag">mutation_orders</span></div>
+          <div class="panel-body">
+            <div class="barchart">
+              <div class="bar-col"><span class="bc-val tnum">18</span><div class="bar" style="height:38%"></div><span class="bc-label">DES</span></div>
+              <div class="bar-col"><span class="bc-val tnum">24</span><div class="bar" style="height:50%"></div><span class="bc-label">JAN</span></div>
+              <div class="bar-col"><span class="bc-val tnum">31</span><div class="bar" style="height:66%"></div><span class="bc-label">FEB</span></div>
+              <div class="bar-col"><span class="bc-val tnum">22</span><div class="bar" style="height:46%"></div><span class="bc-label">MAR</span></div>
+              <div class="bar-col"><span class="bc-val tnum">29</span><div class="bar" style="height:60%"></div><span class="bc-label">APR</span></div>
+              <div class="bar-col"><span class="bc-val tnum">37</span><div class="bar" style="height:100%"></div><span class="bc-label">MEI</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ADMIN: EMPLOYEES ===== -->
+      <div class="page" id="page-a-employees">
+        <div class="toolbar">
+          <div class="seg">
+            <button class="on">Semua</button>
+            <button>Aktif</button>
+            <button>Non-aktif</button>
+            <button>Arsip</button>
+          </div>
+          <div class="seg">
+            <button class="on">TNI</button>
+            <button>PNS</button>
+            <button>Kontrak</button>
+          </div>
+          <div style="margin-left:auto;display:flex;gap:8px">
+            <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filter</button>
+            <button class="btn btn-primary" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Tambah Personel</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3>Direktori Personel</h3><span class="ph-tag">employees · 248 baris</span></div>
+          <div class="tbl-wrap">
+            <table class="data">
+              <thead>
+                <tr><th>Personel</th><th>NRP / NIP</th><th>Pangkat</th><th>Unit</th><th>Jenis</th><th>Status</th><th style="text-align:right">Aksi</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="row-ava"><div class="ra">WS</div><div><span class="cell-strong">dr. Wildan Sani, Sp.U</span><span class="cell-sub">Direktur Pembinaan Yankes</span></div></div></td>
+                  <td class="cell-id">11960045120970</td>
+                  <td>Kolonel CKM</td>
+                  <td>DIRBIN YANKES</td>
+                  <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+                  <td><span class="bdg bdg-green">Aktif</span></td>
+                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+                </tr>
+                <tr>
+                  <td><div class="row-ava"><div class="ra">AS</div><div><span class="cell-strong">Kapten Andi Saputra</span><span class="cell-sub">Departemen Bedah</span></div></div></td>
+                  <td class="cell-id">21070088340921</td>
+                  <td>Kapten CKM</td>
+                  <td>KADEP BEDAH</td>
+                  <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+                  <td><span class="bdg bdg-green">Aktif</span></td>
+                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+                </tr>
+                <tr>
+                  <td><div class="row-ava"><div class="ra">RA</div><div><span class="cell-strong">Letda Rini Astuti</span><span class="cell-sub">Unit Hemodialisa</span></div></div></td>
+                  <td class="cell-id">21150034550887</td>
+                  <td>Letnan Dua CKM</td>
+                  <td>KANIT HD</td>
+                  <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+                  <td><span class="bdg bdg-green">Aktif</span></td>
+                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+                </tr>
+                <tr>
+                  <td><div class="row-ava"><div class="ra">SH</div><div><span class="cell-strong">Siti Handayani, S.Kep</span><span class="cell-sub">Instalasi Farmasi</span></div></div></td>
+                  <td class="cell-id">198703152010012003</td>
+                  <td>Penata Muda III/a</td>
+                  <td>KAINSTAL FARMASI</td>
+                  <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+                  <td><span class="bdg bdg-green">Aktif</span></td>
+                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+                </tr>
+                <tr>
+                  <td><div class="row-ava"><div class="ra">BW</div><div><span class="cell-strong">Serda Bambang Wijaya</span><span class="cell-sub">Instalasi Gawat Darurat</span></div></div></td>
+                  <td class="cell-id">31240091220765</td>
+                  <td>Sersan Dua CKM</td>
+                  <td>KAINSTAL GADAR</td>
+                  <td><span class="bdg bdg-khaki no-dot">TNI</span></td>
+                  <td><span class="bdg bdg-green">Aktif</span></td>
+                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+                </tr>
+                <tr>
+                  <td><div class="row-ava"><div class="ra">DP</div><div><span class="cell-strong">Dewi Puspita, A.Md</span><span class="cell-sub">Instalasi Gizi</span></div></div></td>
+                  <td class="cell-id">199105202015022001</td>
+                  <td>Pengatur II/c</td>
+                  <td>KAINSTAL GIZI</td>
+                  <td><span class="bdg bdg-blue no-dot">PNS</span></td>
+                  <td><span class="bdg bdg-amber">Cuti</span></td>
+                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+                </tr>
+                <tr>
+                  <td><div class="row-ava"><div class="ra">HN</div><div><span class="cell-strong">Hendra Nugroho</span><span class="cell-sub">Penunjang Umum</span></div></div></td>
+                  <td class="cell-id">KTR-2024-0091</td>
+                  <td>—</td>
+                  <td>DIRBIN UM</td>
+                  <td><span class="bdg bdg-brass no-dot">Kontrak</span></td>
+                  <td><span class="bdg bdg-green">Aktif</span></td>
+                  <td style="text-align:right"><button class="icon-btn" onclick="openEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:14px 20px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between">
+            <span style="font-family:var(--mono);font-size:11px;color:var(--khaki-dim)">Menampilkan 1–7 dari 248</span>
+            <div style="display:flex;gap:6px">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="btn btn-sm btn-primary">1</button>
+              <button class="btn btn-sm btn-ghost">2</button>
+              <button class="btn btn-sm btn-ghost">3</button>
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ADMIN: ASSIGNMENTS ===== -->
+      <div class="page" id="page-a-assignments">
+        <div class="callout callout-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <p><b>Aturan overlap aktif.</b> Posisi struktural maksimal 1 pemegang aktif (<span class="mono">end_date IS NULL</span>). Setiap personel maksimal 1 penugasan <span class="mono">is_primary</span> aktif. Assignment tertutup bersifat <i>immutable</i> bagi Admin Personalia.</p>
+        </div>
+        <div class="toolbar">
+          <div class="seg"><button class="on">Aktif</button><button>Tertutup</button><button>Semua</button></div>
+          <div style="margin-left:auto"><button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Buat Penugasan</button></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Riwayat Penugasan</h3><span class="ph-tag">employee_assignments</span></div>
+          <div class="tbl-wrap">
+            <table class="data">
+              <thead><tr><th>Personel</th><th>Jabatan</th><th>Unit</th><th>Tipe</th><th>SK Pembuka</th><th>Periode</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="cell-strong">Letda Rini Astuti</td>
+                  <td>Kepala Unit Hemodialisa</td>
+                  <td>KANIT HD</td>
+                  <td><span class="bdg bdg-brass no-dot">struktural</span></td>
+                  <td class="cell-id">SK/214/V/2026</td>
+                  <td class="mono" style="font-size:12px">01 Mei 2026 — <span style="color:var(--signal-green)">aktif</span></td>
+                  <td><span class="bdg bdg-green">Primary</span></td>
+                </tr>
+                <tr>
+                  <td class="cell-strong">Kapten Andi Saputra</td>
+                  <td>Kepala Departemen Bedah</td>
+                  <td>KADEP BEDAH</td>
+                  <td><span class="bdg bdg-brass no-dot">struktural</span></td>
+                  <td class="cell-id">SK/088/II/2025</td>
+                  <td class="mono" style="font-size:12px">14 Feb 2025 — <span style="color:var(--signal-green)">aktif</span></td>
+                  <td><span class="bdg bdg-green">Primary</span></td>
+                </tr>
+                <tr>
+                  <td class="cell-strong">Kapten Andi Saputra</td>
+                  <td>Anggota Komite Medis</td>
+                  <td>KE KOMMED</td>
+                  <td><span class="bdg bdg-blue no-dot">komite</span></td>
+                  <td class="cell-id">SK/090/II/2025</td>
+                  <td class="mono" style="font-size:12px">14 Feb 2025 — <span style="color:var(--signal-green)">aktif</span></td>
+                  <td><span class="bdg bdg-khaki">Tambahan</span></td>
+                </tr>
+                <tr>
+                  <td class="cell-strong">Serda Bambang Wijaya</td>
+                  <td>Perawat Pelaksana IGD</td>
+                  <td>KAINSTAL GADAR</td>
+                  <td><span class="bdg bdg-khaki no-dot">fungsional</span></td>
+                  <td class="cell-id">SK/201/IV/2026</td>
+                  <td class="mono" style="font-size:12px">28 Apr 2026 — <span style="color:var(--signal-green)">aktif</span></td>
+                  <td><span class="bdg bdg-green">Primary</span></td>
+                </tr>
+                <tr style="opacity:.7">
+                  <td class="cell-strong">Letda Rini Astuti</td>
+                  <td>Perawat Pelaksana Watnap</td>
+                  <td>KAINSTAL WATNAP</td>
+                  <td><span class="bdg bdg-khaki no-dot">fungsional</span></td>
+                  <td class="cell-id">SK/045/I/2023</td>
+                  <td class="mono" style="font-size:12px">10 Jan 2023 — 30 Apr 2026</td>
+                  <td><span class="bdg bdg-khaki">Tertutup</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ADMIN: MUTATION ORDERS ===== -->
+      <div class="page" id="page-a-mutations">
+        <div class="toolbar">
+          <div class="seg"><button class="on">Semua</button><button>Pengangkatan</button><button>Mutasi</button><button>Pemberhentian</button></div>
+          <div style="margin-left:auto"><button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Terbitkan SK</button></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Surat Keputusan</h3><span class="ph-tag">mutation_orders</span></div>
+          <div class="tbl-wrap">
+            <table class="data">
+              <thead><tr><th>Nomor SK</th><th>Tanggal</th><th>Jenis</th><th>Lampiran</th><th>Status Lock</th><th style="text-align:right">Aksi</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="cell-id">SK/214/V/2026</td>
+                  <td class="mono" style="font-size:12px">01 Mei 2026</td>
+                  <td><span class="bdg bdg-brass no-dot">mutasi</span></td>
+                  <td><span class="bdg bdg-green no-dot">PDF</span></td>
+                  <td><span class="bdg bdg-red">Terkunci</span></td>
+                  <td style="text-align:right"><span class="mono" style="font-size:10px;color:var(--khaki-dim)">ref · 1</span></td>
+                </tr>
+                <tr>
+                  <td class="cell-id">SK/201/IV/2026</td>
+                  <td class="mono" style="font-size:12px">28 Apr 2026</td>
+                  <td><span class="bdg bdg-green no-dot">pengangkatan</span></td>
+                  <td><span class="bdg bdg-green no-dot">PDF</span></td>
+                  <td><span class="bdg bdg-red">Terkunci</span></td>
+                  <td style="text-align:right"><span class="mono" style="font-size:10px;color:var(--khaki-dim)">ref · 1</span></td>
+                </tr>
+                <tr>
+                  <td class="cell-id">SK/231/V/2026</td>
+                  <td class="mono" style="font-size:12px">20 Mei 2026</td>
+                  <td><span class="bdg bdg-khaki no-dot">penugasan_tambahan</span></td>
+                  <td><span class="bdg bdg-khaki no-dot">—</span></td>
+                  <td><span class="bdg bdg-green">Dapat Diedit</span></td>
+                  <td style="text-align:right"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></td>
+                </tr>
+                <tr>
+                  <td class="cell-id">SK/180/III/2026</td>
+                  <td class="mono" style="font-size:12px">15 Mar 2026</td>
+                  <td><span class="bdg bdg-red no-dot">pemberhentian</span></td>
+                  <td><span class="bdg bdg-green no-dot">PDF</span></td>
+                  <td><span class="bdg bdg-red">Terkunci</span></td>
+                  <td style="text-align:right"><span class="mono" style="font-size:10px;color:var(--khaki-dim)">ref · 1</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="foot-note">Lock <span class="dash">·</span> Admin Personalia tidak dapat mengubah SK yang sudah direferensikan Assignment · SuperAdmin selalu dapat koreksi historis</p>
+      </div>
+
+      <!-- ===== ADMIN: MCU ===== -->
+      <div class="page" id="page-a-mcu">
+        <div class="callout callout-red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          <p><b>Akses terbatas.</b> Modul MCU hanya dapat diakses oleh <b>SuperAdmin</b> dan <b>Admin Personalia</b>. Viewer dilarang total (403). File disimpan pada disk privat; akses via <i>signed URL</i> 5 menit. Append-only — tidak ada preview.</p>
+        </div>
+        <div class="toolbar">
+          <div style="margin-left:auto"><button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 20h16"/></svg>Unggah MCU PDF</button></div>
+        </div>
+        <div class="grid-2-1">
+          <div class="panel">
+            <div class="panel-head"><h3>Arsip Medical Check-Up</h3><span class="ph-tag">medical_checkups</span></div>
+            <div class="tbl-wrap">
+              <table class="data">
+                <thead><tr><th>Personel</th><th>Tanggal MCU</th><th>Fasilitas</th><th>MCU Berikutnya</th><th style="text-align:right">Berkas</th></tr></thead>
+                <tbody>
+                  <tr><td class="cell-strong">Kapten Andi Saputra</td><td class="mono" style="font-size:12px">12 Mar 2026</td><td>RSPAD Gatot Soebroto</td><td class="mono" style="font-size:12px;color:var(--signal-green)">12 Mar 2027</td><td style="text-align:right"><button class="btn btn-sm btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Unduh</button></td></tr>
+                  <tr><td class="cell-strong">Letda Rini Astuti</td><td class="mono" style="font-size:12px">05 Feb 2026</td><td>RSPAD Gatot Soebroto</td><td class="mono" style="font-size:12px;color:var(--signal-amber)">05 Feb 2027</td><td style="text-align:right"><button class="btn btn-sm btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Unduh</button></td></tr>
+                  <tr><td class="cell-strong">Serda Bambang Wijaya</td><td class="mono" style="font-size:12px">28 Apr 2026</td><td>Klinik Pratama Denkesyah</td><td class="mono" style="font-size:12px;color:var(--signal-green)">28 Apr 2027</td><td style="text-align:right"><button class="btn btn-sm btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Unduh</button></td></tr>
+                  <tr><td class="cell-strong">dr. Wildan Sani, Sp.U</td><td class="mono" style="font-size:12px">10 Jan 2026</td><td>RSPAD Gatot Soebroto</td><td class="mono" style="font-size:12px;color:var(--signal-green)">10 Jan 2027</td><td style="text-align:right"><button class="btn btn-sm btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Unduh</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>Unggah Berkas Baru</h3></div>
+            <div class="panel-body">
+              <div class="upload">
+                <div class="up-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 20h16"/></svg></div>
+                <b>Tarik berkas PDF ke sini</b>
+                <span>PDF · maks 10MB · disimpan terenkripsi</span>
+              </div>
+              <div class="field" style="margin-top:16px"><label>Personel <span class="req">*</span></label><select><option>Pilih personel…</option><option>Kapten Andi Saputra</option><option>Letda Rini Astuti</option></select></div>
+              <div class="field" style="margin-top:12px"><label>Tanggal MCU <span class="req">*</span></label><input type="date" value="2026-05-31"></div>
+              <div class="field" style="margin-top:12px"><label>Fasilitas <span class="req">*</span></label><input type="text" value="RSPAD Gatot Soebroto"></div>
+              <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px">Simpan Arsip MCU</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ADMIN: UNITS ===== -->
+      <div class="page" id="page-a-units">
+        <div class="callout callout-amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.8 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.8a2 2 0 0 0-3.4 0z"/></svg>
+          <p><b>Source of truth:</b> Perkasad No. 44/2025 Lampiran I. Tabel <span class="mono">units</span> adalah satu-satunya master struktur — HIS/SIMRS tidak pernah mengubahnya. Klik unit untuk detail lebih lanjut.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3>Daftar Unit (Tree)</h3><span class="ph-tag">64 unit · visual interactive tree</span><div class="ph-actions"><button class="btn btn-sm btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Tambah Unit</button></div></div>
+          <div class="panel-body">
+            <div id="admin-tree-container" style="min-height:400px">
+              <p style="text-align:center;color:#999;padding:40px 20px">Loading struktur organisasi...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ADMIN: RANKS ===== -->
+      <div class="page" id="page-a-ranks">
+        <div class="toolbar"><div class="seg"><button class="on">Semua</button><button>TNI</button><button>PNS</button></div><div style="margin-left:auto"><button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Tambah Pangkat</button></div></div>
+        <div class="panel">
+          <div class="panel-head"><h3>Master Pangkat</h3><span class="ph-tag">ranks · ORDER BY level_pangkat DESC</span></div>
+          <div class="tbl-wrap">
+            <table class="data">
+              <thead><tr><th>Level</th><th>Kode</th><th>Nama Pangkat</th><th>Kategori</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="mono" style="color:var(--brass)">90</td><td class="cell-id">KOL</td><td class="cell-strong">Kolonel CKM</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="mono" style="color:var(--brass)">82</td><td class="cell-id">LETKOL</td><td class="cell-strong">Letnan Kolonel CKM</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="mono" style="color:var(--brass)">75</td><td class="cell-id">MAYOR</td><td class="cell-strong">Mayor CKM</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="mono" style="color:var(--brass)">68</td><td class="cell-id">KAPTEN</td><td class="cell-strong">Kapten CKM</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="mono" style="color:var(--brass)">60</td><td class="cell-id">LETDA</td><td class="cell-strong">Letnan Dua CKM</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="mono" style="color:var(--brass)">45</td><td class="cell-id">SERDA</td><td class="cell-strong">Sersan Dua CKM</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="mono" style="color:var(--brass)">32</td><td class="cell-id">III_A</td><td class="cell-strong">Penata Muda (III/a)</td><td><span class="bdg bdg-blue no-dot">PNS</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="mono" style="color:var(--brass)">24</td><td class="cell-id">II_C</td><td class="cell-strong">Pengatur (II/c)</td><td><span class="bdg bdg-blue no-dot">PNS</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ADMIN: POSITIONS ===== -->
+      <div class="page" id="page-a-positions">
+        <div class="toolbar"><div class="seg"><button class="on">Semua</button><button>Struktural</button><button>Fungsional</button><button>Komite</button></div><div style="margin-left:auto"><button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Tambah Jabatan</button></div></div>
+        <div class="panel">
+          <div class="panel-head"><h3>Master Jabatan</h3><span class="ph-tag">positions</span></div>
+          <div class="tbl-wrap">
+            <table class="data">
+              <thead><tr><th>Kode</th><th>Nama Jabatan</th><th>Unit</th><th>Tipe</th><th>Kepala</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="cell-id">JAB_DIRBINYANKES</td><td class="cell-strong">Direktur Pembinaan Yankes</td><td>DIRBIN YANKES</td><td><span class="bdg bdg-brass no-dot">struktural</span></td><td><span class="bdg bdg-green no-dot">is_head</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="cell-id">JAB_KADEP_BEDAH</td><td class="cell-strong">Kepala Departemen Bedah</td><td>KADEP BEDAH</td><td><span class="bdg bdg-brass no-dot">struktural</span></td><td><span class="bdg bdg-green no-dot">is_head</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="cell-id">JAB_KANIT_HD</td><td class="cell-strong">Kepala Unit Hemodialisa</td><td>KANIT HD</td><td><span class="bdg bdg-brass no-dot">struktural</span></td><td><span class="bdg bdg-green no-dot">is_head</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="cell-id">JAB_PRWT_PLKS</td><td class="cell-strong">Perawat Pelaksana</td><td>—</td><td><span class="bdg bdg-khaki no-dot">fungsional</span></td><td><span class="bdg bdg-khaki no-dot">—</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="cell-id">JAB_KOMMED_ANG</td><td class="cell-strong">Anggota Komite Medis</td><td>KE KOMMED</td><td><span class="bdg bdg-blue no-dot">komite</span></td><td><span class="bdg bdg-khaki no-dot">—</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="cell-id">JAB_TUGAS_BENCANA</td><td class="cell-strong">Tim Siaga Bencana</td><td>—</td><td><span class="bdg bdg-khaki no-dot">tugas_tambahan</span></td><td><span class="bdg bdg-khaki no-dot">—</span></td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ADMIN: RBAC ===== -->
+      <div class="page" id="page-a-rbac">
+        <div class="grid-3 mb">
+          <div class="panel"><div class="panel-body" style="text-align:center"><div class="role-pill role-super" style="display:inline-block;margin-bottom:12px;font-size:11px;padding:4px 12px">SuperAdmin</div><div class="s-val tnum" style="font-size:30px">2</div><div class="s-label">Tim IT RS</div><p style="font-size:11.5px;color:var(--khaki-dim);margin-top:10px;line-height:1.5">Akses penuh + koreksi historis</p></div></div>
+          <div class="panel"><div class="panel-body" style="text-align:center"><div class="role-pill role-admin" style="display:inline-block;margin-bottom:12px;font-size:11px;padding:4px 12px">Admin Personalia</div><div class="s-val tnum" style="font-size:30px">5</div><div class="s-label">Staf Personalia</div><p style="font-size:11.5px;color:var(--khaki-dim);margin-top:10px;line-height:1.5">CRUD personel + akses MCU</p></div></div>
+          <div class="panel"><div class="panel-body" style="text-align:center"><div class="role-pill role-viewer" style="display:inline-block;margin-bottom:12px;font-size:11px;padding:4px 12px">Viewer</div><div class="s-val tnum" style="font-size:30px">18</div><div class="s-label">Pimpinan / Staf</div><p style="font-size:11.5px;color:var(--khaki-dim);margin-top:10px;line-height:1.5">Read-only · dilarang MCU</p></div></div>
+        </div>
+
+        <div class="panel mb">
+          <div class="panel-head"><h3>Matriks Hak Akses</h3><span class="ph-tag">permission matrix · Appendix B</span></div>
+          <div class="tbl-wrap">
+            <table class="data">
+              <thead><tr><th>Sumber Daya</th><th style="text-align:center">SuperAdmin</th><th style="text-align:center">Admin Personalia</th><th style="text-align:center">Viewer</th></tr></thead>
+              <tbody>
+                <tr><td class="cell-strong">Master Reference (Unit/Rank/Position)</td><td style="text-align:center;color:var(--signal-green)">CRUD</td><td style="text-align:center;color:var(--signal-green)">CRUD</td><td style="text-align:center;color:var(--signal-blue)">Lihat</td></tr>
+                <tr><td class="cell-strong">Employee</td><td style="text-align:center;color:var(--signal-green)">CRUD</td><td style="text-align:center;color:var(--signal-green)">CRUD</td><td style="text-align:center;color:var(--signal-blue)">Lihat</td></tr>
+                <tr><td class="cell-strong">Physical Attribute</td><td style="text-align:center;color:var(--signal-green)">CRUD</td><td style="text-align:center;color:var(--signal-amber)">Update</td><td style="text-align:center;color:var(--signal-blue)">Lihat</td></tr>
+                <tr><td class="cell-strong">Mutation Order</td><td style="text-align:center;color:var(--signal-green)">CRUD</td><td style="text-align:center;color:var(--signal-amber)">⚠ Belum ref</td><td style="text-align:center;color:var(--signal-blue)">Lihat</td></tr>
+                <tr><td class="cell-strong">Employee Assignment</td><td style="text-align:center;color:var(--signal-green)">CRUD</td><td style="text-align:center;color:var(--signal-amber)">⚠ Open only</td><td style="text-align:center;color:var(--signal-blue)">Lihat</td></tr>
+                <tr><td class="cell-strong">Medical Checkup (MCU)</td><td style="text-align:center;color:var(--signal-green)">CRUD</td><td style="text-align:center;color:var(--signal-amber)">Create + View</td><td style="text-align:center;color:var(--signal-red)">403 ✕</td></tr>
+                <tr><td class="cell-strong">Activity Log</td><td style="text-align:center;color:var(--signal-blue)">Lihat</td><td style="text-align:center;color:var(--signal-blue)">Lihat</td><td style="text-align:center;color:var(--signal-red)">✕</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3>Akun Pengguna</h3><span class="ph-tag">users · Spatie</span><div class="ph-actions"><button class="btn btn-sm btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Akun Baru</button></div></div>
+          <div class="tbl-wrap">
+            <table class="data">
+              <thead><tr><th>Nama</th><th>Email</th><th>Peran</th><th>Personel Terkait</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="cell-strong">dr. Wildan Sani</td><td class="mono" style="font-size:12px">wildan.sani@rspad.mil.id</td><td><span class="role-pill role-super">SuperAdmin</span></td><td>Kolonel CKM — DIRBIN YANKES</td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="cell-strong">Staf Personalia 01</td><td class="mono" style="font-size:12px">personalia01@rspad.mil.id</td><td><span class="role-pill role-admin">Admin Personalia</span></td><td>—</td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+                <tr><td class="cell-strong">Letkol Pengamat</td><td class="mono" style="font-size:12px">viewer.pim@rspad.mil.id</td><td><span class="role-pill role-viewer">Viewer</span></td><td>Letkol CKM — WAKARUMKIT</td><td><span class="bdg bdg-green">Aktif</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ADMIN: AUDIT ===== -->
+      <div class="page" id="page-a-audit">
+        <div class="toolbar"><div class="seg"><button class="on">Semua Event</button><button>created</button><button>updated</button><button>deleted</button></div><div style="margin-left:auto"><button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Ekspor CSV</button></div></div>
+        <div class="panel">
+          <div class="panel-head"><h3>Audit Trail</h3><span class="ph-tag">activity_log · append-only · immutable</span></div>
+          <div class="panel-body">
+            <div class="feed">
+              <div class="feed-item"><div class="fi-dot fi-create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div><div class="fi-body"><p><b>created</b> · Employee #248 — Serda Bambang Wijaya</p><div class="fi-meta"><span class="fi-tag">employee</span><span>causer: personalia01</span><span>IP 10.21.4.18</span><span>31 Mei 2026, 09:42</span></div></div></div>
+              <div class="feed-item"><div class="fi-dot fi-update"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><div class="fi-body"><p><b>updated</b> · PhysicalAttribute #112 — uniform_size: <span class="mono" style="color:var(--signal-red)">M</span> → <span class="mono" style="color:var(--signal-green)">L</span></p><div class="fi-meta"><span class="fi-tag">physical_attribute</span><span>causer: personalia01</span><span>31 Mei 2026, 09:24</span></div></div></div>
+              <div class="feed-item"><div class="fi-dot fi-create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div><div class="fi-body"><p><b>created</b> · MutationOrder — SK/214/V/2026 (mutasi)</p><div class="fi-meta"><span class="fi-tag">mutation_order</span><span>causer: wildan.sani</span><span>31 Mei 2026, 08:40</span></div></div></div>
+              <div class="feed-item"><div class="fi-dot fi-login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg></div><div class="fi-body"><p><b>created</b> · Assignment #531 — Letda Rini Astuti → KANIT HD</p><div class="fi-meta"><span class="fi-tag">assignment</span><span>causer: personalia01</span><span>31 Mei 2026, 08:12</span></div></div></div>
+              <div class="feed-item"><div class="fi-dot fi-delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></div><div class="fi-body"><p><b>deleted (soft)</b> · Employee #199 — di-arsipkan oleh SuperAdmin</p><div class="fi-meta"><span class="fi-tag">employee</span><span>causer: wildan.sani</span><span>30 Mei 2026, 16:55</span></div></div></div>
+              <div class="feed-item"><div class="fi-dot fi-update"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><div class="fi-body"><p><b>updated</b> · Rank — Kolonel CKM level_pangkat tetap 90</p><div class="fi-meta"><span class="fi-tag">rank</span><span>causer: wildan.sani</span><span>30 Mei 2026, 14:20</span></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /a-content -->
+    <div class="content" style="padding-top:0">
+      <p class="foot-note">SATRIA<span class="dash">·</span>RSPAD &copy; 2026 · Sistem Internal RSPAD Gatot Soebroto · MVP Scope 1 · Data ditampilkan adalah dummy</p>
+    </div>
+  </div><!-- /main -->
+</div><!-- /shell-admin -->
+
+<!-- ============================ USER SHELL ============================ -->
+<div class="shell" id="shell-user">
+  <aside class="side" id="side-user">
+    <div class="side-head">
+      <div class="mini-crest">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 6 L86 20 V46 C86 68 70 83 50 92 C30 83 14 68 14 46 V20 Z" stroke="#c8a347" stroke-width="3" fill="rgba(200,163,71,0.06)"/>
+          <path d="M50 30 V60 M38 45 H62" stroke="#e3c46a" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="st">
+        <b>SATRIA<span class="dash">·</span>RSPAD</b>
+        <span>Portal Personel</span>
+      </div>
+    </div>
+
+    <div class="side-scroll">
+      <div class="nav-group">
+        <div class="g-label">Personal</div>
+        <div class="nav-item active" data-page="u-profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg>Profil Saya</div>
+        <div class="nav-item" data-page="u-career"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>Riwayat Penugasan</div>
+        <div class="nav-item" data-page="u-physical"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 3l4 4-4 4M8 21l-4-4 4-4"/><path d="M4 17h12a4 4 0 0 0 4-4V7M20 7H8a4 4 0 0 0-4 4v6" opacity=".4"/><path d="M6 7h6M12 17h6"/></svg>Atribut Fisik</div>
+        <div class="nav-item locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2h6l5 5v13H4V3z"/></svg>Arsip MCU<svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+      </div>
+
+      <div class="nav-group">
+        <div class="g-label">Organisasi</div>
+        <div class="nav-item" data-page="u-directory"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 8.5a3 3 0 0 1 0 5"/></svg>Direktori Personel</div>
+        <div class="nav-item" data-page="u-org"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/></svg>Struktur Organisasi</div>
+      </div>
+    </div>
+
+    <div class="side-foot">
+      <div class="user-chip">
+        <div class="ava">AS</div>
+        <div class="ui"><b>Kapten Andi Saputra</b><span class="role-pill role-viewer" style="padding:0;background:none;border:0">Viewer</span></div>
+        <div class="out" onclick="logout()" title="Keluar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" onclick="toggleSide('side-user')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+      <div class="tb-title">
+        <span class="crumb" id="u-crumb">SATRIA-RSPAD / Personal</span>
+        <h2 id="u-heading">Profil Saya</h2>
+      </div>
+      <div class="tb-right">
+        <div class="tb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input type="text" placeholder="Cari personel…"></div>
+        <div class="tb-clock"><b id="u-clock">—</b><span id="u-date">—</span></div>
+      </div>
+    </header>
+
+    <div class="content" id="u-content">
+
+      <!-- ===== USER: PROFILE ===== -->
+      <div class="page active" id="page-u-profile">
+        <div class="profile-hero">
+          <div class="ph-ava">AS</div>
+          <div class="ph-info">
+            <div class="ph-rank">Kapten CKM · TNI Angkatan Darat</div>
+            <h2>Andi Saputra</h2>
+            <div class="ph-meta">
+              <span>NRP <b>21070088340921</b></span>
+              <span>Unit <b>Departemen Bedah</b></span>
+              <span>Status <b style="color:var(--signal-green)">Aktif</b></span>
+            </div>
+          </div>
+          <div class="ph-stat">
+            <span class="bdg bdg-green" style="font-size:11px">Penugasan Primary Aktif</span>
+            <span class="mono" style="font-size:11px;color:var(--khaki-dim);margin-top:4px">Sejak 14 Feb 2025</span>
+          </div>
+        </div>
+
+        <div class="grid-2 mb">
+          <div class="panel">
+            <div class="panel-head"><h3>Data Personel</h3><span class="ph-tag">employees</span></div>
+            <div class="panel-body">
+              <dl class="kv">
+                <dt>Nama Lengkap</dt><dd>Kapten Andi Saputra</dd>
+                <dt>Identitas</dt><dd>21070088340921 <span class="bdg bdg-khaki no-dot" style="margin-left:6px">NRP</span></dd>
+                <dt>Jenis Personel</dt><dd>TNI</dd>
+                <dt>Pangkat</dt><dd>Kapten CKM</dd>
+                <dt>Unit Administratif</dt><dd>Departemen Bedah (KADEP BEDAH)</dd>
+                <dt>Status</dt><dd><span class="bdg bdg-green">Aktif</span></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>Penugasan Aktif</h3><span class="ph-tag">end_date IS NULL</span></div>
+            <div class="panel-body">
+              <div style="border:1px solid #e0e4e8;border-radius:var(--r);padding:16px;margin-bottom:12px;background:#f8f9fa">
+                <div style="display:flex;justify-content:space-between;align-items:start">
+                  <div>
+                    <div class="mono" style="font-size:10px;color:var(--brass);letter-spacing:.08em">PRIMARY · STRUKTURAL</div>
+                    <h4 style="font-family:var(--cond);font-size:17px;color:#1a1a1a;text-transform:uppercase;margin:6px 0 3px">Kepala Departemen Bedah</h4>
+                    <p style="font-size:12px;color:#666">KADEP BEDAH · sejak 14 Feb 2025</p>
+                  </div>
+                  <span class="bdg bdg-green">Primary</span>
+                </div>
+              </div>
+              <div style="border:1px solid #e0e4e8;border-radius:var(--r);padding:16px;background:#f8f9fa">
+                <div style="display:flex;justify-content:space-between;align-items:start">
+                  <div>
+                    <div class="mono" style="font-size:10px;color:var(--signal-blue);letter-spacing:.08em">TAMBAHAN · KOMITE</div>
+                    <h4 style="font-family:var(--cond);font-size:17px;color:#1a1a1a;text-transform:uppercase;margin:6px 0 3px">Anggota Komite Medis</h4>
+                    <p style="font-size:12px;color:#666">KE KOMMED · sejak 14 Feb 2025</p>
+                  </div>
+                  <span class="bdg bdg-khaki">Tambahan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3>Ringkasan</h3></div>
+          <div class="panel-body">
+            <div class="stat-row" style="margin-bottom:0">
+              <div class="stat"><div class="s-val tnum">2</div><div class="s-label">Penugasan Aktif</div></div>
+              <div class="stat"><div class="s-val tnum">4</div><div class="s-label">Riwayat Penugasan</div></div>
+              <div class="stat"><div class="s-val tnum">3</div><div class="s-label">Arsip MCU</div></div>
+              <div class="stat"><div class="s-val tnum" style="font-size:22px;color:var(--signal-green)">12 Mar 27</div><div class="s-label">MCU Berikutnya</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== USER: CAREER ===== -->
+      <div class="page" id="page-u-career">
+        <div class="panel">
+          <div class="panel-head"><h3>Riwayat Penugasan</h3><span class="ph-tag">employee_assignments · kronologis</span></div>
+          <div class="panel-body">
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-date">14 FEB 2025 — SEKARANG</div>
+                <h4>Kepala Departemen Bedah</h4>
+                <p>KADEP BEDAH · jabatan struktural · is_primary</p>
+                <div class="tl-sk">Dasar: SK/088/II/2025</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-date">14 FEB 2025 — SEKARANG</div>
+                <h4>Anggota Komite Medis</h4>
+                <p>KE KOMMED · komite · penugasan tambahan</p>
+                <div class="tl-sk">Dasar: SK/090/II/2025</div>
+              </div>
+              <div class="tl-item past">
+                <div class="tl-date">01 AGU 2021 — 13 FEB 2025</div>
+                <h4>Dokter Spesialis Bedah</h4>
+                <p>KADEP BEDAH · fungsional</p>
+                <div class="tl-sk">Dasar: SK/112/VII/2021 · ditutup oleh SK/088/II/2025</div>
+              </div>
+              <div class="tl-item past">
+                <div class="tl-date">10 JAN 2019 — 31 JUL 2021</div>
+                <h4>Dokter Umum</h4>
+                <p>KAINSTAL GADAR · fungsional</p>
+                <div class="tl-sk">Dasar: SK/009/I/2019 · ditutup oleh SK/112/VII/2021</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== USER: PHYSICAL ===== -->
+      <div class="page" id="page-u-physical">
+        <div class="callout callout-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <p>Data atribut fisik digunakan untuk mendukung distribusi seragam. Sebagai personel (Viewer) Anda dapat <b>melihat</b> data ini; perubahan dilakukan oleh Admin Personalia.</p>
+        </div>
+        <div class="grid-3">
+          <div class="panel"><div class="panel-body" style="text-align:center;padding:26px"><div class="s-ico" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 16h16l-2-8H6z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg></div><div class="s-val">42</div><div class="s-label">Ukuran Sepatu</div></div></div>
+          <div class="panel"><div class="panel-body" style="text-align:center;padding:26px"><div class="s-ico" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4l4 2 4-2 4 4-3 2v10H5V10L2 8z"/></svg></div><div class="s-val">L</div><div class="s-label">Ukuran Baju</div></div></div>
+          <div class="panel"><div class="panel-body" style="text-align:center;padding:26px"><div class="s-ico" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3h10l-1 18h-3l-1-9-1 9H7z"/></svg></div><div class="s-val">33</div><div class="s-label">Ukuran Celana</div></div></div>
+          <div class="panel"><div class="panel-body" style="text-align:center;padding:26px"><div class="s-ico" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="9" rx="2"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg></div><div class="s-val">L</div><div class="s-label">Ukuran Seragam</div></div></div>
+          <div class="panel"><div class="panel-body" style="text-align:center;padding:26px"><div class="s-ico" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14a8 8 0 0 1 16 0z"/><path d="M2 14h20"/></svg></div><div class="s-val">58</div><div class="s-label">Ukuran Baret/Kopiah</div></div></div>
+          <div class="panel"><div class="panel-body" style="padding:26px"><div class="s-label" style="margin-bottom:8px">Catatan</div><p style="font-size:13px;color:var(--sand);line-height:1.55">Memerlukan seragam lapangan ukuran besar. Sepatu PDL high-ankle.</p></div></div>
+        </div>
+        <p class="foot-note">Tanpa tabel history <span class="dash">·</span> Perubahan tercatat di activity_log <span class="dash">·</span> Relasi 1:1 dengan Employee</p>
+      </div>
+
+      <!-- ===== USER: DIRECTORY ===== -->
+      <div class="page" id="page-u-directory">
+        <div class="toolbar"><div class="seg"><button class="on">Semua</button><button>Departemen Saya</button></div></div>
+        <div class="panel">
+          <div class="panel-head"><h3>Direktori Personel</h3><span class="ph-tag">read-only</span></div>
+          <div class="tbl-wrap">
+            <table class="data">
+              <thead><tr><th>Personel</th><th>Pangkat</th><th>Unit</th><th>Jenis</th></tr></thead>
+              <tbody>
+                <tr><td><div class="row-ava"><div class="ra">WS</div><div><span class="cell-strong">dr. Wildan Sani, Sp.U</span><span class="cell-sub">Dirbinyankes</span></div></div></td><td>Kolonel CKM</td><td>DIRBIN YANKES</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td></tr>
+                <tr><td><div class="row-ava"><div class="ra">AS</div><div><span class="cell-strong">Kapten Andi Saputra</span><span class="cell-sub">Anda</span></div></div></td><td>Kapten CKM</td><td>KADEP BEDAH</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td></tr>
+                <tr><td><div class="row-ava"><div class="ra">RA</div><div><span class="cell-strong">Letda Rini Astuti</span><span class="cell-sub">Ka. Unit HD</span></div></div></td><td>Letnan Dua CKM</td><td>KANIT HD</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td></tr>
+                <tr><td><div class="row-ava"><div class="ra">SH</div><div><span class="cell-strong">Siti Handayani, S.Kep</span><span class="cell-sub">Inst. Farmasi</span></div></div></td><td>Penata Muda III/a</td><td>KAINSTAL FARMASI</td><td><span class="bdg bdg-blue no-dot">PNS</span></td></tr>
+                <tr><td><div class="row-ava"><div class="ra">BW</div><div><span class="cell-strong">Serda Bambang Wijaya</span><span class="cell-sub">IGD</span></div></div></td><td>Sersan Dua CKM</td><td>KAINSTAL GADAR</td><td><span class="bdg bdg-khaki no-dot">TNI</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== USER: ORG ===== -->
+      <div class="page" id="page-u-org">
+        <div class="panel">
+          <div class="panel-head"><h3>Struktur Organisasi RSPAD</h3><span class="ph-tag">Perkasad No. 44/2025 · visual interactive tree</span></div>
+          <div class="panel-body">
+            <div id="user-tree-container" style="min-height:500px">
+              <p style="text-align:center;color:#999;padding:40px 20px">Loading struktur organisasi...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /u-content -->
+    <div class="content" style="padding-top:0">
+      <p class="foot-note">SATRIA<span class="dash">·</span>RSPAD &copy; 2026 · Portal Personel · Akses Viewer (read-only) · Data dummy</p>
+    </div>
+  </div><!-- /main -->
+</div><!-- /shell-user -->
+
+<!-- ============================ EMPLOYEE FORM MODAL ============================ -->
+<div id="emp-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(8,10,6,.78);backdrop-filter:blur(6px);padding:30px;overflow-y:auto">
+  <div style="max-width:780px;margin:0 auto" class="panel">
+    <div class="panel-head">
+      <h3>Formulir Personel</h3>
+      <span class="ph-tag">EmployeeResource · create/edit</span>
+      <div class="ph-actions"><button class="icon-btn" onclick="closeEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    </div>
+    <div class="panel-body">
+
+      <!-- Section 1: Data Personel -->
+      <div class="form-section">
+        <div class="fs-head"><span class="fs-no">01</span><h4>Data Personel</h4><span class="fs-hint">audited</span></div>
+        <div class="fs-body">
+          <div class="field-grid">
+            <div class="field"><label>Nama Lengkap <span class="req">*</span></label><input type="text" placeholder="cth. Kapten Andi Saputra"></div>
+            <div class="field"><label>Identitas (NRP/NIP) <span class="req">*</span></label><input type="text" placeholder="cth. 21070088340921"></div>
+            <div class="field"><label>Tipe Identitas <span class="req">*</span></label><select><option>NRP</option><option>NIP</option><option>LAINNYA</option></select><span class="hint">membatasi format personnel_id</span></div>
+            <div class="field"><label>Jenis Personel</label><select><option>TNI</option><option>PNS</option><option>KONTRAK</option><option>LAINNYA</option></select></div>
+            <div class="field"><label>Pangkat</label><select><option>Kolonel CKM</option><option>Kapten CKM</option><option>Letnan Dua CKM</option><option>Penata Muda (III/a)</option></select></div>
+            <div class="field"><label>Unit Administratif</label><select><option>DIRBIN YANKES</option><option>KADEP BEDAH</option><option>KANIT HD</option><option>KAINSTAL FARMASI</option></select></div>
+            <div class="field full"><label class="toggle"><input type="checkbox" checked><span class="tk"></span><span>Personel Aktif</span></label></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Physical Attributes (per D-07 — section, not relation manager) -->
+      <div class="form-section">
+        <div class="fs-head"><span class="fs-no">02</span><h4>Atribut Fisik</h4><span class="fs-hint">1:1 · current value only · no history</span></div>
+        <div class="fs-body">
+          <div class="field-grid three">
+            <div class="field"><label>Ukuran Sepatu</label><input type="text" placeholder="42 / 9.5 US"></div>
+            <div class="field"><label>Ukuran Baju</label><input type="text" placeholder="M / L / XL"></div>
+            <div class="field"><label>Ukuran Celana</label><input type="text" placeholder="33"></div>
+            <div class="field"><label>Ukuran Seragam</label><input type="text" placeholder="L"></div>
+            <div class="field"><label>Ukuran Baret/Kopiah</label><input type="text" placeholder="58"></div>
+            <div class="field"><label>&nbsp;</label><div style="display:flex;align-items:center;height:38px"><span class="bdg bdg-amber" style="font-size:9.5px">perubahan diaudit</span></div></div>
+          </div>
+          <div class="field full" style="margin-top:16px"><label>Catatan</label><textarea placeholder="Catatan ukuran / kebutuhan khusus seragam"></textarea></div>
+        </div>
+      </div>
+
+      <!-- Section 3: Foto -->
+      <div class="form-section">
+        <div class="fs-head"><span class="fs-no">03</span><h4>Foto Personel</h4><span class="fs-hint">maks 2MB · JPEG/PNG</span></div>
+        <div class="fs-body">
+          <div class="upload" style="padding:18px"><div class="up-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg></div><b>Unggah Foto</b><span>auto-resize ke 800×800 jika >2000×2000</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;justify-content:flex-end">
+        <button class="btn btn-ghost" onclick="closeEmpForm()">Batal</button>
+        <button class="btn btn-primary" onclick="closeEmpForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Simpan Personel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /.app -->
+
+<script>
+/* ---------- Navigation ---------- */
+function enterApp(role){
+  document.getElementById('gate').style.display='none';
+  if(role==='admin'){ document.getElementById('shell-admin').classList.add('active'); }
+  else { document.getElementById('shell-user').classList.add('active'); }
+  window.scrollTo(0,0);
+}
+function logout(){
+  document.getElementById('shell-admin').classList.remove('active');
+  document.getElementById('shell-user').classList.remove('active');
+  document.getElementById('gate').style.display='flex';
+  // reset to first page on each shell
+  resetPages('admin'); resetPages('user');
+  window.scrollTo(0,0);
+}
+function resetPages(role){
+  const ct = role==='admin' ? 'a' : 'u';
+  document.querySelectorAll('#shell-'+role+' .page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#shell-'+role+' .nav-item').forEach(n=>n.classList.remove('active'));
+  const firstNav = document.querySelector('#shell-'+role+' .nav-item:not(.locked)');
+  if(firstNav){ firstNav.classList.add('active'); }
+  const firstId = role==='admin' ? 'a-dashboard' : 'u-profile';
+  const pg = document.getElementById('page-'+firstId);
+  if(pg) pg.classList.add('active');
+}
+
+const labels = {
+  'a-dashboard':['SATRIA-RSPAD / Operasi','Dasbor'],
+  'a-employees':['SATRIA-RSPAD / Operasi','Personel'],
+  'a-assignments':['SATRIA-RSPAD / Operasi','Penugasan'],
+  'a-mutations':['SATRIA-RSPAD / Operasi','Surat Keputusan'],
+  'a-mcu':['SATRIA-RSPAD / Operasi','Arsip MCU'],
+  'a-units':['SATRIA-RSPAD / Master Data','Struktur Organisasi'],
+  'a-ranks':['SATRIA-RSPAD / Master Data','Pangkat'],
+  'a-positions':['SATRIA-RSPAD / Master Data','Jabatan'],
+  'a-rbac':['SATRIA-RSPAD / Keamanan','Peran & Akses'],
+  'a-audit':['SATRIA-RSPAD / Keamanan','Audit Trail'],
+  'u-profile':['SATRIA-RSPAD / Personal','Profil Saya'],
+  'u-career':['SATRIA-RSPAD / Personal','Riwayat Penugasan'],
+  'u-physical':['SATRIA-RSPAD / Personal','Atribut Fisik'],
+  'u-directory':['SATRIA-RSPAD / Organisasi','Direktori Personel'],
+  'u-org':['SATRIA-RSPAD / Organisasi','Struktur Organisasi']
+};
+
+function activatePage(shell, pageId){
+  const root = document.getElementById('shell-'+shell);
+  root.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  root.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const pg = document.getElementById('page-'+pageId);
+  if(pg) pg.classList.add('active');
+  const nav = root.querySelector('.nav-item[data-page="'+pageId+'"]');
+  if(nav) nav.classList.add('active');
+  if(labels[pageId]){
+    document.getElementById(shell==='admin'?'a-crumb':'u-crumb').textContent = labels[pageId][0];
+    document.getElementById(shell==='admin'?'a-heading':'u-heading').textContent = labels[pageId][1];
+  }
+  // close mobile sidebar
+  root.querySelector('.side').classList.remove('open');
+  const c = document.getElementById(shell==='admin'?'a-content':'u-content');
+  if(c) c.scrollIntoView({behavior:'instant',block:'start'});
+  window.scrollTo(0,0);
+}
+
+// helper used by inline buttons
+function go(pageId){ activatePage('admin', pageId); }
+
+// wire nav clicks
+document.addEventListener('click', function(e){
+  const item = e.target.closest('.nav-item');
+  if(!item || item.classList.contains('locked')) return;
+  const page = item.getAttribute('data-page');
+  if(!page) return;
+  const shell = item.closest('#shell-admin') ? 'admin' : 'user';
+  activatePage(shell, page);
+});
+
+function toggleSide(id){ document.getElementById(id).classList.toggle('open'); }
+
+/* ---------- Employee modal ---------- */
+function openEmpForm(){ document.getElementById('emp-modal').style.display='block'; document.body.style.overflow='hidden'; }
+function closeEmpForm(){ document.getElementById('emp-modal').style.display='none'; document.body.style.overflow=''; }
+
+/* ---------- Clock ---------- */
+function tick(){
+  const now = new Date();
+  const days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const months=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  const t = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+':'+String(now.getSeconds()).padStart(2,'0');
+  const d = days[now.getDay()]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear();
+  ['a','u'].forEach(p=>{
+    const ce=document.getElementById(p+'-clock'); const de=document.getElementById(p+'-date');
+    if(ce) ce.textContent=t; if(de) de.textContent=d;
+  });
+}
+setInterval(tick,1000); tick();
+
+/* ========== VISUAL TREE RENDERER ========== */
+const UNIT_DATA = [
+  {code:'KEPALA',name:'RSPAD Gatot Soebroto',title:'Kepala Rumah Sakit',status:'confirmed',tier:0,kids:[
+    {code:'WAKIL KEPALA',name:'Wakil Kepala Rumah Sakit',title:'Wakil Kepala',status:'confirmed',tier:1}
+  ]},
+  {code:'KE KOMMED',name:'Ke Komando Medis',title:'Komandan Medis',status:'confirmed',tier:1},
+  {code:'KAPOK SAHLI',name:'Kapten Operasi Komando Sahli',title:'Kapok Sahli',status:'confirmed',tier:1},
+  {code:'KA SPI',name:'Kepala Sirkam Patologi Indonesia',title:'Ka SPI',status:'confirmed',tier:1},
+  {code:'DIRBIN YANKES',name:'Direktorat Pembinaan Pelayanan Kesehatan',title:'Dirbin Yankes',status:'confirmed',tier:1},
+  {code:'DIRBIN JANGMED',name:'Direktorat Pembinaan Penunjang Medis',title:'Dirbin Jangmed',status:'confirmed',tier:1},
+  {code:'DIRBIN JANGUM',name:'Direktorat Pembinaan Penunjang Umum',title:'Dirbin Jangum',status:'provisional',tier:1},
+  {code:'DIRBIN DIKLATPEN',name:'Dir. Pembinaan Diklat & Litbang',title:'Dirbin Diklatpen',status:'provisional',tier:1},
+  {code:'DIRBIN UM',name:'Direktorat Pembinaan Umum',title:'Dirbin UM',status:'confirmed',tier:1},
+  {code:'KA SETUM',name:'Kepala Setia Usaha Medis',title:'Ka Setum',status:'confirmed',tier:1},
+  {code:'KA INFOLAHITA',name:'Kepala Informasi Layanan Kesehatan',title:'Ka Infolahita',status:'confirmed',tier:1},
+  {code:'KABAG URDAL',name:'Kepala Bagian Uraian Data Latar',title:'Kabag Urdal',status:'confirmed',tier:1},
+  {code:'KAPEN HUMAS',name:'Kepala Penerbitan Hubungan Masyarakat',title:'Kapen Humas',status:'confirmed',tier:1},
+  {code:'KA BALAKADA',name:'Kepala Biro Administrasi & Keuangan',title:'Ka Balakada',status:'confirmed',tier:1},
+  {code:'KADEP P. DALAM',name:'Departemen Penyakit Dalam',title:'Kadep P. Dalam',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL REHABMED',name:'Ka Instalasi Rehabilitasi Medis',title:'Rehabmed',status:'confirmed',tier:3},
+    {code:'KAINSTAL KED. NUKLIR',name:'Ka Instalasi Kedokteran Nuklir',title:'Ked. Nuklir',status:'confirmed',tier:3},
+    {code:'KAINSTAL RADIOLOGI',name:'Ka Instalasi Radiologi',title:'Radiologi',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP BEDAH',name:'Departemen Bedah',title:'Kadep Bedah',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL PAT ANAT',name:'Ka Instalasi Patologi Anatomi',title:'Pat Anat',status:'confirmed',tier:3},
+    {code:'KAINSTAL PATKLIN',name:'Ka Instalasi Patologi Klinik',title:'Patklin',status:'confirmed',tier:3},
+    {code:'KANIT LUKA BAKAR',name:'Kanit Luka Bakar',title:'Luka Bakar',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP KESWA',name:'Departemen Kesehatan Wanita',title:'Kadep Keswa',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL KMR OPS',name:'Ka Instalasi Kamar Operasi',title:'Kmr Ops',status:'confirmed',tier:3},
+    {code:'KAINSTAL GADAR',name:'Ka Instalasi Gawat Darurat',title:'Gadar',status:'confirmed',tier:3},
+    {code:'KANIT DOKMIL',name:'Kanit Dokumentasi Medis Ilmiah',title:'Dokmil',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP OBSGIN',name:'Departemen Obstetri Ginekologi',title:'Kadep Obsgin',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL PAVILUN',name:'Ka Instalasi Pavilun',title:'Pavilun',status:'confirmed',tier:3},
+    {code:'KAINSTAL APP',name:'Ka Instalasi Antenatal Postnatal Program',title:'APP',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP IKA',name:'Departemen Ilmu Kesehatan Anak',title:'Kadep IKA',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL CVC',name:'Ka Instalasi Cardiovascular Care',title:'CVC',status:'confirmed',tier:3},
+    {code:'KAINSTAL IA2C',name:'Ka Instalasi Intensive & Acute Care',title:'IA2C',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP JANTUNG',name:'Departemen Jantung & Pembuluh Darah',title:'Kadep Jantung',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL RIKKES/MCU',name:'Ka Instalasi Rikkes/MCU',title:'Rikkes/MCU',status:'confirmed',tier:3},
+    {code:'KAINSTAL GUDMAT',name:'Ka Instalasi Gudang Material',title:'Gudmat',status:'confirmed',tier:3},
+    {code:'KANIT LAUNDRY',name:'Kanit Laundry',title:'Laundry',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP PARU',name:'Departemen Paru',title:'Kadep Paru',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL WATLAN',name:'Ka Instalasi Watsan Lansia',title:'Watlan',status:'confirmed',tier:3},
+    {code:'KAINSTAL WATSIF',name:'Ka Instalasi Watsan Sifat',title:'Watsif',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP MATA',name:'Departemen Mata',title:'Kadep Mata',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL FARMASI',name:'Ka Instalasi Farmasi',title:'Farmasi',status:'confirmed',tier:3},
+    {code:'KAINSTAL WATNAP',name:'Ka Instalasi Watsan Pangan',title:'Watnap',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP SARAF',name:'Departemen Saraf',title:'Kadep Saraf',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL GIZI',name:'Ka Instalasi Gizi',title:'Gizi',status:'confirmed',tier:3},
+    {code:'KAINSTAL SARPRASKES',name:'Ka Instalasi Sarana Prasarana Kesehatan',title:'Sarpraskes',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP THT',name:'Departemen THT-KL',title:'Kadep THT',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL KESLING',name:'Ka Instalasi Kesehatan Lingkungan',title:'Kesling',status:'confirmed',tier:3},
+    {code:'KAINSTAL RMIK',name:'Ka Instalasi Rekam Medis Informasi Kesehatan',title:'Rmik',status:'confirmed',tier:3},
+    {code:'KANIT PONEK',name:'Kanit Pertolongan Obstetri Neonatal Emergency',title:'Ponek',status:'confirmed',tier:3},
+    {code:'KANIT VVIP',name:'Kanit VIP',title:'VVIP',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP P. KULKEL',name:'Departemen Penyakit Kulit Kelamin',title:'Kadep P. Kulkel',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL TERAPI PROTON',name:'Ka Instalasi Terapi Proton',title:'Terapi Proton',status:'confirmed',tier:3},
+    {code:'KANIT JEMEN MUSIKO',name:'Kanit Jemari Mental Musik Komuni',title:'Jemen Musiko',status:'confirmed',tier:3},
+    {code:'KANIT HARALKES DAN KALIBRASI',name:'Kanit Harmoni Alat Kesehatan Kalibrasi',title:'Haralkes Kalibrasi',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP GILUT',name:'Departemen Gigi & Mulut',title:'Kadep Gilut',status:'confirmed',tier:2,kids:[
+    {code:'KAINSTAL FORENSIK',name:'Ka Instalasi Forensik',title:'Forensik',status:'confirmed',tier:3},
+    {code:'KANIT ENDOSKOPI',name:'Kanit Endoskopi',title:'Endoskopi',status:'confirmed',tier:3}
+  ]},
+  {code:'KADEP ANESTESI',name:'Departemen Anestesi',title:'Kadep Anestesi',status:'confirmed',tier:2},
+  {code:'KANIT HD',name:'Unit Hemodialisa',title:'Kanit HD',status:'confirmed',tier:2},
+  {code:'KANIT YAN AUTIS',name:'Unit Layanan Autis',title:'Kanit Autis',status:'confirmed',tier:2},
+  {code:'JABFUNG',name:'Kelompok Jabatan Fungsional',title:'fungsional · tanpa kepala struktural',status:'fungsional',tier:1}
+];
+
+function getStatusBadge(status){
+  const colors={confirmed:'#6f9a4a',provisional:'#d68a2b',fungsional:'#5786a3',unknown:'#c0432f'};
+  const bg={confirmed:'rgba(111,154,74,.08)',provisional:'rgba(214,138,43,.08)',fungsional:'rgba(87,134,163,.08)',unknown:'rgba(192,67,47,.08)'};
+  return `<span class="bdg" style="color:${colors[status]||'#999'};border-color:${colors[status]||'#999'}33;background:${bg[status]||'rgba(0,0,0,.05)'};">${status}</span>`;
+}
+
+function renderOrgChart(data,container,userUnit){
+  function buildNode(unit,depth){
+    const hasKids=unit.kids&&unit.kids.length>0;
+    const isHL=unit.code===userUnit;
+    let h=`<div class="oc-node oc-tier${unit.tier}${depth>1?' oc-collapsed':''}">`;
+    h+=`<div class="oc-box${hasKids?' has-kids':''}${isHL?' oc-highlight':''}">`;
+    if(hasKids) h+=`<span class="oc-expand">&#9660;</span>`;
+    h+=`<div class="oc-box-code">${unit.code}</div>`;
+    h+=`<div class="oc-box-name">${unit.name}</div>`;
+    h+=`<div class="oc-box-title">${unit.title}</div>`;
+    if(unit.status==='provisional') h+=`<div class="oc-prov" style="color:var(--signal-amber);border:1px solid rgba(214,138,43,.35)">prov.</div>`;
+    if(unit.status==='fungsional') h+=`<div class="oc-prov" style="color:var(--signal-blue);border:1px solid rgba(87,134,163,.3)">func.</div>`;
+    h+=`</div>`;
+    if(hasKids){
+      h+=`<div class="oc-v-stem"></div><div class="oc-children">`;
+      unit.kids.forEach(kid=>{h+=`<div class="oc-child">${buildNode(kid,depth+1)}</div>`;});
+      h+=`</div>`;
+    }
+    h+=`</div>`;
+    return h;
+  }
+  let html=`<div class="oc-wrap"><div class="oc-root-row">`;
+  data.forEach(unit=>{html+=buildNode(unit,0);});
+  html+=`</div></div>`;
+  container.innerHTML=html;
+  container.addEventListener('click',e=>{
+    const box=e.target.closest('.oc-box.has-kids');
+    if(!box)return;
+    box.closest('.oc-node').classList.toggle('oc-collapsed');
+  });
+}
+
+// Initialize trees on page load
+document.addEventListener('DOMContentLoaded',function(){
+  const adminTree = document.getElementById('admin-tree-container');
+  const userTree = document.getElementById('user-tree-container');
+  if(adminTree) renderOrgChart(UNIT_DATA, adminTree);
+  if(userTree) renderOrgChart(UNIT_DATA, userTree, 'KADEP BEDAH');
+  setTimeout(()=>{
+    if(adminTree) renderOrgChart(UNIT_DATA, adminTree);
+    if(userTree) renderOrgChart(UNIT_DATA, userTree, 'KADEP BEDAH');
+  },100);
+});
+
+// also try after page is fully loaded
+window.addEventListener('load',function(){
+  const adminTree = document.getElementById('admin-tree-container');
+  const userTree = document.getElementById('user-tree-container');
+  if(adminTree) renderOrgChart(UNIT_DATA, adminTree);
+  if(userTree) renderOrgChart(UNIT_DATA, userTree, 'KADEP BEDAH');
+});
+
+/* close modal on backdrop / Esc */
+document.getElementById('emp-modal').addEventListener('click',function(e){ if(e.target===this) closeEmpForm(); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeEmpForm(); });
+</script>
+</body>
+</html>
